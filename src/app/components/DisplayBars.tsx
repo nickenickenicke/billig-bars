@@ -2,8 +2,9 @@
 
 import { Bar } from '@/models/Bar'
 import { CurrentLocation } from '@/models/Location'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { getBars, getBarsByLocation } from '../actions/getBars'
+import { BarsContext } from '../contexts/BarsContext'
 
 interface Props {
   bars: Bar[]
@@ -11,6 +12,9 @@ interface Props {
 
 export default function DisplayBars({ bars }: Props) {
   const [barsState, setBarsState] = useState<Bar[]>(bars)
+  const { bars: hej } = useContext(BarsContext)
+
+  console.log(hej)
 
   //   useEffect(() => {
   //     if (barsState.length > 0) {
