@@ -1,4 +1,4 @@
-export interface Bars {
+export type Bar = {
   id: string
   name: string
   address: string
