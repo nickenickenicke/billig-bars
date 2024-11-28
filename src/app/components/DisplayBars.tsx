@@ -1,10 +1,9 @@
 'use client'
 
 import { Bar } from '@/models/Bar'
-import { CurrentLocation } from '@/models/Location'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { getBars, getBarsByLocation } from '../actions/getBars'
-import { BarsContext } from '../contexts/BarsContext'
+import { locationsSuggestions } from '@/lib/loactions'
 
 interface Props {
   bars: Bar[]
@@ -13,21 +12,12 @@ interface Props {
 export default function DisplayBars({ bars }: Props) {
   const [barsState, setBarsState] = useState<Bar[]>(bars)
 
-  const bysistorget: CurrentLocation = {
-    currentlat: 59.31803212061374,
-    currentlong: 18.054961588411196
-  }
-  const medborgarplatsen: CurrentLocation = {
-    currentlat: 59.31493080050378,
-    currentlong: 18.072152827709495
-  }
-
   return (
     <>
       <button
         type="button"
         onClick={async () => {
-          const newBars = await getBarsByLocation(bysistorget)
+          const newBars = await getBarsByLocation(locationsSuggestions.bysistorget)
           setBarsState(newBars)
         }}
       >
@@ -36,7 +26,7 @@ export default function DisplayBars({ bars }: Props) {
       <button
         type="button"
         onClick={async () => {
-          const newBars = await getBarsByLocation(medborgarplatsen)
+          const newBars = await getBarsByLocation(locationsSuggestions.medborgarplatsen)
           setBarsState(newBars)
         }}
       >
