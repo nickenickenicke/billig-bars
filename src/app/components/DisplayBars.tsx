@@ -2,9 +2,8 @@
 
 import { Bar } from '@/models/Bar'
 import { CurrentLocation } from '@/models/Location'
-import { useEffect, useState } from 'react'
-import { getBarsByLocation } from '../actions/getBars'
-import { createClient } from '@/utils/supabase/client'
+import { useState } from 'react'
+import { getBars, getBarsByLocation } from '../actions/getBars'
 
 interface Props {
   bars: Bar[]
@@ -53,12 +52,19 @@ export default function DisplayBars({ bars }: Props) {
         type="button"
         onClick={async () => {
           const newBars = await getBarsByLocation(medborgarplatsen)
-          console.log('inne')
-
           setBarsState(newBars)
         }}
       >
         Från Medis
+      </button>
+      <button
+        type="button"
+        onClick={async () => {
+          const newBars = await getBars()
+          setBarsState(newBars)
+        }}
+      >
+        Ta alla
       </button>
       <pre>
         HEJ!

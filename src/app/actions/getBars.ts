@@ -14,3 +14,21 @@ export const getBarsByLocation = async (location: CurrentLocation) => {
   }
   return data
 }
+
+export const getBars = async () => {
+  const supabase = await createClient()
+  // const { data, error } = await supabase.from('bars').select(`
+  //   *
+  // `)
+  const { data, error } = await supabase.from('bars').select(`
+    *,
+    opening_hours (*),
+    happy_hours (*)
+  `)
+
+  if (error) {
+    console.error(error)
+    return []
+  }
+  return data
+}
