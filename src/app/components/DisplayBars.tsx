@@ -12,26 +12,7 @@ interface Props {
 
 export default function DisplayBars({ bars }: Props) {
   const [barsState, setBarsState] = useState<Bar[]>(bars)
-  const { bars: hej } = useContext(BarsContext)
 
-  console.log(hej)
-
-  //   useEffect(() => {
-  //     if (barsState.length > 0) {
-  //       return
-  //     }
-  //     const getBarsLetsGo = async () => {
-  //       const supabase = await createClient()
-  //       const { data, error } = await supabase.rpc('nearby_bars', bysistorget)
-  //       if (error) {
-  //         console.error(error)
-  //         return setBarsState([])
-  //       }
-  //       setBarsState(data)
-  //     }
-
-  //     getBarsLetsGo()
-  //   }, [])
   const bysistorget: CurrentLocation = {
     currentlat: 59.31803212061374,
     currentlong: 18.054961588411196
