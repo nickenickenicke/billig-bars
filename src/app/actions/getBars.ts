@@ -6,7 +6,7 @@ import { createClient } from '@/utils/supabase/server'
 export const getBarsByLocation = async (location: CurrentLocation) => {
   const supabase = await createClient()
 
-  const { data, error } = await supabase.rpc('nearby_bars', location)
+  const { data, error } = await supabase.rpc('get_nearby_bars_with_details', location)
 
   if (error) {
     console.error(error)
