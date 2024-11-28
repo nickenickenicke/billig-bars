@@ -1,3 +1,10 @@
+import { BarsList } from './components/BarsList'
+
 export default function Home() {
-  return <main>Hej</main>
+  return (
+    <main>
+      <h1>hej</h1>
+      <BarsList />
+    </main>
+  )
 }
