@@ -9,7 +9,7 @@ export type Bar = {
   long: number
   lat: number
   opening_hours: OpeningHours[]
-  happy_hours: HappyHours[]
+  happy_hours?: HappyHours[]
 }
 
 export type OpeningHours = {
@@ -22,6 +22,6 @@ export type HappyHours = {
   starts_at: number
   ends_at: number
   day_of_week: number
-  volume: number
+  volume?: number
   price: number
 }
