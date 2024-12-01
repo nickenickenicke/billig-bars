@@ -29,6 +29,25 @@ export const FormOpeningHours = () => {
     setOpeningHours({ ...openingHours, [`opens_at_${day}`]: '', [`closes_at_${day}`]: '' })
   }
 
+  const useMondayValuesForAllDays = () => {
+    setOpeningHours({
+      opens_at_1: openingHours.opens_at_1,
+      closes_at_1: openingHours.closes_at_1,
+      opens_at_2: openingHours.opens_at_1,
+      closes_at_2: openingHours.closes_at_1,
+      opens_at_3: openingHours.opens_at_1,
+      closes_at_3: openingHours.closes_at_1,
+      opens_at_4: openingHours.opens_at_1,
+      closes_at_4: openingHours.closes_at_1,
+      opens_at_5: openingHours.opens_at_1,
+      closes_at_5: openingHours.closes_at_1,
+      opens_at_6: openingHours.opens_at_1,
+      closes_at_6: openingHours.closes_at_1,
+      opens_at_7: openingHours.opens_at_1,
+      closes_at_7: openingHours.closes_at_1
+    })
+  }
+
   return (
     <div className="opening-hours bg-slate-300 py-4">
       <h3>Opening Hours</h3>
@@ -56,6 +75,9 @@ export const FormOpeningHours = () => {
             />
             <button type="button" onClick={() => handleClosed('1')}>
               Closed
+            </button>
+            <button type="button" onClick={useMondayValuesForAllDays}>
+              Use these values for all days
             </button>
           </div>
         </div>
