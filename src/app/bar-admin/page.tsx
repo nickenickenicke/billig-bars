@@ -5,17 +5,24 @@ export default async function Bars() {
     <form action={insertBar}>
       <div className="form-group">
         <label htmlFor="name">Venue Name:</label>
-        <input type="text" id="name" name="name" defaultValue="Amici Nostri" required />
+        <input type="text" id="name" name="name" placeholder="Barnamn" defaultValue="" required />
       </div>
 
       <div className="form-group">
         <label htmlFor="address">Address:</label>
-        <input type="text" id="address" name="address" defaultValue="Ringvägen 104" required />
+        <input type="text" id="address" name="address" defaultValue="Hornsgatan " required />
       </div>
 
       <div className="form-group">
         <label htmlFor="postal_code">Postal Code:</label>
-        <input type="number" id="postal_code" name="postal_code" defaultValue="11661" required />
+        <input
+          type="text"
+          inputMode="numeric"
+          id="postal_code"
+          name="postal_code"
+          defaultValue="118"
+          required
+        />
       </div>
 
       <div className="form-group">
@@ -24,23 +31,37 @@ export default async function Bars() {
       </div>
 
       <div className="form-group">
-        <label htmlFor="beer_volume">Beer Volume (ml):</label>
-        <input type="number" id="beer_volume" name="beer_volume" defaultValue="40" required />
+        <label htmlFor="beer_volume">Beer Volume (cl):</label>
+        <input
+          type="text"
+          inputMode="numeric"
+          id="beer_volume"
+          name="beer_volume"
+          defaultValue="40"
+          required
+        />
       </div>
 
       <div className="form-group">
         <label htmlFor="beer_price">Beer Price (SEK):</label>
-        <input type="number" id="beer_price" name="beer_price" defaultValue="45" required />
+        <input
+          type="text"
+          inputMode="numeric"
+          id="beer_price"
+          name="beer_price"
+          defaultValue="39"
+          required
+        />
       </div>
 
       <div className="form-group">
         <label htmlFor="longitude">Longitude:</label>
         <input
-          type="number"
+          type="text"
           id="longitude"
           name="longitude"
-          step="0.0000001"
-          defaultValue="18.0771446228027"
+          inputMode="numeric"
+          defaultValue="18.000"
           required
         />
       </div>
@@ -48,11 +69,11 @@ export default async function Bars() {
       <div className="form-group">
         <label htmlFor="latitude">Latitude:</label>
         <input
-          type="number"
+          type="text"
           id="latitude"
           name="latitude"
-          step="0.0000001"
-          defaultValue="59.3076553344727"
+          inputMode="numeric"
+          defaultValue="59.000"
           required
         />
       </div>
@@ -129,7 +150,7 @@ export default async function Bars() {
               <input type="number" name="happy_starts_at_1" min="0" max="23" defaultValue="14" />
               Ends at:{' '}
               <input type="number" name="happy_ends_at_1" min="0" max="23" defaultValue="1" />
-              Volume (ml): <input type="number" name="happy_volume_1" defaultValue="40" />
+              Volume (cl): <input type="number" name="happy_volume_1" defaultValue="40" />
               Price (SEK): <input type="number" name="happy_price_1" defaultValue="30" />
             </div>
           </div>
@@ -140,7 +161,7 @@ export default async function Bars() {
               <input type="number" name="happy_starts_at_2" min="0" max="23" defaultValue="14" />
               Ends at:{' '}
               <input type="number" name="happy_ends_at_2" min="0" max="23" defaultValue="1" />
-              Volume (ml): <input type="number" name="happy_volume_2" defaultValue="40" />
+              Volume (cl): <input type="number" name="happy_volume_2" defaultValue="40" />
               Price (SEK): <input type="number" name="happy_price_2" defaultValue="30" />
             </div>
           </div>
@@ -151,7 +172,7 @@ export default async function Bars() {
               <input type="number" name="happy_starts_at_3" min="0" max="23" defaultValue="14" />
               Ends at:{' '}
               <input type="number" name="happy_ends_at_3" min="0" max="23" defaultValue="3" />
-              Volume (ml): <input type="number" name="happy_volume_3" defaultValue="40" />
+              Volume (cl): <input type="number" name="happy_volume_3" defaultValue="40" />
               Price (SEK): <input type="number" name="happy_price_3" defaultValue="30" />
             </div>
           </div>
@@ -162,7 +183,7 @@ export default async function Bars() {
               <input type="number" name="happy_starts_at_4" min="0" max="23" defaultValue="14" />
               Ends at:{' '}
               <input type="number" name="happy_ends_at_4" min="0" max="23" defaultValue="1" />
-              Volume (ml): <input type="number" name="happy_volume_4" defaultValue="40" />
+              Volume (cl): <input type="number" name="happy_volume_4" defaultValue="40" />
               Price (SEK): <input type="number" name="happy_price_4" defaultValue="30" />
             </div>
           </div>
@@ -173,7 +194,7 @@ export default async function Bars() {
               <input type="number" name="happy_starts_at_5" min="0" max="23" defaultValue="14" />
               Ends at:{' '}
               <input type="number" name="happy_ends_at_5" min="0" max="23" defaultValue="3" />
-              Volume (ml): <input type="number" name="happy_volume_5" defaultValue="40" />
+              Volume (cl): <input type="number" name="happy_volume_5" defaultValue="40" />
               Price (SEK): <input type="number" name="happy_price_5" defaultValue="30" />
             </div>
           </div>
@@ -184,7 +205,7 @@ export default async function Bars() {
               <input type="number" name="happy_starts_at_6" min="0" max="23" defaultValue="14" />
               Ends at:{' '}
               <input type="number" name="happy_ends_at_6" min="0" max="23" defaultValue="3" />
-              Volume (ml): <input type="number" name="happy_volume_6" defaultValue="40" />
+              Volume (cl): <input type="number" name="happy_volume_6" defaultValue="40" />
               Price (SEK): <input type="number" name="happy_price_6" defaultValue="30" />
             </div>
           </div>
@@ -195,7 +216,7 @@ export default async function Bars() {
               <input type="number" name="happy_starts_at_7" min="0" max="23" defaultValue="14" />
               Ends at:{' '}
               <input type="number" name="happy_ends_at_7" min="0" max="23" defaultValue="1" />
-              Volume (ml): <input type="number" name="happy_volume_7" defaultValue="40" />
+              Volume (cl): <input type="number" name="happy_volume_7" defaultValue="40" />
               Price (SEK): <input type="number" name="happy_price_7" defaultValue="30" />
             </div>
           </div>
