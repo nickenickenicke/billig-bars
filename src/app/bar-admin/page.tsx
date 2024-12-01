@@ -1,5 +1,6 @@
 import { insertBar } from '@/actions/formActions'
 import { FormInput } from '@/components/form/FormInput'
+import { FormLatLong } from '@/components/form/FormLatLong'
 
 export default async function Bars() {
   return (
@@ -37,23 +38,7 @@ export default async function Bars() {
         required
       />
 
-      <FormInput
-        label={'Longitude'}
-        name={'longitude'}
-        text
-        numericInput
-        defaultValue="18.000"
-        required
-      />
-
-      <FormInput
-        label={'Latitude'}
-        name={'latitude'}
-        text
-        numericInput
-        defaultValue="59.000"
-        required
-      />
+      <FormLatLong />
 
       <div className="opening-hours">
         <h3>Opening Hours</h3>
