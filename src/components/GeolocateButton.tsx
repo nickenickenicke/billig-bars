@@ -1,8 +1,8 @@
 import { useContext } from 'react'
-import { BarsContext } from '../contexts/BarsContext'
-import { getBarsByLocation } from '../actions/getBars'
+import { BarsContext } from '@/contexts/BarsContext'
+import { getBarsByLocation } from '@/actions/getBars'
 import { CurrentLocation } from '@/models/Location'
-import { BarActionType } from '../reducers/BarReducer'
+import { BarActionType } from '@/reducers/BarReducer'
 
 export const GeolocateButton = () => {
   const { dispatch } = useContext(BarsContext)

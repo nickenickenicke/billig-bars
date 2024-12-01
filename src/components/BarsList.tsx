@@ -1,7 +1,7 @@
 'use client'
 
 import { useContext } from 'react'
-import { BarsContext } from '../contexts/BarsContext'
+import { BarsContext } from '@/contexts/BarsContext'
 import { BarsListItem } from './BarsListItem'
 import { ReloadBarsButton } from './ReloadBarsButton'
 import { GeolocateButton } from './GeolocateButton'

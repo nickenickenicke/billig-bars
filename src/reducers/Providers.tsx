@@ -2,7 +2,7 @@
 
 import { useReducer } from 'react'
 import { BarReducer, defaultBarState } from './BarReducer'
-import { BarsContext } from '../contexts/BarsContext'
+import { BarsContext } from '@/contexts/BarsContext'
 
 interface ProvidersProps {
   children: React.ReactNode

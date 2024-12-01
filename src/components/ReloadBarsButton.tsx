@@ -1,9 +1,9 @@
 'use client'
 
 import { useContext } from 'react'
-import { BarsContext } from '../contexts/BarsContext'
-import { getBars } from '../actions/getBars'
-import { BarActionType } from '../reducers/BarReducer'
+import { BarsContext } from '@/contexts/BarsContext'
+import { getBars } from '@/actions/getBars'
+import { BarActionType } from '@/reducers/BarReducer'
 
 export const ReloadBarsButton = () => {
   const { dispatch } = useContext(BarsContext)

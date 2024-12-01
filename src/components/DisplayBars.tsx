@@ -2,7 +2,7 @@
 
 import { Bar } from '@/models/Bar'
 import { useState } from 'react'
-import { getBars, getBarsByLocation } from '../actions/getBars'
+import { getBars, getBarsByLocation } from '@/actions/getBars'
 import { locationsSuggestions } from '@/lib/loactions'
 
 interface Props {
