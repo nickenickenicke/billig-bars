@@ -6,75 +6,54 @@ export default async function Bars() {
     <form action={insertBar}>
       <FormInput label={'Venue Name'} name={'name'} text placeholder="Barnamn" required />
 
-      <div className="form-group">
-        <label htmlFor="address">Address:</label>
-        <input type="text" id="address" name="address" defaultValue="Hornsgatan " required />
-      </div>
+      <FormInput label={'Address'} name={'address'} text defaultValue="Hornsgatan " required />
 
-      <div className="form-group">
-        <label htmlFor="postal_code">Postal Code:</label>
-        <input
-          type="text"
-          inputMode="numeric"
-          id="postal_code"
-          name="postal_code"
-          defaultValue="118"
-          required
-        />
-      </div>
+      <FormInput
+        label={'Postal Code'}
+        name={'postal_code'}
+        text
+        numericInput
+        defaultValue="118"
+        required
+      />
 
-      <div className="form-group">
-        <label htmlFor="city">City:</label>
-        <input type="text" id="city" name="city" defaultValue="Stockholm" required />
-      </div>
+      <FormInput label={'City'} name={'city'} text defaultValue="Stockholm" required />
 
-      <div className="form-group">
-        <label htmlFor="beer_volume">Beer Volume (cl):</label>
-        <input
-          type="text"
-          inputMode="numeric"
-          id="beer_volume"
-          name="beer_volume"
-          defaultValue="40"
-          required
-        />
-      </div>
+      <FormInput
+        label={'Beer Volume (cl)'}
+        name={'beer_volume'}
+        text
+        numericInput
+        defaultValue="40"
+        required
+      />
 
-      <div className="form-group">
-        <label htmlFor="beer_price">Beer Price (SEK):</label>
-        <input
-          type="text"
-          inputMode="numeric"
-          id="beer_price"
-          name="beer_price"
-          defaultValue="39"
-          required
-        />
-      </div>
+      <FormInput
+        label={'Beer Price (SEK)'}
+        name={'beer_price'}
+        text
+        numericInput
+        defaultValue="39"
+        required
+      />
 
-      <div className="form-group">
-        <label htmlFor="longitude">Longitude:</label>
-        <input
-          type="text"
-          id="longitude"
-          name="longitude"
-          inputMode="numeric"
-          defaultValue="18.000"
-          required
-        />
-      </div>
+      <FormInput
+        label={'Longitude'}
+        name={'longitude'}
+        text
+        numericInput
+        defaultValue="18.000"
+        required
+      />
 
-      <div className="form-group">
-        <label htmlFor="latitude">Latitude:</label>
-        <input
-          type="text"
-          id="latitude"
-          name="latitude"
-          inputMode="numeric"
-          defaultValue="59.000"
-          required
-        />
-      </div>
+      <FormInput
+        label={'Latitude'}
+        name={'latitude'}
+        text
+        numericInput
+        defaultValue="59.000"
+        required
+      />
 
       <div className="opening-hours">
         <h3>Opening Hours</h3>
