@@ -1,12 +1,10 @@
 import { insertBar } from '@/actions/formActions'
+import { FormInput } from '@/components/form/FormInput'
 
 export default async function Bars() {
   return (
     <form action={insertBar}>
-      <div className="form-group">
-        <label htmlFor="name">Venue Name:</label>
-        <input type="text" id="name" name="name" placeholder="Barnamn" defaultValue="" required />
-      </div>
+      <FormInput label={'Venue Name'} name={'name'} text placeholder="Barnamn" required />
 
       <div className="form-group">
         <label htmlFor="address">Address:</label>
