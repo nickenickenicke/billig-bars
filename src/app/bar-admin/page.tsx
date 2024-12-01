@@ -1,6 +1,7 @@
 import { insertBar } from '@/actions/formActions'
 import { FormInput } from '@/components/form/FormInput'
 import { FormLatLong } from '@/components/form/FormLatLong'
+import { FormOpeningHours } from '@/components/form/FormOpeningHours'
 
 export default async function Bars() {
   return (
@@ -40,67 +41,7 @@ export default async function Bars() {
 
       <FormLatLong />
 
-      <div className="opening-hours">
-        <h3>Opening Hours</h3>
-        <div id="opening-hours-container">
-          <div className="form-group">
-            <label>Monday (Day 1):</label>
-            <div>
-              Opens at: <input type="number" name="opens_at_1" min="0" max="23" defaultValue="14" />
-              Closes at:{' '}
-              <input type="number" name="closes_at_1" min="0" max="23" defaultValue="1" />
-            </div>
-          </div>
-          <div className="form-group">
-            <label>Tuesday (Day 2):</label>
-            <div>
-              Opens at: <input type="number" name="opens_at_2" min="0" max="23" defaultValue="14" />
-              Closes at:{' '}
-              <input type="number" name="closes_at_2" min="0" max="23" defaultValue="1" />
-            </div>
-          </div>
-          <div className="form-group">
-            <label>Wednesday (Day 3):</label>
-            <div>
-              Opens at: <input type="number" name="opens_at_3" min="0" max="23" defaultValue="14" />
-              Closes at:{' '}
-              <input type="number" name="closes_at_3" min="0" max="23" defaultValue="3" />
-            </div>
-          </div>
-          <div className="form-group">
-            <label>Thursday (Day 4):</label>
-            <div>
-              Opens at: <input type="number" name="opens_at_4" min="0" max="23" defaultValue="14" />
-              Closes at:{' '}
-              <input type="number" name="closes_at_4" min="0" max="23" defaultValue="1" />
-            </div>
-          </div>
-          <div className="form-group">
-            <label>Friday (Day 5):</label>
-            <div>
-              Opens at: <input type="number" name="opens_at_5" min="0" max="23" defaultValue="14" />
-              Closes at:{' '}
-              <input type="number" name="closes_at_5" min="0" max="23" defaultValue="3" />
-            </div>
-          </div>
-          <div className="form-group">
-            <label>Saturday (Day 6):</label>
-            <div>
-              Opens at: <input type="number" name="opens_at_6" min="0" max="23" defaultValue="14" />
-              Closes at:{' '}
-              <input type="number" name="closes_at_6" min="0" max="23" defaultValue="3" />
-            </div>
-          </div>
-          <div className="form-group">
-            <label>Sunday (Day 7):</label>
-            <div>
-              Opens at: <input type="number" name="opens_at_7" min="0" max="23" defaultValue="14" />
-              Closes at:{' '}
-              <input type="number" name="closes_at_7" min="0" max="23" defaultValue="1" />
-            </div>
-          </div>
-        </div>
-      </div>
+      <FormOpeningHours />
 
       <div className="happy-hours">
         <h3>Happy Hours</h3>
