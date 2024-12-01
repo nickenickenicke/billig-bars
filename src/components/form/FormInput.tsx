@@ -7,6 +7,8 @@ interface FormInputProps {
   text?: boolean
   numericInput?: boolean
   required?: boolean
+  value?: string
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export const FormInput = ({
@@ -17,7 +19,9 @@ export const FormInput = ({
   defaultValue,
   text,
   numericInput,
-  required
+  required,
+  value,
+  onChange
 }: FormInputProps) => {
   return (
     <div className={`form-group ${className ? className : ''}`}>
@@ -27,9 +31,11 @@ export const FormInput = ({
         type={text ? 'text' : 'number'}
         id={name}
         name={name}
-        placeholder={placeholder ? placeholder : ''}
-        defaultValue={defaultValue ? defaultValue : ''}
+        placeholder={placeholder}
+        defaultValue={defaultValue}
         required={required}
+        value={value}
+        onChange={onChange}
       />
     </div>
   )
