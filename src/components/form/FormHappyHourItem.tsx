@@ -21,42 +21,47 @@ export const FormHappyHourItem = ({
   return (
     <div className="form-group">
       <label>{`${days[day - 1]} (Day ${day}) Happy Hour:`}</label>
-      <div>
-        Starts at:{' '}
+      <div className="grid grid-cols-5 grid-rows-2">
+        <label htmlFor={`happy_starts_at_${day}`}>Starts at</label>
         <input
           type="number"
           name={`happy_starts_at_${day}`}
+          id={`happy_starts_at_${day}`}
           min="0"
           max="23"
+          className=""
           value={happy_starts_at}
           onChange={handleChange}
         />
-        Ends at:{' '}
+        <label htmlFor={`happy_ends_at_${day}`}>Ends at</label>
         <input
           type="number"
           name={`happy_ends_at_${day}`}
+          id={`happy_ends_at_${day}`}
           min="0"
           max="23"
           value={happy_ends_at}
           onChange={handleChange}
         />
-        Volume (cl):{' '}
+        <button className="row-span-2" type="button" onClick={handleClearDay}>
+          Clear
+        </button>
+        <label htmlFor={`happy_volume_${day}`}>Volume (cl)</label>
         <input
           type="number"
           name={`happy_volume_${day}`}
+          id={`happy_volume_${day}`}
           value={happy_volume}
           onChange={handleChange}
         />
-        Price (SEK):{' '}
+        <label htmlFor={`happy_price_${day}`}>Price (SEK)</label>
         <input
           type="number"
           name={`happy_price_${day}`}
+          id={`happy_price_${day}`}
           value={happy_price}
           onChange={handleChange}
         />
-        <button type="button" onClick={handleClearDay}>
-          Clear
-        </button>
       </div>
     </div>
   )
