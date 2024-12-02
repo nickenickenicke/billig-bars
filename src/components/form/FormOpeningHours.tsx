@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { FormOpeningHoursItem } from './FormOpeningHoursItem'
 
 export const FormOpeningHours = () => {
   const [openingHours, setOpeningHours] = useState({
@@ -25,7 +26,7 @@ export const FormOpeningHours = () => {
     setOpeningHours({ ...openingHours, [name]: value })
   }
 
-  const handleClosed = (day: string) => {
+  const handleClosed = (day: number) => {
     setOpeningHours({ ...openingHours, [`opens_at_${day}`]: '', [`closes_at_${day}`]: '' })
   }
 
@@ -52,191 +53,78 @@ export const FormOpeningHours = () => {
     <div className="opening-hours bg-slate-300 py-4">
       <h3>Opening Hours</h3>
       <div id="opening-hours-container">
-        <div className="form-group">
-          <label>Monday (Day 1):</label>
-          <div>
-            Opens at:{' '}
-            <input
-              type="number"
-              name="opens_at_1"
-              min="0"
-              max="23"
-              value={openingHours.opens_at_1}
-              onChange={handleChange}
-            />
-            Closes at:{' '}
-            <input
-              type="number"
-              name="closes_at_1"
-              min="0"
-              max="23"
-              value={openingHours.closes_at_1}
-              onChange={handleChange}
-            />
-            <button type="button" onClick={() => handleClosed('1')}>
-              Closed
-            </button>
-            <button type="button" onClick={useMondayValuesForAllDays}>
-              Use these values for all days
-            </button>
-          </div>
-        </div>
-        <div className="form-group">
-          <label>Tuesday (Day 2):</label>
-          <div>
-            Opens at:{' '}
-            <input
-              type="number"
-              name="opens_at_2"
-              min="0"
-              max="23"
-              value={openingHours.opens_at_2}
-              onChange={handleChange}
-            />
-            Closes at:{' '}
-            <input
-              type="number"
-              name="closes_at_2"
-              min="0"
-              max="23"
-              value={openingHours.closes_at_2}
-              onChange={handleChange}
-            />
-            <button type="button" onClick={() => handleClosed('2')}>
-              Closed
-            </button>
-          </div>
-        </div>
-        <div className="form-group">
-          <label>Wednesday (Day 3):</label>
-          <div>
-            Opens at:{' '}
-            <input
-              type="number"
-              name="opens_at_3"
-              min="0"
-              max="23"
-              value={openingHours.opens_at_3}
-              onChange={handleChange}
-            />
-            Closes at:{' '}
-            <input
-              type="number"
-              name="closes_at_3"
-              min="0"
-              max="23"
-              value={openingHours.closes_at_3}
-              onChange={handleChange}
-            />
-            <button type="button" onClick={() => handleClosed('3')}>
-              Closed
-            </button>
-          </div>
-        </div>
-        <div className="form-group">
-          <label>Thursday (Day 4):</label>
-          <div>
-            Opens at:{' '}
-            <input
-              type="number"
-              name="opens_at_4"
-              min="0"
-              max="23"
-              value={openingHours.opens_at_4}
-              onChange={handleChange}
-            />
-            Closes at:{' '}
-            <input
-              type="number"
-              name="closes_at_4"
-              min="0"
-              max="23"
-              value={openingHours.closes_at_4}
-              onChange={handleChange}
-            />
-            <button type="button" onClick={() => handleClosed('4')}>
-              Closed
-            </button>
-          </div>
-        </div>
-        <div className="form-group">
-          <label>Friday (Day 5):</label>
-          <div>
-            Opens at:{' '}
-            <input
-              type="number"
-              name="opens_at_5"
-              min="0"
-              max="23"
-              value={openingHours.opens_at_5}
-              onChange={handleChange}
-            />
-            Closes at:{' '}
-            <input
-              type="number"
-              name="closes_at_5"
-              min="0"
-              max="23"
-              value={openingHours.closes_at_5}
-              onChange={handleChange}
-            />
-            <button type="button" onClick={() => handleClosed('5')}>
-              Closed
-            </button>
-          </div>
-        </div>
-        <div className="form-group">
-          <label>Saturday (Day 6):</label>
-          <div>
-            Opens at:{' '}
-            <input
-              type="number"
-              name="opens_at_6"
-              min="0"
-              max="23"
-              value={openingHours.opens_at_6}
-              onChange={handleChange}
-            />
-            Closes at:{' '}
-            <input
-              type="number"
-              name="closes_at_6"
-              min="0"
-              max="23"
-              value={openingHours.closes_at_6}
-              onChange={handleChange}
-            />
-            <button type="button" onClick={() => handleClosed('6')}>
-              Closed
-            </button>
-          </div>
-        </div>
-        <div className="form-group">
-          <label>Sunday (Day 7):</label>
-          <div>
-            Opens at:{' '}
-            <input
-              type="number"
-              name="opens_at_7"
-              min="0"
-              max="23"
-              value={openingHours.opens_at_7}
-              onChange={handleChange}
-            />
-            Closes at:{' '}
-            <input
-              type="number"
-              name="closes_at_7"
-              min="0"
-              max="23"
-              value={openingHours.closes_at_7}
-              onChange={handleChange}
-            />
-            <button type="button" onClick={() => handleClosed('7')}>
-              Closed
-            </button>
-          </div>
-        </div>
+        <FormOpeningHoursItem
+          day={1}
+          opens_at={openingHours.opens_at_1}
+          closes_at={openingHours.closes_at_1}
+          handleChange={handleChange}
+          handleClosed={() => {
+            handleClosed(1)
+          }}
+        />
+        <button type="button" onClick={useMondayValuesForAllDays}>
+          Use these values for all days
+        </button>
+
+        <FormOpeningHoursItem
+          day={2}
+          opens_at={openingHours.opens_at_2}
+          closes_at={openingHours.closes_at_2}
+          handleChange={handleChange}
+          handleClosed={() => {
+            handleClosed(2)
+          }}
+        />
+
+        <FormOpeningHoursItem
+          day={3}
+          opens_at={openingHours.opens_at_3}
+          closes_at={openingHours.closes_at_3}
+          handleChange={handleChange}
+          handleClosed={() => {
+            handleClosed(3)
+          }}
+        />
+
+        <FormOpeningHoursItem
+          day={4}
+          opens_at={openingHours.opens_at_4}
+          closes_at={openingHours.closes_at_4}
+          handleChange={handleChange}
+          handleClosed={() => {
+            handleClosed(4)
+          }}
+        />
+
+        <FormOpeningHoursItem
+          day={5}
+          opens_at={openingHours.opens_at_5}
+          closes_at={openingHours.closes_at_5}
+          handleChange={handleChange}
+          handleClosed={() => {
+            handleClosed(5)
+          }}
+        />
+
+        <FormOpeningHoursItem
+          day={6}
+          opens_at={openingHours.opens_at_6}
+          closes_at={openingHours.closes_at_6}
+          handleChange={handleChange}
+          handleClosed={() => {
+            handleClosed(6)
+          }}
+        />
+
+        <FormOpeningHoursItem
+          day={7}
+          opens_at={openingHours.opens_at_7}
+          closes_at={openingHours.closes_at_7}
+          handleChange={handleChange}
+          handleClosed={() => {
+            handleClosed(7)
+          }}
+        />
       </div>
     </div>
   )
