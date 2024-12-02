@@ -25,3 +25,17 @@ export type HappyHours = {
   volume?: number
   price: number
 }
+
+export type BarFormData = {
+  name: string
+  address: string
+  city: string
+  postal_code: number
+  beer_volume: number
+  beer_price: number
+  long: number
+  lat: number
+  location: string
+  opening_hours: OpeningHours[]
+  happy_hours?: HappyHours[]
+}
