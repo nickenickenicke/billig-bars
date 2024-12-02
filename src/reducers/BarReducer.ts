@@ -11,10 +11,10 @@ export type BarAction = {
 
 export const defaultBarState: Bar[] = [
   {
-    name: 'Test',
-    address: 'Test 104',
+    name: 'Testbaren',
+    address: 'Testgatan 104',
     postal_code: 12345,
-    city: 'Test',
+    city: 'Teststaden',
     beer_volume: 40,
     beer_price: 45,
     id: 'test',
