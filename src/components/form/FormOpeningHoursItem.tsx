@@ -18,7 +18,7 @@ export const FormOpeningHoursItem = ({
   return (
     <div className="form-group">
       <h3>{`${weekdayNames[day - 1]} (Day ${day}):`}</h3>
-      <div>
+      <div className="grid grid-cols-5">
         <label htmlFor={`opens_at_${day}`}>Opens at</label>
         <input
           type="number"
