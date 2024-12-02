@@ -1,12 +1,17 @@
+'use client'
+
 import { insertBar } from '@/actions/formActions'
 import { FormHappyHours } from '@/components/form/FormHappyHours'
 import { FormInput } from '@/components/form/FormInput'
 import { FormLatLong } from '@/components/form/FormLatLong'
 import { FormOpeningHours } from '@/components/form/FormOpeningHours'
+import { FormSubmitButton } from './form/FormSubmitButton'
+import { useFormState } from 'react-dom'
 
 export const BarAdminForm = () => {
+  const [formState, action] = useFormState(insertBar, { message: '' })
   return (
-    <form action={insertBar}>
+    <form action={action}>
       <FormInput label={'Venue Name'} name={'name'} text placeholder="Barnamn" required />
 
       <FormInput label={'Address'} name={'address'} text defaultValue="Hornsgatan " required />
@@ -45,8 +50,8 @@ export const BarAdminForm = () => {
       <FormOpeningHours />
 
       <FormHappyHours />
-
-      <button type="submit">Submit</button>
+      <span className="block">{formState.message && formState.message} </span>
+      <FormSubmitButton label={'Submit'} loadingMessage={'Loading...'} />
     </form>
   )
 }

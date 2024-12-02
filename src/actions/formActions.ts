@@ -1,12 +1,11 @@
 'use server'
 
 import { BarFormData, HappyHours, OpeningHours } from '@/models/Bar'
+import { FormState } from '@/models/Forms'
+import { formErrorToState } from '@/utils/errorTools'
 import { createClient } from '@/utils/supabase/server'
-import { revalidatePath } from 'next/cache'
 
-export const insertBar = async (formData: FormData) => {
-  // console.log(formData)
-
+export const insertBar = async (formState: FormState, formData: FormData): Promise<FormState> => {
   const openingHours: OpeningHours[] = []
   for (let index = 0; index < 7; index++) {
     let opens_at = formData.get(`opens_at_${index + 1}`)
@@ -36,8 +35,6 @@ export const insertBar = async (formData: FormData) => {
     }
   }
 
-  // console.log(openingHours)
-  // console.log(happyHours)
   const barData: BarFormData = {
     name: formData.get('name') as string,
     address: formData.get('address') as string,
@@ -51,17 +48,16 @@ export const insertBar = async (formData: FormData) => {
     opening_hours: openingHours,
     happy_hours: happyHours
   }
-  console.log(barData)
 
-  // const supabase = await createClient()
+  const supabase = await createClient()
 
-  // let { data, error } = await supabase.rpc('upsert_bar_details', { p_bar_data: barData })
+  let { data, error } = await supabase.rpc('upsert_bar_details', { p_bar_data: barData })
 
-  // if (error) {
-  //   console.error(error)
-  // }
-  // if (data) {
-  //   console.log(data)
+  if (error) {
+    return formErrorToState(error)
+  }
 
-  // }
+  return {
+    message: 'Bar inserted successfully'
+  }
 }
