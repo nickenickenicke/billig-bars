@@ -1,4 +1,6 @@
-interface HappyHourItemProps {
+import { weekdayNames } from '@/lib/weekdays'
+
+interface FormHappyHourItemProps {
   day: number
   happy_starts_at: string
   happy_ends_at: string
@@ -16,11 +18,10 @@ export const FormHappyHourItem = ({
   happy_volume,
   handleChange,
   handleClearDay
-}: HappyHourItemProps) => {
-  const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+}: FormHappyHourItemProps) => {
   return (
     <div className="form-group">
-      <label>{`${days[day - 1]} (Day ${day}) Happy Hour:`}</label>
+      <h3>{`${weekdayNames[day - 1]} (Day ${day}) Happy Hour:`}</h3>
       <div className="grid grid-cols-5 grid-rows-2">
         <label htmlFor={`happy_starts_at_${day}`}>Starts at</label>
         <input
