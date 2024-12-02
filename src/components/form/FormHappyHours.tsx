@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { FormHappyHourItem } from './FormHappyHourItem'
 
 export const FormHappyHours = () => {
   const [happyHours, setHappyHours] = useState({
@@ -44,7 +45,7 @@ export const FormHappyHours = () => {
     setHappyHours({ ...happyHours, [name]: value })
   }
 
-  const handleClearDay = (day: string) => {
+  const handleClearDay = (day: number) => {
     setHappyHours({
       ...happyHours,
       [`happy_starts_at_${day}`]: '',
@@ -92,289 +93,86 @@ export const FormHappyHours = () => {
       </button>
       {hasHappyHours && (
         <>
-          <div className="form-group">
-            <label>Monday (Day 1) Happy Hour:</label>
-            <div>
-              Starts at:{' '}
-              <input
-                type="number"
-                name="happy_starts_at_1"
-                min="0"
-                max="23"
-                value={happyHours.happy_starts_at_1}
-                onChange={handleChange}
-              />
-              Ends at:{' '}
-              <input
-                type="number"
-                name="happy_ends_at_1"
-                min="0"
-                max="23"
-                value={happyHours.happy_ends_at_1}
-                onChange={handleChange}
-              />
-              Volume (cl):{' '}
-              <input
-                type="number"
-                name="happy_volume_1"
-                value={happyHours.happy_volume_1}
-                onChange={handleChange}
-              />
-              Price (SEK):{' '}
-              <input
-                type="number"
-                name="happy_price_1"
-                value={happyHours.happy_price_1}
-                onChange={handleChange}
-              />
-              <button type="button" onClick={() => handleClearDay('1')}>
-                Clear
-              </button>
-              <button type="button" onClick={useMondayValuesForAllDays}>
-                Use these values for all days
-              </button>
-            </div>
-          </div>
-          <div className="form-group">
-            <label>Tuesday (Day 2) Happy Hour:</label>
-            <div>
-              Starts at:{' '}
-              <input
-                type="number"
-                name="happy_starts_at_2"
-                min="0"
-                max="23"
-                value={happyHours.happy_starts_at_2}
-                onChange={handleChange}
-              />
-              Ends at:{' '}
-              <input
-                type="number"
-                name="happy_ends_at_2"
-                min="0"
-                max="23"
-                value={happyHours.happy_ends_at_2}
-                onChange={handleChange}
-              />
-              Volume (cl):{' '}
-              <input
-                type="number"
-                name="happy_volume_2"
-                value={happyHours.happy_volume_2}
-                onChange={handleChange}
-              />
-              Price (SEK):{' '}
-              <input
-                type="number"
-                name="happy_price_2"
-                value={happyHours.happy_price_2}
-                onChange={handleChange}
-              />
-              <button type="button" onClick={() => handleClearDay('2')}>
-                Clear
-              </button>
-            </div>
-          </div>
-          <div className="form-group">
-            <label>Wednesday (Day 3) Happy Hour:</label>
-            <div>
-              Starts at:{' '}
-              <input
-                type="number"
-                name="happy_starts_at_3"
-                min="0"
-                max="23"
-                value={happyHours.happy_starts_at_3}
-                onChange={handleChange}
-              />
-              Ends at:{' '}
-              <input
-                type="number"
-                name="happy_ends_at_3"
-                min="0"
-                max="23"
-                value={happyHours.happy_ends_at_3}
-                onChange={handleChange}
-              />
-              Volume (cl):{' '}
-              <input
-                type="number"
-                name="happy_volume_3"
-                value={happyHours.happy_volume_3}
-                onChange={handleChange}
-              />
-              Price (SEK):{' '}
-              <input
-                type="number"
-                name="happy_price_3"
-                value={happyHours.happy_price_3}
-                onChange={handleChange}
-              />
-              <button type="button" onClick={() => handleClearDay('3')}>
-                Clear
-              </button>
-            </div>
-          </div>
-          <div className="form-group">
-            <label>Thursday (Day 4) Happy Hour:</label>
-            <div>
-              Starts at:{' '}
-              <input
-                type="number"
-                name="happy_starts_at_4"
-                min="0"
-                max="23"
-                value={happyHours.happy_starts_at_4}
-                onChange={handleChange}
-              />
-              Ends at:{' '}
-              <input
-                type="number"
-                name="happy_ends_at_4"
-                min="0"
-                max="23"
-                value={happyHours.happy_ends_at_4}
-                onChange={handleChange}
-              />
-              Volume (cl):{' '}
-              <input
-                type="number"
-                name="happy_volume_4"
-                value={happyHours.happy_volume_4}
-                onChange={handleChange}
-              />
-              Price (SEK):{' '}
-              <input
-                type="number"
-                name="happy_price_4"
-                value={happyHours.happy_price_4}
-                onChange={handleChange}
-              />
-              <button type="button" onClick={() => handleClearDay('4')}>
-                Clear
-              </button>
-            </div>
-          </div>
-          <div className="form-group">
-            <label>Friday (Day 5) Happy Hour:</label>
-            <div>
-              Starts at:{' '}
-              <input
-                type="number"
-                name="happy_starts_at_5"
-                min="0"
-                max="23"
-                value={happyHours.happy_starts_at_5}
-                onChange={handleChange}
-              />
-              Ends at:{' '}
-              <input
-                type="number"
-                name="happy_ends_at_5"
-                min="0"
-                max="23"
-                value={happyHours.happy_ends_at_5}
-                onChange={handleChange}
-              />
-              Volume (cl):{' '}
-              <input
-                type="number"
-                name="happy_volume_5"
-                value={happyHours.happy_volume_5}
-                onChange={handleChange}
-              />
-              Price (SEK):{' '}
-              <input
-                type="number"
-                name="happy_price_5"
-                value={happyHours.happy_price_5}
-                onChange={handleChange}
-              />
-              <button type="button" onClick={() => handleClearDay('5')}>
-                Clear
-              </button>
-            </div>
-          </div>
-          <div className="form-group">
-            <label>Saturday (Day 6) Happy Hour:</label>
-            <div>
-              Starts at:{' '}
-              <input
-                type="number"
-                name="happy_starts_at_6"
-                min="0"
-                max="23"
-                value={happyHours.happy_starts_at_6}
-                onChange={handleChange}
-              />
-              Ends at:{' '}
-              <input
-                type="number"
-                name="happy_ends_at_6"
-                min="0"
-                max="23"
-                value={happyHours.happy_ends_at_6}
-                onChange={handleChange}
-              />
-              Volume (cl):{' '}
-              <input
-                type="number"
-                name="happy_volume_6"
-                value={happyHours.happy_volume_6}
-                onChange={handleChange}
-              />
-              Price (SEK):{' '}
-              <input
-                type="number"
-                name="happy_price_6"
-                value={happyHours.happy_price_6}
-                onChange={handleChange}
-              />
-              <button type="button" onClick={() => handleClearDay('6')}>
-                Clear
-              </button>
-            </div>
-          </div>
-          <div className="form-group">
-            <label>Sunday (Day 7) Happy Hour:</label>
-            <div>
-              Starts at:{' '}
-              <input
-                type="number"
-                name="happy_starts_at_7"
-                min="0"
-                max="23"
-                value={happyHours.happy_starts_at_7}
-                onChange={handleChange}
-              />
-              Ends at:{' '}
-              <input
-                type="number"
-                name="happy_ends_at_7"
-                min="0"
-                max="23"
-                value={happyHours.happy_ends_at_7}
-                onChange={handleChange}
-              />
-              Volume (cl):{' '}
-              <input
-                type="number"
-                name="happy_volume_7"
-                value={happyHours.happy_volume_7}
-                onChange={handleChange}
-              />
-              Price (SEK):{' '}
-              <input
-                type="number"
-                name="happy_price_7"
-                value={happyHours.happy_price_7}
-                onChange={handleChange}
-              />
-              <button type="button" onClick={() => handleClearDay('7')}>
-                Clear
-              </button>
-            </div>
-          </div>
+          <FormHappyHourItem
+            day={1}
+            happy_starts_at={happyHours.happy_starts_at_1}
+            happy_ends_at={happyHours.happy_ends_at_1}
+            happy_volume={happyHours.happy_volume_1}
+            happy_price={happyHours.happy_price_1}
+            handleChange={handleChange}
+            handleClearDay={() => {
+              handleClearDay(1)
+            }}
+          />
+          <button type="button" onClick={useMondayValuesForAllDays}>
+            Use these values for all days
+          </button>
+          <FormHappyHourItem
+            day={2}
+            happy_starts_at={happyHours.happy_starts_at_2}
+            happy_ends_at={happyHours.happy_ends_at_2}
+            happy_volume={happyHours.happy_volume_2}
+            happy_price={happyHours.happy_price_2}
+            handleChange={handleChange}
+            handleClearDay={() => {
+              handleClearDay(2)
+            }}
+          />
+          <FormHappyHourItem
+            day={3}
+            happy_starts_at={happyHours.happy_starts_at_3}
+            happy_ends_at={happyHours.happy_ends_at_3}
+            happy_volume={happyHours.happy_volume_3}
+            happy_price={happyHours.happy_price_3}
+            handleChange={handleChange}
+            handleClearDay={() => {
+              handleClearDay(3)
+            }}
+          />
+          <FormHappyHourItem
+            day={4}
+            happy_starts_at={happyHours.happy_starts_at_4}
+            happy_ends_at={happyHours.happy_ends_at_4}
+            happy_volume={happyHours.happy_volume_4}
+            happy_price={happyHours.happy_price_4}
+            handleChange={handleChange}
+            handleClearDay={() => {
+              handleClearDay(4)
+            }}
+          />
+          <FormHappyHourItem
+            day={5}
+            happy_starts_at={happyHours.happy_starts_at_5}
+            happy_ends_at={happyHours.happy_ends_at_5}
+            happy_volume={happyHours.happy_volume_5}
+            happy_price={happyHours.happy_price_5}
+            handleChange={handleChange}
+            handleClearDay={() => {
+              handleClearDay(5)
+            }}
+          />
+          <FormHappyHourItem
+            day={6}
+            happy_starts_at={happyHours.happy_starts_at_6}
+            happy_ends_at={happyHours.happy_ends_at_6}
+            happy_volume={happyHours.happy_volume_6}
+            happy_price={happyHours.happy_price_6}
+            handleChange={handleChange}
+            handleClearDay={() => {
+              handleClearDay(6)
+            }}
+          />
+          <FormHappyHourItem
+            day={7}
+            happy_starts_at={happyHours.happy_starts_at_7}
+            happy_ends_at={happyHours.happy_ends_at_7}
+            happy_volume={happyHours.happy_volume_7}
+            happy_price={happyHours.happy_price_7}
+            handleChange={handleChange}
+            handleClearDay={() => {
+              handleClearDay(7)
+            }}
+          />
         </>
       )}
     </div>
