@@ -16,6 +16,7 @@ export type OpeningHours = {
   opens_at: number
   closes_at: number
   day_of_week: number
+  id?: string
 }
 
 export type HappyHours = {

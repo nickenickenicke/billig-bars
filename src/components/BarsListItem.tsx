@@ -1,5 +1,6 @@
 import { Bar } from '@/models/Bar'
 import { getPricePerCl } from '@/utils/priceTools'
+import { BarListItemOpeningHours } from './BarListItemOpeningHours'
 
 interface BarsListItemProps {
   bar: Bar
@@ -14,6 +15,7 @@ export const BarsListItem = ({ bar }: BarsListItemProps) => {
       <p>{bar.beer_price} kr</p>
       <p>{bar.beer_volume} cl</p>
       <p>Pris per cl: {getPricePerCl(bar.beer_price, bar.beer_volume)}kr</p>
+      <BarListItemOpeningHours openingHours={bar.opening_hours} />
     </li>
   )
 }
