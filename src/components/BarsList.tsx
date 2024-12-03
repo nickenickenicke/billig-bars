@@ -10,7 +10,7 @@ export const BarsList = () => {
   const { bars } = useContext(BarsContext)
   return (
     <>
-      <ul>
+      <ul className="flex flex-col gap-4">
         {bars.map(bar => (
           <BarsListItem key={bar.id} bar={bar} />
         ))}
