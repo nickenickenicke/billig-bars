@@ -9,7 +9,7 @@ export const getCurrentHour = (): number => {
   return new Date().getHours()
 }
 
-export const isHappyHour = (happyHours: HappyHours[]): boolean => {
+export const checkIsHappyHour = (happyHours: HappyHours[]): boolean => {
   const currentHour = getCurrentHour()
   const currentDay = getTodaysWeekday()
 

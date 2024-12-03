@@ -1,27 +1,33 @@
 import { Bar } from '@/models/Bar'
-import { getPricePerCl } from '@/utils/priceTools'
 import { BarListItemOpeningHours } from './BarListItemOpeningHours'
 import { BarListItemHappyHours } from './BarListItemHappyHours'
 import { normalizePostalCode } from '@/utils/locationTools'
-import { getCurrentHour, isHappyHour } from '@/utils/timeTools'
+import { checkIsHappyHour } from '@/utils/timeTools'
+import { BarListItemPrice } from './BarListItemPrice'
 
 interface BarsListItemProps {
   bar: Bar
 }
 
 export const BarsListItem = ({ bar }: BarsListItemProps) => {
+  let isHappyHour = false
+  if (bar.happy_hours) isHappyHour = checkIsHappyHour(bar.happy_hours)
+
   return (
     <li className="border">
       <h2>{bar.name}</h2>
-      {bar.happy_hours?.length && isHappyHour(bar.happy_hours) ? <span>HAPPY HOUR</span> : null}
+      {isHappyHour && <span>HAPPY HOUR</span>}
       <address>
         {bar.address}
         <br />
         {normalizePostalCode(bar.postal_code)} {bar.city}
       </address>
-      <p>{bar.beer_price} kr</p>
-      <p>{bar.beer_volume} cl</p>
-      <p>kr/cl: {getPricePerCl(bar.beer_price, bar.beer_volume)}kr</p>
+      <BarListItemPrice
+        isHappyHour={isHappyHour}
+        beer_price={bar.beer_price}
+        beer_volume={bar.beer_volume}
+        happyHours={bar.happy_hours || []}
+      />
       <BarListItemOpeningHours openingHours={bar.opening_hours} />
       {bar.happy_hours && <BarListItemHappyHours happyHours={bar.happy_hours} />}
     </li>

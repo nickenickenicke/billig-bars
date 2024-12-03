@@ -28,6 +28,11 @@ export type HappyHours = {
   id?: string
 }
 
+export type HappyHourPriceDetails = {
+  price: number
+  volume: number
+}
+
 export type BarFormData = {
   name: string
   address: string
