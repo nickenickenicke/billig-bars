@@ -25,6 +25,7 @@ export type HappyHours = {
   day_of_week: number
   volume?: number
   price: number
+  id?: string
 }
 
 export type BarFormData = {
