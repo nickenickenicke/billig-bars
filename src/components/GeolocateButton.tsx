@@ -1,16 +1,16 @@
 import { useContext } from 'react'
-import { BarsContext } from '@/contexts/BarsContext'
+import { GlobalStateContext } from '@/contexts/GlobalStateContext'
 import { getBarsByLocation } from '@/actions/getBars'
 import { CurrentLocation } from '@/models/Location'
-import { BarActionType } from '@/reducers/BarReducer'
+import { StateActionType } from '@/reducers/GlobalStateReducer'
 
 export const GeolocateButton = () => {
-  const { dispatch } = useContext(BarsContext)
+  const { dispatch } = useContext(GlobalStateContext)
 
   const getBarsAndDispatch = async (location: CurrentLocation) => {
     const newBars = await getBarsByLocation(location)
     dispatch({
-      type: BarActionType.UPDATED,
+      type: StateActionType.UPDATED_BARS,
       payload: JSON.stringify(newBars)
     })
   }

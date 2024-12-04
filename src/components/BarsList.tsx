@@ -1,14 +1,16 @@
 'use client'
 
 import { useContext } from 'react'
-import { BarsContext } from '@/contexts/BarsContext'
+import { GlobalStateContext } from '@/contexts/GlobalStateContext'
 import { BarsListItem } from './BarsListItem'
 import { ReloadBarsButton } from './ReloadBarsButton'
 import { GeolocateButton } from './GeolocateButton'
 import { BarCard } from './BarCard'
 
 export const BarsList = () => {
-  const { bars } = useContext(BarsContext)
+  const {
+    globalState: { bars }
+  } = useContext(GlobalStateContext)
   return (
     <>
       <article className="flex flex-col gap-2">
