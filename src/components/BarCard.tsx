@@ -1,6 +1,7 @@
 import { Bar } from '@/models/Bar'
 import { normalizeMeters } from '@/utils/locationTools'
 import { getPricePerCl } from '@/utils/priceTools'
+import { BarCardPill } from './BarCardPill'
 
 interface BarCardProps {
   bar: Bar
@@ -32,10 +33,8 @@ export const BarCard = ({ bar }: BarCardProps) => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-between">
-          <aside>
-            <span>BILLIGAST</span>
-          </aside>
+        <div className="flex flex-col justify-between gap-2">
+          <aside>{bar.beer_price === 39 && <BarCardPill>Billigast</BarCardPill>}</aside>
           <div className="bg-green-price flex aspect-square w-[100px] items-center justify-center rounded-full">
             <div className="flex flex-col items-center justify-center text-white">
               <span className="text-5xl">{bar.beer_price}</span>
