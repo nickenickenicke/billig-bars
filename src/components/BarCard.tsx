@@ -3,16 +3,21 @@ import { normalizeMeters } from '@/utils/locationTools'
 import { getPricePerCl } from '@/utils/priceTools'
 import { BarCardPill } from './BarCardPill'
 import Link from 'next/link'
+import { CurrentLocation } from '@/models/Location'
 
 interface BarCardProps {
   bar: Bar
+  currentLocation?: CurrentLocation
 }
 
-export const BarCard = ({ bar }: BarCardProps) => {
+export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
   return (
     <>
       <section className="">
-        <Link href={`/bars/${bar.id}`} className="flex justify-between rounded-sm bg-slate-300 p-2">
+        <Link
+          href={`/bars/${bar.id}${currentLocation ? `?currentlat=${currentLocation.currentlat}&currentlong=${currentLocation.currentlong}` : ''}`}
+          className="flex justify-between rounded-sm bg-slate-300 p-2"
+        >
           <div className="flex flex-1 flex-col">
             <div>
               <h3 className="text-xl">{bar.name}</h3>

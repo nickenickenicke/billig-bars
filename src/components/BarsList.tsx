@@ -9,13 +9,13 @@ import { BarCard } from './BarCard'
 
 export const BarsList = () => {
   const {
-    globalState: { bars }
+    globalState: { bars, currentLocation }
   } = useContext(GlobalStateContext)
   return (
     <>
       <article className="flex flex-col gap-2">
         {bars.map(bar => (
-          <BarCard key={bar.id + 'card'} bar={bar} />
+          <BarCard key={bar.id + 'card'} bar={bar} currentLocation={currentLocation} />
         ))}
       </article>
       <ul className="flex flex-col gap-4">
