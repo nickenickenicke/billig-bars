@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Providers } from '@/reducers/Providers'
 import { Navigation } from '@/components/Navigation'
-import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Billig Bira',
