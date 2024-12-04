@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Providers } from '@/reducers/Providers'
 import { Navigation } from '@/components/Navigation'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Billig Bira',
@@ -16,8 +17,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`mb-16 px-2 antialiased`}>
-        <Navigation />
-        <Providers>{children}</Providers>
+        <header>
+          <Navigation />
+        </header>
+        <main className="mt-[90px] overflow-x-hidden">
+          <Providers>{children}</Providers>
+        </main>
       </body>
     </html>
   )
