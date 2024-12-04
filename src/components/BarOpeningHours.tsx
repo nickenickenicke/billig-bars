@@ -1,10 +1,10 @@
 import { OpeningHours } from '@/models/Bar'
 import { getWeekdayName, normalizeTimeFromDB } from '@/utils/timeTools'
 
-interface BarListItemOpeningHoursProps {
+interface BarOpeningHoursProps {
   openingHours: OpeningHours[]
 }
-export const BarListItemOpeningHours = ({ openingHours }: BarListItemOpeningHoursProps) => {
+export const BarOpeningHours = ({ openingHours }: BarOpeningHoursProps) => {
   return (
     <>
       <ul>

@@ -2,10 +2,10 @@ import { HappyHours } from '@/models/Bar'
 import { getPricePerCl } from '@/utils/priceTools'
 import { getWeekdayName, normalizeTimeFromDB } from '@/utils/timeTools'
 
-interface BarListItemHappyHoursProps {
+interface BarHappyHoursProps {
   happyHours: HappyHours[]
 }
-export const BarListItemHappyHours = ({ happyHours }: BarListItemHappyHoursProps) => {
+export const BarHappyHours = ({ happyHours }: BarHappyHoursProps) => {
   return (
     <>
       <ul>

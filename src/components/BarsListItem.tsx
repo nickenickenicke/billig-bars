@@ -1,6 +1,6 @@
 import { Bar } from '@/models/Bar'
-import { BarListItemOpeningHours } from './BarListItemOpeningHours'
-import { BarListItemHappyHours } from './BarListItemHappyHours'
+import { BarOpeningHours } from './BarOpeningHours'
+import { BarHappyHours } from './BarHappyHours'
 import { normalizePostalCode } from '@/utils/locationTools'
 import { checkIsHappyHour } from '@/utils/timeTools'
 import { BarListItemPrice } from './BarListItemPrice'
@@ -28,8 +28,8 @@ export const BarsListItem = ({ bar }: BarsListItemProps) => {
         beer_volume={bar.beer_volume}
         happyHours={bar.happy_hours || []}
       />
-      <BarListItemOpeningHours openingHours={bar.opening_hours} />
-      {bar.happy_hours && <BarListItemHappyHours happyHours={bar.happy_hours} />}
+      <BarOpeningHours openingHours={bar.opening_hours} />
+      {bar.happy_hours && <BarHappyHours happyHours={bar.happy_hours} />}
     </li>
   )
 }
