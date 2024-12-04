@@ -1,5 +1,5 @@
 import { weekdayNames } from '@/lib/weekdays'
-import { HappyHours } from '@/models/Bar'
+import { HappyHours, OpeningHours } from '@/models/Bar'
 
 export const getTodaysWeekday = (): number => {
   return new Date().getDay()
@@ -20,6 +20,50 @@ export const checkIsHappyHour = (happyHours: HappyHours[]): boolean => {
       currentHour < happyHour.ends_at
     )
   })
+}
+
+export const checkIsOpen = (openingHours: OpeningHours[]): boolean => {
+  const currentHour = getCurrentHour()
+  const currentDay = getTodaysWeekday()
+  const adjustedForMonday = currentDay === 1 ? 8 : currentDay
+
+  const checkIfOpenPastMidnightYesterday = () => {
+    return openingHours.some(day => {
+      return day.day_of_week === adjustedForMonday - 1 && day.closes_at <= 5
+    })
+  }
+
+  const checkIfOpenPastMidnightToday = (index: number) => {
+    if (openingHours[index].closes_at > 0 && openingHours[index].closes_at <= 5) {
+      return true
+    }
+    return false
+  }
+
+  if (currentHour < 5 && checkIfOpenPastMidnightYesterday()) {
+    return openingHours.some(day => {
+      return day.day_of_week === adjustedForMonday - 1 && currentHour <= day.closes_at
+    })
+  }
+
+  const index = openingHours.findIndex(day => {
+    return day.day_of_week === currentDay
+  })
+
+  //No index found => bar is closed today
+  if (index === -1) {
+    return false
+  }
+
+  if (
+    checkIfOpenPastMidnightToday(index) &&
+    currentHour >= openingHours[index].opens_at &&
+    currentHour < 24
+  ) {
+    return true
+  }
+
+  return currentHour >= openingHours[index].opens_at && currentHour < openingHours[index].closes_at
 }
 
 export const getWeekdayName = (day: number) => {
