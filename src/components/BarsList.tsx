@@ -2,7 +2,6 @@
 
 import { useContext } from 'react'
 import { GlobalStateContext } from '@/contexts/GlobalStateContext'
-import { BarsListItem } from './BarsListItem'
 import { ReloadBarsButton } from './ReloadBarsButton'
 import { GeolocateButton } from './GeolocateButton'
 import { BarCard } from './BarCard'
