@@ -1,19 +1,14 @@
 import { HappyHourPriceDetails, HappyHours } from '@/models/Bar'
 import { getHappyHourPrice, getPricePerCl } from '@/utils/priceTools'
 
-interface BarListItemPriceProps {
+interface BarPriceProps {
   isHappyHour: boolean
   beer_price: number
   beer_volume: number
   happyHours: HappyHours[]
 }
 
-export const BarListItemPrice = ({
-  isHappyHour,
-  happyHours,
-  beer_price,
-  beer_volume
-}: BarListItemPriceProps) => {
+export const BarPrice = ({ isHappyHour, happyHours, beer_price, beer_volume }: BarPriceProps) => {
   if (isHappyHour) {
     const happyHourPriceDetails: HappyHourPriceDetails = getHappyHourPrice(happyHours)
     return (

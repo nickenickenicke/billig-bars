@@ -3,7 +3,7 @@ import { BarOpeningHours } from './BarOpeningHours'
 import { BarHappyHours } from './BarHappyHours'
 import { normalizePostalCode } from '@/utils/locationTools'
 import { checkIsHappyHour } from '@/utils/timeTools'
-import { BarListItemPrice } from './BarListItemPrice'
+import { BarPrice } from './BarPrice'
 
 interface BarsListItemProps {
   bar: Bar
@@ -22,7 +22,7 @@ export const BarsListItem = ({ bar }: BarsListItemProps) => {
         <br />
         {normalizePostalCode(bar.postal_code)} {bar.city}
       </address>
-      <BarListItemPrice
+      <BarPrice
         isHappyHour={isHappyHour}
         beer_price={bar.beer_price}
         beer_volume={bar.beer_volume}
