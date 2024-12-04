@@ -1,10 +1,5 @@
-import { Bar } from '@/models/Bar'
-import DisplayBars from '@/components/DisplayBars'
-import { getBars } from '@/actions/getBars'
+import { BarsList } from '@/components/BarsList'
 
-export default async function Bars() {
-  let bars: Bar[] = []
-  bars = await getBars()
-
-  return <>{<DisplayBars bars={bars} />}</>
+export default function Bars() {
+  return <BarsList />
 }
