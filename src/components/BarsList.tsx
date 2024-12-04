@@ -12,8 +12,6 @@ export const BarsList = () => {
   } = useContext(GlobalStateContext)
   return (
     <>
-      <ReloadBarsButton />
-      <GeolocateButton />
       <article className="flex flex-col gap-2">
         {bars.map(bar => (
           <BarCard key={bar.id + 'card'} bar={bar} currentLocation={currentLocation} />

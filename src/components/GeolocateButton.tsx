@@ -1,3 +1,5 @@
+'use client'
+
 import { useContext } from 'react'
 import { GlobalStateContext } from '@/contexts/GlobalStateContext'
 import { getBarsByLocation } from '@/actions/getBars'
