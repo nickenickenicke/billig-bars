@@ -10,6 +10,7 @@ export type Bar = {
   lat: number
   opening_hours: OpeningHours[]
   happy_hours?: HappyHours[]
+  dist_meters?: number
 }
 
 export type OpeningHours = {
