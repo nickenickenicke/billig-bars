@@ -36,10 +36,10 @@ export const insertBar = async (formState: FormState, formData: FormData): Promi
   }
 
   const barData: BarFormData = {
-    name: formData.get('name') as string,
-    address: formData.get('address') as string,
+    name: (formData.get('name') as string).trim(),
+    address: (formData.get('address') as string).trim(),
     postal_code: parseInt(formData.get('postal_code') as string),
-    city: formData.get('city') as string,
+    city: (formData.get('city') as string).trim(),
     beer_volume: parseInt(formData.get('beer_volume') as string),
     beer_price: parseInt(formData.get('beer_price') as string),
     long: parseFloat(formData.get('longitude') as string),
