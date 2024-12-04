@@ -1,4 +1,5 @@
 import { BarHappyHours } from '@/components/BarHappyHours'
+import { BarPrice } from '@/components/BarPrice'
 import { BarOpeningHours } from '@/components/BarOpeningHours'
 import { Bar } from '@/models/Bar'
 import { normalizeMeters, normalizePostalCode } from '@/utils/locationTools'
@@ -50,6 +51,12 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
         <h1>{bar.name}</h1>
         {bar.dist_meters && bar.dist_meters > 0 ? <p>{normalizeMeters(bar.dist_meters)}</p> : null}
         {isHappyHour && <span>HAPPY HOUR</span>}
+        <BarPrice
+          isHappyHour={isHappyHour}
+          beer_price={bar.beer_price}
+          beer_volume={bar.beer_volume}
+          happyHours={bar.happy_hours || []}
+        />
         <address>
           {bar.address}
           <br />
