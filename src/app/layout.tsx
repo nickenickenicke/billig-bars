@@ -16,11 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`mb-16 px-2 antialiased`}>
+      <body className={`mb-16 antialiased`}>
         <header>
           <Navigation />
         </header>
-        <main className="mt-[90px] overflow-x-hidden">
+        <main className="mt-[90px] overflow-x-hidden px-2">
           <Providers>{children}</Providers>
         </main>
       </body>
