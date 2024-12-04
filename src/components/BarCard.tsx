@@ -9,7 +9,7 @@ interface BarCardProps {
 export const BarCard = ({ bar }: BarCardProps) => {
   return (
     <>
-      <section className="flex justify-between rounded-sm bg-slate-300">
+      <section className="flex justify-between rounded-sm bg-slate-300 p-2">
         <div className="flex flex-1 flex-col">
           <div>
             <h3 className="text-xl">{bar.name}</h3>
