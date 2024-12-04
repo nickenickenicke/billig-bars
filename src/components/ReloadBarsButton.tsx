@@ -1,17 +1,17 @@
 'use client'
 
 import { useContext } from 'react'
-import { BarsContext } from '@/contexts/BarsContext'
+import { GlobalStateContext } from '@/contexts/GlobalStateContext'
 import { getBars } from '@/actions/getBars'
-import { BarActionType } from '@/reducers/BarReducer'
+import { StateActionType } from '@/reducers/GlobalStateReducer'
 
 export const ReloadBarsButton = () => {
-  const { dispatch } = useContext(BarsContext)
+  const { dispatch } = useContext(GlobalStateContext)
 
   const handleClick = async () => {
     const newBars = await getBars()
     dispatch({
-      type: BarActionType.UPDATED,
+      type: StateActionType.UPDATED_BARS,
       payload: JSON.stringify(newBars)
     })
   }

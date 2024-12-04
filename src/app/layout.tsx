@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`px-2 antialiased`}>
+      <body className={`mb-16 px-2 antialiased`}>
         <Navigation />
         <Providers>{children}</Providers>
       </body>

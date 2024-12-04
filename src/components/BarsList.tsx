@@ -1,28 +1,25 @@
 'use client'
 
 import { useContext } from 'react'
-import { BarsContext } from '@/contexts/BarsContext'
+import { GlobalStateContext } from '@/contexts/GlobalStateContext'
 import { BarsListItem } from './BarsListItem'
 import { ReloadBarsButton } from './ReloadBarsButton'
 import { GeolocateButton } from './GeolocateButton'
 import { BarCard } from './BarCard'
 
 export const BarsList = () => {
-  const { bars } = useContext(BarsContext)
+  const {
+    globalState: { bars, currentLocation }
+  } = useContext(GlobalStateContext)
   return (
     <>
-      <article className="flex flex-col gap-2">
-        {bars.map(bar => (
-          <BarCard key={bar.id + 'card'} bar={bar} />
-        ))}
-      </article>
-      <ul className="flex flex-col gap-4">
-        {bars.map(bar => (
-          <BarsListItem key={bar.id} bar={bar} />
-        ))}
-      </ul>
       <ReloadBarsButton />
       <GeolocateButton />
+      <article className="flex flex-col gap-2">
+        {bars.map(bar => (
+          <BarCard key={bar.id + 'card'} bar={bar} currentLocation={currentLocation} />
+        ))}
+      </article>
     </>
   )
 }

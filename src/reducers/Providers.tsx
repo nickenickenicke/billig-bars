@@ -1,8 +1,8 @@
 'use client'
 
 import { useReducer } from 'react'
-import { BarReducer, defaultBarState } from './BarReducer'
-import { BarsContext } from '@/contexts/BarsContext'
+import { GlobalStateReducer, defaultBarState } from './GlobalStateReducer'
+import { GlobalStateContext } from '@/contexts/GlobalStateContext'
 import { initialMockData } from '@/lib/mockdata'
 
 interface ProvidersProps {
@@ -11,11 +11,13 @@ interface ProvidersProps {
 
 export const Providers = ({ children }: ProvidersProps) => {
   //TODO: Change to defaultBarState before release
-  const [bars, dispatch] = useReducer(BarReducer, initialMockData)
+  const [globalState, dispatch] = useReducer(GlobalStateReducer, initialMockData)
 
   return (
     <>
-      <BarsContext.Provider value={{ bars, dispatch }}>{children}</BarsContext.Provider>
+      <GlobalStateContext.Provider value={{ globalState, dispatch }}>
+        {children}
+      </GlobalStateContext.Provider>
     </>
   )
 }
