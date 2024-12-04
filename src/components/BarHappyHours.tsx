@@ -3,9 +3,11 @@ import { getPricePerCl } from '@/utils/priceTools'
 import { getWeekdayName, normalizeTimeFromDB } from '@/utils/timeTools'
 
 interface BarHappyHoursProps {
-  happyHours: HappyHours[]
+  happyHours?: HappyHours[]
 }
 export const BarHappyHours = ({ happyHours }: BarHappyHoursProps) => {
+  if (!happyHours || happyHours.length === 0) return null
+
   return (
     <>
       <ul>
