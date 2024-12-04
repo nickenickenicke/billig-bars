@@ -4,7 +4,8 @@ import { CurrentLocation } from '@/models/Location'
 
 export enum StateActionType {
   UPDATED_BARS,
-  UPDATED_LOCATION
+  UPDATED_LOCATION,
+  UPDATED_STATE
 }
 
 export type StateAction = {
@@ -45,9 +46,22 @@ export const GlobalStateReducer = (prevState: GlobalState, action: StateAction):
       return { ...prevState, bars: updatedBars }
     }
     case StateActionType.UPDATED_LOCATION: {
-      const updatedLocation = JSON.parse(action.payload) || defaultLocationState
+      const updatedLocation: CurrentLocation = JSON.parse(action.payload) || defaultLocationState
       if (updatedLocation.currentlat === 0 && updatedLocation.currentlong === 0) return prevState
       return { ...prevState, currentLocation: updatedLocation }
+    }
+    case StateActionType.UPDATED_STATE: {
+      const { updatedBars, updatedLocation } = JSON.parse(action.payload) || defaultGlobalState
+      if (
+        updatedBars.length != 0 &&
+        updatedLocation.currentlat != 0 &&
+        updatedLocation.currentlong != 0
+      )
+        return { ...prevState, bars: updatedBars, currentLocation: updatedLocation }
+      if (updatedBars.length != 0) return { ...prevState, bars: updatedBars }
+      if (updatedLocation.currentlat != 0 && updatedLocation.currentlong != 0)
+        return { ...prevState, currentLocation: updatedLocation }
+      return prevState
     }
     default:
       return prevState
