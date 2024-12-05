@@ -22,10 +22,14 @@ export const checkIsHappyHour = (happyHours: HappyHours[]): boolean => {
   })
 }
 
-export const checkIsOpen = (openingHours: OpeningHours[]): boolean => {
-  const currentHour = getCurrentHour()
-  const currentDay = getTodaysWeekday()
-  const adjustedForMonday = currentDay === 1 ? 8 : currentDay
+export const checkIsOpen = (
+  openingHours: OpeningHours[],
+  hourToCheck?: number,
+  dayToCheck?: number
+): boolean => {
+  const hourToCompare = hourToCheck || getCurrentHour()
+  const dayToCompare = dayToCheck || getTodaysWeekday()
+  const adjustedForMonday = dayToCompare === 1 ? 8 : dayToCompare
 
   const checkIfOpenPastMidnightYesterday = () => {
     return openingHours.some(day => {
@@ -40,14 +44,14 @@ export const checkIsOpen = (openingHours: OpeningHours[]): boolean => {
     return false
   }
 
-  if (currentHour < 5 && checkIfOpenPastMidnightYesterday()) {
+  if (hourToCompare < 5 && checkIfOpenPastMidnightYesterday()) {
     return openingHours.some(day => {
-      return day.day_of_week === adjustedForMonday - 1 && currentHour <= day.closes_at
+      return day.day_of_week === adjustedForMonday - 1 && hourToCompare <= day.closes_at
     })
   }
 
   const index = openingHours.findIndex(day => {
-    return day.day_of_week === currentDay
+    return day.day_of_week === dayToCompare
   })
 
   //No index found => bar is closed today
@@ -57,13 +61,15 @@ export const checkIsOpen = (openingHours: OpeningHours[]): boolean => {
 
   if (
     checkIfOpenPastMidnightToday(index) &&
-    currentHour >= openingHours[index].opens_at &&
-    currentHour < 24
+    hourToCompare >= openingHours[index].opens_at &&
+    hourToCompare < 24
   ) {
     return true
   }
 
-  return currentHour >= openingHours[index].opens_at && currentHour < openingHours[index].closes_at
+  return (
+    hourToCompare >= openingHours[index].opens_at && hourToCompare < openingHours[index].closes_at
+  )
 }
 
 export const getWeekdayName = (day: number) => {
