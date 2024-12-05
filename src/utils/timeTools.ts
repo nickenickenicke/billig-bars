@@ -22,6 +22,21 @@ export const checkIsHappyHour = (happyHours: HappyHours[]): boolean => {
   })
 }
 
+export const getClosingHour = (openingHours: OpeningHours[], dayToCheck?: number): number => {
+  const dayToCompare = dayToCheck || getTodaysWeekday()
+  const adjustedForMonday = dayToCompare === 1 ? 8 : dayToCompare
+
+  const index = openingHours.findIndex(day => {
+    return day.day_of_week === adjustedForMonday
+  })
+
+  if (index === -1) {
+    return -1
+  }
+
+  return openingHours[index].closes_at
+}
+
 export const checkIsOpen = (
   openingHours: OpeningHours[],
   hourToCheck?: number,
