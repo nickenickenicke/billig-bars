@@ -37,6 +37,7 @@ export const defaultLocationState: CurrentLocation = {
 
 export const defaultGlobalState: GlobalState = {
   bars: defaultBarState,
+  barsFromApi: defaultBarState,
   currentLocation: defaultLocationState
 }
 
@@ -45,7 +46,7 @@ export const GlobalStateReducer = (prevState: GlobalState, action: StateAction):
     case StateActionType.UPDATED_BARS: {
       const updatedBars: Bar[] = JSON.parse(action.payload) || []
       if (updatedBars.length === 0) return prevState
-      return { ...prevState, bars: updatedBars }
+      return { ...prevState, bars: updatedBars, barsFromApi: updatedBars }
     }
     case StateActionType.UPDATED_LOCATION: {
       const updatedLocation: CurrentLocation = JSON.parse(action.payload) || defaultLocationState
@@ -56,11 +57,13 @@ export const GlobalStateReducer = (prevState: GlobalState, action: StateAction):
       const updatedState: GlobalState = JSON.parse(action.payload) || defaultGlobalState
       if (
         updatedState.bars.length != 0 &&
+        updatedState.barsFromApi.length != 0 &&
         updatedState.currentLocation.currentlat != 0 &&
         updatedState.currentLocation.currentlong != 0
       )
         return updatedState
-      if (updatedState.bars.length != 0) return { ...prevState, bars: updatedState.bars }
+      if (updatedState.bars.length != 0)
+        return { ...prevState, bars: updatedState.bars, barsFromApi: updatedState.bars }
       if (
         updatedState.currentLocation.currentlat != 0 &&
         updatedState.currentLocation.currentlong != 0

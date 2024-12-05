@@ -2,11 +2,10 @@
 
 import { useContext } from 'react'
 import { GlobalStateContext } from '@/contexts/GlobalStateContext'
-import { ReloadBarsButton } from './ReloadBarsButton'
-import { GeolocateButton } from './GeolocateButton'
 import { BarCard } from './BarCard'
 
 export const BarsList = () => {
+  //TODO: Implement bar or barfromapi
   const {
     globalState: { bars, currentLocation }
   } = useContext(GlobalStateContext)

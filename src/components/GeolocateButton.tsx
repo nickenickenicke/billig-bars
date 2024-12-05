@@ -14,6 +14,7 @@ export const GeolocateButton = () => {
     const newBars = await getBarsByLocation(location)
     const newState: GlobalState = {
       bars: newBars,
+      barsFromApi: newBars,
       currentLocation: location
     }
     dispatch({
