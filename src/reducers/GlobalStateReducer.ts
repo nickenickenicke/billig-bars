@@ -73,7 +73,7 @@ export const GlobalStateReducer = (prevState: GlobalState, action: StateAction):
     }
     case StateActionType.FILTERED_BY_HOUR: {
       const hour = parseInt(action.payload) || 99
-      const filteredBars = filterByHour(prevState.bars, hour)
+      const filteredBars = filterByHour(prevState.barsFromApi, hour)
       return { ...prevState, bars: filteredBars.length > 0 ? filteredBars : prevState.bars }
     }
 
