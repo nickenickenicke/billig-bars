@@ -128,6 +128,83 @@ describe('Testing checkIsOpen', () => {
     //Assert
     expect(result).toBe(true)
   })
+
+  test('should return true if the bar is open today at 15 with a parameter', () => {
+    //Assign
+    mockedGetTodaysWeekday.mockImplementation(() => 2)
+    const openingHours: OpeningHours[] = [
+      {
+        day_of_week: 2,
+        opens_at: 14,
+        closes_at: 23
+      }
+    ]
+    //Act
+    const result = checkIsOpen(openingHours, 15)
+    //Assert
+    expect(result).toBe(true)
+  })
+
+  test('should return true if the bar is not open today at 15 with a parameter', () => {
+    //Assign
+    mockedGetTodaysWeekday.mockImplementation(() => 2)
+    const openingHours: OpeningHours[] = [
+      {
+        day_of_week: 2,
+        opens_at: 16,
+        closes_at: 23
+      }
+    ]
+    //Act
+    const result = checkIsOpen(openingHours, 15)
+    //Assert
+    expect(result).toBe(false)
+  })
+
+  test('should return true if the bar is open monday at 15 with two parameters', () => {
+    //Assign
+    const openingHours: OpeningHours[] = [
+      {
+        day_of_week: 1,
+        opens_at: 14,
+        closes_at: 23
+      }
+    ]
+    //Act
+    const result = checkIsOpen(openingHours, 15, 1)
+    //Assert
+    expect(result).toBe(true)
+  })
+
+  test('should return true if the bar is open monday but closed at 15 with two parameters', () => {
+    //Assign
+    const openingHours: OpeningHours[] = [
+      {
+        day_of_week: 1,
+        opens_at: 16,
+        closes_at: 23
+      }
+    ]
+    //Act
+    const result = checkIsOpen(openingHours, 15, 1)
+    //Assert
+    expect(result).toBe(false)
+  })
+
+  test('should return true if the bar is open monday at 15 with two parameters', () => {
+    //Assign
+    const openingHours: OpeningHours[] = [
+      {
+        day_of_week: 1,
+        opens_at: 14,
+        closes_at: 23
+      }
+    ]
+    //Act
+    const result = checkIsOpen(openingHours, 15, 1)
+    //Assert
+    expect(result).toBe(true)
+  })
 })
 
 describe('Testing checkIsHappyHour', () => {
