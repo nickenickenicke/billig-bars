@@ -1,8 +1,22 @@
+'use client'
+
+import { GlobalStateContext } from '@/contexts/GlobalStateContext'
+import { StateActionType } from '@/reducers/GlobalStateReducer'
+import { useContext } from 'react'
+
 export const FilterByHour = () => {
+  const { dispatch } = useContext(GlobalStateContext)
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    dispatch({
+      type: StateActionType.FILTERED_BY_HOUR,
+      payload: e.target.value
+    })
+  }
   return (
     <>
       <label htmlFor="time-select">Klockan</label>
-      <select id="time-select" name="time">
+      <select id="time-select" name="time" onChange={handleChange}>
         <option value="11">11</option>
         <option value="12">12</option>
         <option value="13">13</option>

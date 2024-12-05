@@ -1,11 +1,13 @@
 import { Bar } from '@/models/Bar'
 import { GlobalState } from '@/models/GlobalState'
 import { CurrentLocation } from '@/models/Location'
+import { checkIsOpen, getTodaysWeekday } from '@/utils/timeTools'
 
 export enum StateActionType {
   UPDATED_BARS,
   UPDATED_LOCATION,
-  UPDATED_STATE
+  UPDATED_STATE,
+  FILTERED_BY_HOUR
 }
 
 export type StateAction = {
@@ -66,7 +68,21 @@ export const GlobalStateReducer = (prevState: GlobalState, action: StateAction):
         return { ...prevState, currentLocation: updatedState.currentLocation }
       return prevState
     }
+    case StateActionType.FILTERED_BY_HOUR: {
+      const hour = parseInt(action.payload) || 99
+      const filteredBars = filterByHour(prevState.bars, hour)
+      return { ...prevState, bars: filteredBars.length > 0 ? filteredBars : prevState.bars }
+    }
+
     default:
       return prevState
   }
+}
+
+const filterByHour = (bars: Bar[], hour: number): Bar[] => {
+  if (hour === 99) return bars
+  const today = getTodaysWeekday()
+  return bars.filter(bar => {
+    return checkIsOpen(bar.opening_hours, hour, today)
+  })
 }
