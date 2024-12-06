@@ -1,5 +1,5 @@
 import { Bar } from '@/models/Bar'
-import { GlobalState } from '@/models/GlobalState'
+import { defaultCurrentQuery, GlobalState } from '@/models/GlobalState'
 import { CurrentLocation } from '@/models/Location'
 import { checkIsOpen, getTodaysWeekday } from '@/utils/timeTools'
 
@@ -39,7 +39,7 @@ export const defaultGlobalState: GlobalState = {
   bars: defaultBarState,
   barsFromApi: defaultBarState,
   currentLocation: defaultLocationState,
-  currentQuery: { hour: null }
+  currentQuery: defaultCurrentQuery
 }
 
 export const GlobalStateReducer = (prevState: GlobalState, action: StateAction): GlobalState => {
@@ -67,13 +67,13 @@ export const GlobalStateReducer = (prevState: GlobalState, action: StateAction):
         updatedState.currentLocation.currentlat != 0 &&
         updatedState.currentLocation.currentlong != 0
       )
-        return { ...updatedState, currentQuery: { hour: null } }
+        return { ...updatedState, currentQuery: defaultCurrentQuery }
       if (updatedState.bars.length != 0)
         return {
           ...prevState,
           bars: updatedState.bars,
           barsFromApi: updatedState.bars,
-          currentQuery: { hour: null }
+          currentQuery: defaultCurrentQuery
         }
       if (
         updatedState.currentLocation.currentlat != 0 &&
@@ -82,7 +82,7 @@ export const GlobalStateReducer = (prevState: GlobalState, action: StateAction):
         return {
           ...prevState,
           currentLocation: updatedState.currentLocation,
-          currentQuery: { hour: null }
+          currentQuery: defaultCurrentQuery
         }
       return prevState
     }
@@ -93,7 +93,7 @@ export const GlobalStateReducer = (prevState: GlobalState, action: StateAction):
         return {
           ...prevState,
           bars: prevState.barsFromApi,
-          currentQuery: { hour: null }
+          currentQuery: defaultCurrentQuery
         }
       const filteredBars = filterByHour(prevState.barsFromApi, hour)
       return {

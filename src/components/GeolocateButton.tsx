@@ -5,7 +5,7 @@ import { GlobalStateContext } from '@/contexts/GlobalStateContext'
 import { getBarsByLocation } from '@/actions/getBars'
 import { CurrentLocation } from '@/models/Location'
 import { StateActionType } from '@/reducers/GlobalStateReducer'
-import { GlobalState } from '@/models/GlobalState'
+import { defaultCurrentQuery, GlobalState } from '@/models/GlobalState'
 
 export const GeolocateButton = () => {
   const { dispatch } = useContext(GlobalStateContext)
@@ -15,7 +15,8 @@ export const GeolocateButton = () => {
     const newState: GlobalState = {
       bars: newBars,
       barsFromApi: newBars,
-      currentLocation: location
+      currentLocation: location,
+      currentQuery: defaultCurrentQuery
     }
     dispatch({
       type: StateActionType.UPDATED_STATE,

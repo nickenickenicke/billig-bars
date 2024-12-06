@@ -11,3 +11,7 @@ export type GlobalState = {
 export type CurrentQuery = {
   hour: number | null
 }
+
+export const defaultCurrentQuery: CurrentQuery = {
+  hour: null
+}
