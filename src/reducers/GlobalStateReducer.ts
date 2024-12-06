@@ -38,7 +38,8 @@ export const defaultLocationState: CurrentLocation = {
 export const defaultGlobalState: GlobalState = {
   bars: defaultBarState,
   barsFromApi: defaultBarState,
-  currentLocation: defaultLocationState
+  currentLocation: defaultLocationState,
+  currentQuery: { hour: null }
 }
 
 export const GlobalStateReducer = (prevState: GlobalState, action: StateAction): GlobalState => {
@@ -46,7 +47,12 @@ export const GlobalStateReducer = (prevState: GlobalState, action: StateAction):
     case StateActionType.UPDATED_BARS: {
       const updatedBars: Bar[] = JSON.parse(action.payload) || []
       if (updatedBars.length === 0) return prevState
-      return { ...prevState, bars: updatedBars, barsFromApi: updatedBars }
+      return {
+        ...prevState,
+        bars: updatedBars,
+        barsFromApi: updatedBars,
+        currentQuery: { hour: null }
+      }
     }
     case StateActionType.UPDATED_LOCATION: {
       const updatedLocation: CurrentLocation = JSON.parse(action.payload) || defaultLocationState
@@ -61,20 +67,40 @@ export const GlobalStateReducer = (prevState: GlobalState, action: StateAction):
         updatedState.currentLocation.currentlat != 0 &&
         updatedState.currentLocation.currentlong != 0
       )
-        return updatedState
+        return { ...updatedState, currentQuery: { hour: null } }
       if (updatedState.bars.length != 0)
-        return { ...prevState, bars: updatedState.bars, barsFromApi: updatedState.bars }
+        return {
+          ...prevState,
+          bars: updatedState.bars,
+          barsFromApi: updatedState.bars,
+          currentQuery: { hour: null }
+        }
       if (
         updatedState.currentLocation.currentlat != 0 &&
         updatedState.currentLocation.currentlong != 0
       )
-        return { ...prevState, currentLocation: updatedState.currentLocation }
+        return {
+          ...prevState,
+          currentLocation: updatedState.currentLocation,
+          currentQuery: { hour: null }
+        }
       return prevState
     }
     case StateActionType.FILTERED_BY_HOUR: {
-      const hour = parseInt(action.payload) || 99
+      let hour = parseInt(action.payload) || 99
+      if (hour === 99 && action.payload === '0') hour = 0
+      if (hour === 999)
+        return {
+          ...prevState,
+          bars: prevState.barsFromApi,
+          currentQuery: { hour: null }
+        }
       const filteredBars = filterByHour(prevState.barsFromApi, hour)
-      return { ...prevState, bars: filteredBars.length > 0 ? filteredBars : prevState.bars }
+      return {
+        ...prevState,
+        bars: filteredBars.length > 0 ? filteredBars : prevState.bars,
+        currentQuery: { hour }
+      }
     }
 
     default:

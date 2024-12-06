@@ -404,5 +404,6 @@ export const singleBarMockData: Bar = {
 export const initialMockData: GlobalState = {
   currentLocation: defaultLocationState,
   bars: mockBars,
-  barsFromApi: mockBars
+  barsFromApi: mockBars,
+  currentQuery: { hour: null }
 }

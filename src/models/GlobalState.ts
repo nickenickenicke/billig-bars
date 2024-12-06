@@ -5,4 +5,9 @@ export type GlobalState = {
   bars: Bar[]
   barsFromApi: Bar[]
   currentLocation: CurrentLocation
+  currentQuery: CurrentQuery
+}
+
+export type CurrentQuery = {
+  hour: number | null
 }
