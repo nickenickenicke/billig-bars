@@ -1,5 +1,5 @@
 import { Bar } from '@/models/Bar'
-import { GlobalState } from '@/models/GlobalState'
+import { defaultCurrentQuery, GlobalState } from '@/models/GlobalState'
 import { defaultLocationState } from '@/reducers/GlobalStateReducer'
 
 const mockBars: Bar[] = [
@@ -405,5 +405,5 @@ export const initialMockData: GlobalState = {
   currentLocation: defaultLocationState,
   bars: mockBars,
   barsFromApi: mockBars,
-  currentQuery: { hour: null }
+  currentQuery: defaultCurrentQuery
 }

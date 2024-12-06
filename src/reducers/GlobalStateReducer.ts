@@ -51,7 +51,7 @@ export const GlobalStateReducer = (prevState: GlobalState, action: StateAction):
         ...prevState,
         bars: updatedBars,
         barsFromApi: updatedBars,
-        currentQuery: { hour: null }
+        currentQuery: { ...prevState.currentQuery, hour: null }
       }
     }
     case StateActionType.UPDATED_LOCATION: {
@@ -99,7 +99,7 @@ export const GlobalStateReducer = (prevState: GlobalState, action: StateAction):
       return {
         ...prevState,
         bars: filteredBars.length > 0 ? filteredBars : prevState.bars,
-        currentQuery: { hour }
+        currentQuery: { ...prevState.currentQuery, hour: null }
       }
     }
 
