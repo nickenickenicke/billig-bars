@@ -14,7 +14,12 @@ export const Navigation = () => {
         </li>
         <li>
           <Link href={'/bars'} className="flex h-[70px] min-w-20 items-center px-4">
-            Testing ground
+            Bars
+          </Link>
+        </li>
+        <li>
+          <Link href={'/testing-ground'} className="flex h-[70px] min-w-20 items-center px-4">
+            Test
           </Link>
         </li>
       </ul>

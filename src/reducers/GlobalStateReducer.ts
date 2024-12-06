@@ -1,11 +1,13 @@
 import { Bar } from '@/models/Bar'
-import { GlobalState } from '@/models/GlobalState'
+import { defaultCurrentQuery, GlobalState } from '@/models/GlobalState'
 import { CurrentLocation } from '@/models/Location'
+import { checkIsOpen, getTodaysWeekday } from '@/utils/timeTools'
 
 export enum StateActionType {
   UPDATED_BARS,
   UPDATED_LOCATION,
-  UPDATED_STATE
+  UPDATED_STATE,
+  FILTERED_BY_HOUR
 }
 
 export type StateAction = {
@@ -35,7 +37,9 @@ export const defaultLocationState: CurrentLocation = {
 
 export const defaultGlobalState: GlobalState = {
   bars: defaultBarState,
-  currentLocation: defaultLocationState
+  barsFromApi: defaultBarState,
+  currentLocation: defaultLocationState,
+  currentQuery: defaultCurrentQuery
 }
 
 export const GlobalStateReducer = (prevState: GlobalState, action: StateAction): GlobalState => {
@@ -43,7 +47,12 @@ export const GlobalStateReducer = (prevState: GlobalState, action: StateAction):
     case StateActionType.UPDATED_BARS: {
       const updatedBars: Bar[] = JSON.parse(action.payload) || []
       if (updatedBars.length === 0) return prevState
-      return { ...prevState, bars: updatedBars }
+      return {
+        ...prevState,
+        bars: updatedBars,
+        barsFromApi: updatedBars,
+        currentQuery: { hour: null }
+      }
     }
     case StateActionType.UPDATED_LOCATION: {
       const updatedLocation: CurrentLocation = JSON.parse(action.payload) || defaultLocationState
@@ -54,19 +63,55 @@ export const GlobalStateReducer = (prevState: GlobalState, action: StateAction):
       const updatedState: GlobalState = JSON.parse(action.payload) || defaultGlobalState
       if (
         updatedState.bars.length != 0 &&
+        updatedState.barsFromApi.length != 0 &&
         updatedState.currentLocation.currentlat != 0 &&
         updatedState.currentLocation.currentlong != 0
       )
-        return updatedState
-      if (updatedState.bars.length != 0) return { ...prevState, bars: updatedState.bars }
+        return { ...updatedState, currentQuery: defaultCurrentQuery }
+      if (updatedState.bars.length != 0)
+        return {
+          ...prevState,
+          bars: updatedState.bars,
+          barsFromApi: updatedState.bars,
+          currentQuery: defaultCurrentQuery
+        }
       if (
         updatedState.currentLocation.currentlat != 0 &&
         updatedState.currentLocation.currentlong != 0
       )
-        return { ...prevState, currentLocation: updatedState.currentLocation }
+        return {
+          ...prevState,
+          currentLocation: updatedState.currentLocation,
+          currentQuery: defaultCurrentQuery
+        }
       return prevState
     }
+    case StateActionType.FILTERED_BY_HOUR: {
+      let hour = parseInt(action.payload) || 99
+      if (hour === 99 && action.payload === '0') hour = 0
+      if (hour === 999)
+        return {
+          ...prevState,
+          bars: prevState.barsFromApi,
+          currentQuery: defaultCurrentQuery
+        }
+      const filteredBars = filterByHour(prevState.barsFromApi, hour)
+      return {
+        ...prevState,
+        bars: filteredBars.length > 0 ? filteredBars : prevState.bars,
+        currentQuery: { hour }
+      }
+    }
+
     default:
       return prevState
   }
+}
+
+const filterByHour = (bars: Bar[], hour: number): Bar[] => {
+  if (hour === 99) return bars
+  const today = getTodaysWeekday()
+  return bars.filter(bar => {
+    return checkIsOpen(bar.opening_hours, hour, today)
+  })
 }

@@ -4,7 +4,7 @@ interface BarCardPillProps {
 
 export const BarCardPill = ({ children }: BarCardPillProps) => {
   return (
-    <span className="border-green-price text-green-price rounded-lg border-2 p-1 px-3 uppercase">
+    <span className="rounded-lg border-2 border-green-price p-1 px-3 uppercase text-green-price">
       {children}
     </span>
   )

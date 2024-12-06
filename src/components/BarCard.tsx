@@ -4,6 +4,7 @@ import { getPricePerCl } from '@/utils/priceTools'
 import { BarCardPill } from './BarCardPill'
 import Link from 'next/link'
 import { CurrentLocation } from '@/models/Location'
+import { checkIsOpen, getClosingHour, normalizeTimeFromDB } from '@/utils/timeTools'
 
 interface BarCardProps {
   bar: Bar
@@ -23,7 +24,11 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
               <h3 className="text-xl">{bar.name}</h3>
               {bar.dist_meters && <span className="block">{normalizeMeters(bar.dist_meters)}</span>}
               <address className="block">{bar.address}</address>
-              <span>Öppet till 01</span>
+              <span>
+                {checkIsOpen(bar.opening_hours)
+                  ? 'Öppet till ' + normalizeTimeFromDB(getClosingHour(bar.opening_hours))
+                  : 'Stängt'}
+              </span>
             </div>
             <div className="flex flex-row-reverse gap-2 pr-2">
               <div className="flex aspect-square w-[50px] items-center justify-center rounded-full bg-yellow-500">
@@ -42,7 +47,7 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
           </div>
           <div className="flex flex-col justify-between gap-2">
             <aside>{bar.beer_price === 39 && <BarCardPill>Billigast</BarCardPill>}</aside>
-            <div className="bg-green-price flex aspect-square w-[100px] items-center justify-center rounded-full">
+            <div className="flex aspect-square w-[100px] items-center justify-center rounded-full bg-green-price">
               <div className="flex flex-col items-center justify-center text-white">
                 <span className="text-5xl">{bar.beer_price}</span>
                 <span className="text-sm leading-3">KR</span>
