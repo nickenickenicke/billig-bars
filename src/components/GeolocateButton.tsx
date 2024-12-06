@@ -1,13 +1,15 @@
 'use client'
 
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { GlobalStateContext } from '@/contexts/GlobalStateContext'
 import { getBarsByLocation } from '@/actions/getBars'
 import { CurrentLocation } from '@/models/Location'
 import { StateActionType } from '@/reducers/GlobalStateReducer'
 import { defaultCurrentQuery, GlobalState } from '@/models/GlobalState'
+import { LoadingOverlay } from './LoadingOverlay'
 
 export const GeolocateButton = () => {
+  const [loading, setLoading] = useState(false)
   const { dispatch } = useContext(GlobalStateContext)
 
   const getBarsAndDispatch = async (location: CurrentLocation) => {
@@ -24,24 +26,37 @@ export const GeolocateButton = () => {
     })
   }
 
-  const handleClick = () => {
-    window.navigator.geolocation.getCurrentPosition(
-      position => {
+  const handleClick = async () => {
+    setLoading(true)
+
+    await getPosition()
+      .then(position => {
         const currentPosition: CurrentLocation = {
           currentlat: position.coords.latitude,
           currentlong: position.coords.longitude
         }
         getBarsAndDispatch(currentPosition)
-      },
-      error => {
+      })
+      .catch(error => {
         console.error(error)
-      }
-    )
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  }
+
+  const getPosition = () => {
+    return new Promise<GeolocationPosition>((resolve, reject) => {
+      window.navigator.geolocation.getCurrentPosition(resolve, reject)
+    })
   }
 
   return (
-    <button type="button" onClick={handleClick}>
-      Geolocate me!
-    </button>
+    <>
+      <button type="button" onClick={handleClick}>
+        Geolocate me!
+      </button>
+      {loading && <LoadingOverlay message="Getting location..." />}
+    </>
   )
 }
