@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export const Navigation = () => {
   return (
-    <nav className="fixed top-0 flex h-[70px] w-full justify-between bg-slate-600 px-4 text-white">
+    <nav className="fixed top-0 z-[10] flex h-[70px] w-full justify-between bg-slate-600 px-4 text-white">
       <Link href={'/'} className="flex aspect-square h-full items-center justify-center text-4xl">
         🍻
       </Link>
