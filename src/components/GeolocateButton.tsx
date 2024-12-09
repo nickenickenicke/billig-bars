@@ -2,25 +2,28 @@
 
 import { useContext, useState } from 'react'
 import { GlobalStateContext } from '@/contexts/GlobalStateContext'
-import { getBarsByLocation } from '@/actions/getBars'
+import { getBarsWithQueryObjectCheckOpen } from '@/actions/getBars'
 import { CurrentLocation } from '@/models/Location'
 import { StateActionType } from '@/reducers/GlobalStateReducer'
-import { defaultCurrentQuery, GlobalState } from '@/models/GlobalState'
+import { GlobalState } from '@/models/GlobalState'
 import { LoadingOverlay } from './LoadingOverlay'
 import { useMap } from '@vis.gl/react-maplibre'
 
 export const GeolocateButton = () => {
   const [loading, setLoading] = useState(false)
-  const { dispatch } = useContext(GlobalStateContext)
+  const {
+    globalState: { currentQuery },
+    dispatch
+  } = useContext(GlobalStateContext)
   const { beerMap } = useMap()
 
   const getBarsAndDispatch = async (location: CurrentLocation) => {
-    const newBars = await getBarsByLocation(location)
+    const newBars = await getBarsWithQueryObjectCheckOpen(currentQuery, location)
     const newState: GlobalState = {
       bars: newBars,
       barsFromApi: newBars,
       currentLocation: location,
-      currentQuery: defaultCurrentQuery
+      currentQuery: currentQuery
     }
     dispatch({
       type: StateActionType.UPDATED_STATE,
