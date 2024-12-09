@@ -45,6 +45,7 @@ export type BarFormData = {
   postal_code: number
   beer_volume: number
   beer_price: number
+  beer_ppv: number
   long: number
   lat: number
   location: string

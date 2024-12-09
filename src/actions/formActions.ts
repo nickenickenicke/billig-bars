@@ -30,7 +30,8 @@ export const insertBar = async (formState: FormState, formData: FormData): Promi
         starts_at: parseInt(starts_at as string),
         ends_at: parseInt(ends_at as string),
         price: parseInt(price as string),
-        volume: parseInt(volume as string)
+        volume: parseInt(volume as string),
+        ppv: +parseFloat((parseInt(price as string) / parseInt(volume as string)).toFixed(3))
       })
     }
   }
@@ -42,6 +43,12 @@ export const insertBar = async (formState: FormState, formData: FormData): Promi
     city: (formData.get('city') as string).trim(),
     beer_volume: parseInt(formData.get('beer_volume') as string),
     beer_price: parseInt(formData.get('beer_price') as string),
+    beer_ppv: +parseFloat(
+      (
+        parseInt(formData.get('beer_price') as string) /
+        parseInt(formData.get('beer_volume') as string)
+      ).toFixed(3)
+    ),
     long: parseFloat(formData.get('longitude') as string),
     lat: parseFloat(formData.get('latitude') as string),
     location: `POINT(${formData.get('longitude')} ${formData.get('latitude')})`,
