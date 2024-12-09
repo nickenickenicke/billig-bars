@@ -83,7 +83,25 @@ export const getBarsWithQueryObjectCheckOpen = async (
 
   const supabase = await createClient()
 
-  const { data, error } = await supabase.rpc('opennow', dbQuery).order('beer_price', { ascending })
+  //No location, no need to order by distance
+  if (currentLocation.currentlat === 0 || currentLocation.currentlong === 0) {
+    const { data, error } = await supabase
+      .rpc('opennow', dbQuery)
+      .order('beer_price', { ascending })
+
+    if (error) {
+      console.error(error)
+      return []
+    }
+
+    return data
+  }
+
+  //With location, order by distance
+  const { data, error } = await supabase
+    .rpc('opennow', dbQuery)
+    .order('dist_meters', { ascending: true })
+    .order('beer_price', { ascending })
 
   if (error) {
     console.error(error)
