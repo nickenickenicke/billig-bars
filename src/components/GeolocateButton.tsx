@@ -7,10 +7,12 @@ import { CurrentLocation } from '@/models/Location'
 import { StateActionType } from '@/reducers/GlobalStateReducer'
 import { defaultCurrentQuery, GlobalState } from '@/models/GlobalState'
 import { LoadingOverlay } from './LoadingOverlay'
+import { useMap } from '@vis.gl/react-maplibre'
 
 export const GeolocateButton = () => {
   const [loading, setLoading] = useState(false)
   const { dispatch } = useContext(GlobalStateContext)
+  const { beerMap } = useMap()
 
   const getBarsAndDispatch = async (location: CurrentLocation) => {
     const newBars = await getBarsByLocation(location)
@@ -35,6 +37,9 @@ export const GeolocateButton = () => {
           currentlat: position.coords.latitude,
           currentlong: position.coords.longitude
         }
+        beerMap?.flyTo({
+          center: [currentPosition.currentlong, currentPosition.currentlat]
+        })
         getBarsAndDispatch(currentPosition)
       })
       .catch(error => {

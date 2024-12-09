@@ -13,6 +13,7 @@ export const MapCanvas = () => {
   return (
     <>
       <Map
+        id="beerMap"
         initialViewState={{
           longitude: currentLocation.currentlong || 18.069215,
           latitude: currentLocation.currentlat || 59.314654,
