@@ -43,32 +43,6 @@ export const getBars = async () => {
   return data
 }
 
-export const getBarsWithQueryObject = async (
-  query: CurrentQuery,
-  currentLocation?: CurrentLocation
-): Promise<Bar[]> => {
-  const { sort } = query
-  const location = currentLocation?.currentlat !== 0 ? currentLocation : {}
-
-  let ascending = false
-  if (sort === 'asc') {
-    ascending = true
-  }
-
-  const supabase = await createClient()
-
-  const { data, error } = await supabase
-    .rpc('get_bars', location)
-    .order('beer_price', { ascending })
-
-  if (error) {
-    console.error(error)
-    return []
-  }
-
-  return data
-}
-
 export const getBarsWithQueryObjectCheckOpen = async (
   query: CurrentQuery,
   currentLocation: CurrentLocation
