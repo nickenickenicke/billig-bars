@@ -30,7 +30,7 @@ export const defaultBarState: Bar[] = [
   }
 ]
 
-export const defaultLocationState: CurrentLocation = {
+export const defaultCurrentLocation: CurrentLocation = {
   currentlat: 0,
   currentlong: 0
 }
@@ -38,7 +38,7 @@ export const defaultLocationState: CurrentLocation = {
 export const defaultGlobalState: GlobalState = {
   bars: defaultBarState,
   barsFromApi: defaultBarState,
-  currentLocation: defaultLocationState,
+  currentLocation: defaultCurrentLocation,
   currentQuery: defaultCurrentQuery
 }
 
@@ -51,11 +51,11 @@ export const GlobalStateReducer = (prevState: GlobalState, action: StateAction):
         ...prevState,
         bars: updatedBars,
         barsFromApi: updatedBars,
-        currentQuery: { hour: null }
+        currentQuery: { ...prevState.currentQuery, hour: null }
       }
     }
     case StateActionType.UPDATED_LOCATION: {
-      const updatedLocation: CurrentLocation = JSON.parse(action.payload) || defaultLocationState
+      const updatedLocation: CurrentLocation = JSON.parse(action.payload) || defaultCurrentLocation
       if (updatedLocation.currentlat === 0 && updatedLocation.currentlong === 0) return prevState
       return { ...prevState, currentLocation: updatedLocation }
     }
@@ -99,7 +99,7 @@ export const GlobalStateReducer = (prevState: GlobalState, action: StateAction):
       return {
         ...prevState,
         bars: filteredBars.length > 0 ? filteredBars : prevState.bars,
-        currentQuery: { hour }
+        currentQuery: { ...prevState.currentQuery, hour: null }
       }
     }
 
