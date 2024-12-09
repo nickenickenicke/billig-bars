@@ -3,7 +3,7 @@
 import { GlobalStateContext } from '@/contexts/GlobalStateContext'
 import { StateActionType } from '@/reducers/GlobalStateReducer'
 import { useContext } from 'react'
-
+//TODO: update this to use new query
 export const FilterByHour = () => {
   const {
     globalState: { currentQuery },

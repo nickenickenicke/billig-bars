@@ -10,10 +10,12 @@ export type GlobalState = {
 
 export type CurrentQuery = {
   hour: number | null
+  day: number | null
   sort: string
 }
 
 export const defaultCurrentQuery: CurrentQuery = {
   hour: null,
+  day: null,
   sort: 'asc'
 }
