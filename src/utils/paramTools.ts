@@ -1,9 +1,9 @@
 import { CurrentQuery } from '@/models/GlobalState'
 
 export const checkParams = (params: URLSearchParams): CurrentQuery => {
-  let asc = false
-  if (params.get('sort') === 'asc') {
-    asc = true
+  let desc = false
+  if (params.get('sort') === 'desc') {
+    desc = true
   }
   let hour = null
   if (params.get('hour')) {
@@ -12,6 +12,6 @@ export const checkParams = (params: URLSearchParams): CurrentQuery => {
 
   return {
     hour,
-    sort: asc ? 'asc' : 'desc'
+    sort: desc ? 'desc' : 'asc'
   }
 }
