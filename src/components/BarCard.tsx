@@ -27,7 +27,7 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
               ) : null}
               <address className="block">{bar.address}</address>
               <span>
-                {checkIsOpen(bar.opening_hours)
+                {bar.is_open
                   ? 'Öppet till ' + normalizeTimeFromDB(getClosingHour(bar.opening_hours))
                   : 'Stängt'}
               </span>
