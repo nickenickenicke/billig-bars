@@ -3,15 +3,9 @@
 import { Bar } from '@/models/Bar'
 import { CurrentQuery } from '@/models/GlobalState'
 import { CurrentLocation } from '@/models/Location'
+import { SupabaseQuery } from '@/models/Queries'
 import { createClient } from '@/utils/supabase/server'
 import { getCurrentHour, getTodaysWeekday } from '@/utils/timeTools'
-
-type SupabaseQuery = {
-  currentlat?: number
-  currentlong?: number
-  day_to_compare: number
-  hour_to_compare: number
-}
 
 export const getBarsByLocation = async (location: CurrentLocation) => {
   const supabase = await createClient()
