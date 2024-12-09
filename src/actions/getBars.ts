@@ -1,5 +1,6 @@
 'use server'
 
+import { Bar } from '@/models/Bar'
 import { CurrentQuery } from '@/models/GlobalState'
 import { CurrentLocation } from '@/models/Location'
 import { createClient } from '@/utils/supabase/server'
@@ -37,7 +38,7 @@ export const getBars = async () => {
 export const getBarsWithQueryObject = async (
   query: CurrentQuery,
   currentLocation?: CurrentLocation
-) => {
+): Promise<Bar[]> => {
   const { sort } = query
   const location = currentLocation?.currentlat !== 0 ? currentLocation : {}
 
