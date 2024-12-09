@@ -6,12 +6,14 @@ export type Bar = {
   postal_code: number
   beer_volume: number
   beer_price: number
+  beer_ppv: number
   long: number
   lat: number
   opening_hours: OpeningHours[]
   happy_hours?: HappyHours[]
   dist_meters?: number
   is_open?: boolean
+  is_happy_hour?: boolean
 }
 
 export type OpeningHours = {
@@ -25,8 +27,9 @@ export type HappyHours = {
   starts_at: number
   ends_at: number
   day_of_week: number
-  volume?: number
+  volume: number
   price: number
+  ppv: number
   id?: string
 }
 
