@@ -14,3 +14,11 @@ export const getHappyHourPrice = (happyHours: HappyHours[]): HappyHourPriceDetai
 
   return { price: happyHour.price, volume: happyHour.volume || 40 }
 }
+
+export const calculatePPV = (price: string, volume: string): number => {
+  const priceInt = parseInt(price)
+  const volumeInt = parseInt(volume)
+  const parsedPrice = parseFloat((priceInt / volumeInt).toFixed(3))
+
+  return +parsedPrice
+}
