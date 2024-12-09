@@ -48,7 +48,10 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
             </div>
           </div>
           <div className="flex flex-col justify-between gap-2">
-            <aside>{bar.beer_price === 39 && <BarCardPill>Billigast</BarCardPill>}</aside>
+            <aside>
+              {bar.beer_price === 39 && <BarCardPill>Billigast</BarCardPill>}{' '}
+              {bar.is_happy_hour && <BarCardPill>HAPPY HOUR</BarCardPill>}
+            </aside>
             <div className="flex aspect-square w-[100px] items-center justify-center rounded-full bg-green-price">
               <div className="flex flex-col items-center justify-center text-white">
                 <span className="text-5xl">{bar.beer_price}</span>
