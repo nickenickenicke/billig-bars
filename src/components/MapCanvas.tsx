@@ -17,7 +17,7 @@ export const MapCanvas = () => {
         initialViewState={{
           longitude: currentLocation.currentlong || 18.069215,
           latitude: currentLocation.currentlat || 59.314654,
-          zoom: 13
+          zoom: 12
         }}
         style={{ width: '100%', aspectRatio: '1/1' }}
         mapStyle="https://tiles.openfreemap.org/styles/bright"

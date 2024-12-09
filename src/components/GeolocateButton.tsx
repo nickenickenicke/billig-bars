@@ -38,7 +38,8 @@ export const GeolocateButton = () => {
           currentlong: position.coords.longitude
         }
         beerMap?.flyTo({
-          center: [currentPosition.currentlong, currentPosition.currentlat]
+          center: [currentPosition.currentlong, currentPosition.currentlat],
+          zoom: 13.5
         })
         getBarsAndDispatch(currentPosition)
       })
