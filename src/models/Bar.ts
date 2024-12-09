@@ -11,6 +11,7 @@ export type Bar = {
   opening_hours: OpeningHours[]
   happy_hours?: HappyHours[]
   dist_meters?: number
+  is_open?: boolean
 }
 
 export type OpeningHours = {
