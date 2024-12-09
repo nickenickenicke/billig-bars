@@ -15,5 +15,5 @@ export type CurrentQuery = {
 
 export const defaultCurrentQuery: CurrentQuery = {
   hour: null,
-  sort: ''
+  sort: 'asc'
 }
