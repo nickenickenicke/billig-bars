@@ -5,16 +5,10 @@ import { FilterStatus } from '@/components/FilterStatus'
 import { GeolocateButton } from '@/components/GeolocateButton'
 import { ReloadBarsButton } from '@/components/ReloadBarsButton'
 
-interface BarsProps {
-  searchParams: { [key: string]: string | string[] | undefined }
-}
-
-export default function Bars({ searchParams }: BarsProps) {
+export default function Bars() {
   return (
     <>
-      {Object.keys(searchParams).length > 0 ? (
-        <CheckSearchParams searchParams={searchParams} />
-      ) : null}
+      <CheckSearchParams />
       <FilterBar />
       <ReloadBarsButton />
       <GeolocateButton />

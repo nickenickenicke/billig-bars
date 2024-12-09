@@ -2,41 +2,33 @@
 
 import { getBarsWithQueryObject } from '@/actions/getBars'
 import { GlobalStateContext } from '@/contexts/GlobalStateContext'
-import { CurrentQuery, GlobalState } from '@/models/GlobalState'
 import { StateActionType } from '@/reducers/GlobalStateReducer'
-import { useContext } from 'react'
+import { checkParams } from '@/utils/paramTools'
+import { useSearchParams } from 'next/navigation'
+import { useContext, useEffect } from 'react'
 
-interface CheckSearchParamsProps {
-  searchParams: { [key: string]: string | string[] | undefined }
-}
-
-export const CheckSearchParams = ({ searchParams }: CheckSearchParamsProps) => {
+export const CheckSearchParams = () => {
   const { globalState, dispatch } = useContext(GlobalStateContext)
+  const searchParams = useSearchParams()
 
-  console.log('bloop')
-
-  const getBarsAgain = async () => {
-    const query: CurrentQuery = {
-      hour: null,
-      sort: searchParams.sort === 'asc' ? 'asc' : 'desc'
+  useEffect(() => {
+    const initiate = async () => {
+      if (searchParams.size === 0) {
+        return
+      }
+      const newQuery = checkParams(searchParams)
+      const newBars = await getBarsWithQueryObject(newQuery, globalState.currentLocation)
+      dispatch({
+        type: StateActionType.UPDATED_BARS,
+        payload: JSON.stringify(newBars)
+      })
     }
-    const newBars = await getBarsWithQueryObject(query, globalState.currentLocation)
-    const newState: GlobalState = {
-      bars: newBars,
-      barsFromApi: newBars,
-      currentLocation: globalState.currentLocation,
-      currentQuery: query
-    }
 
-    dispatch({
-      type: StateActionType.UPDATED_STATE,
-      payload: JSON.stringify(newState)
-    })
-  }
+    initiate()
+  }, [searchParams])
 
-  if (searchParams.sort && searchParams.sort !== globalState.currentQuery.sort) {
-    //   getBarsAgain()
-    console.log('sort sort sort')
+  if (searchParams.size === 0) {
+    return null
   }
 
   return null
