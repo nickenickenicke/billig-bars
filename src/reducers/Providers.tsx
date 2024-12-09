@@ -1,7 +1,7 @@
 'use client'
 
 import { useReducer } from 'react'
-import { GlobalStateReducer, defaultBarState } from './GlobalStateReducer'
+import { GlobalStateReducer } from './GlobalStateReducer'
 import { GlobalStateContext } from '@/contexts/GlobalStateContext'
 import { initialMockData } from '@/lib/mockdata'
 
