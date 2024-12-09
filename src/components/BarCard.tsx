@@ -22,7 +22,9 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
           <div className="flex flex-1 flex-col">
             <div>
               <h3 className="text-xl">{bar.name}</h3>
-              {bar.dist_meters && <span className="block">{normalizeMeters(bar.dist_meters)}</span>}
+              {bar.dist_meters && bar.dist_meters != -1 ? (
+                <span className="block">{normalizeMeters(bar.dist_meters)}</span>
+              ) : null}
               <address className="block">{bar.address}</address>
               <span>
                 {checkIsOpen(bar.opening_hours)
