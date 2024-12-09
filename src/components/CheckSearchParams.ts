@@ -13,15 +13,13 @@ export const CheckSearchParams = () => {
   const searchParams = useSearchParams()
 
   useEffect(() => {
-    if (searchParams.size === 0) {
-      return
-    }
     if (initiated) {
       return
     }
 
     const initiate = async () => {
       const newQuery = checkParams(searchParams)
+
       const newBars = await getBarsWithQueryObjectCheckOpen(newQuery, globalState.currentLocation)
       dispatch({
         type: StateActionType.UPDATED_BARS,
