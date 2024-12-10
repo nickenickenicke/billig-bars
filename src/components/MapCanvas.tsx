@@ -22,9 +22,19 @@ export const MapCanvas = () => {
         style={{ width: '100%', aspectRatio: '1/1' }}
         mapStyle="https://tiles.openfreemap.org/styles/bright"
       >
+        {currentLocation.currentlat > 0 && currentLocation.currentlong > 0 ? (
+          <Marker
+            key={'currentlocation'}
+            longitude={currentLocation.currentlong}
+            latitude={currentLocation.currentlat}
+            anchor="bottom"
+          >
+            <span className="block aspect-square w-5 rounded-full bg-blue-500"></span>
+          </Marker>
+        ) : null}
         {bars.map(bar => (
           <Marker key={bar.id} longitude={bar.long} latitude={bar.lat} anchor="bottom">
-            <span className="rounded-full bg-green-price p-2">{bar.beer_price}</span>
+            <span className="aspect-square rounded-full bg-green-price p-2">{bar.beer_price}</span>
           </Marker>
         ))}
       </Map>
