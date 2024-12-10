@@ -6,6 +6,8 @@ import { formErrorToState } from '@/utils/errorTools'
 import { calculatePPV } from '@/utils/priceTools'
 import { createClient } from '@/utils/supabase/server'
 
+//TODO: Implement minutes
+
 export const insertBar = async (formState: FormState, formData: FormData): Promise<FormState> => {
   const openingHours: OpeningHours[] = []
   for (let index = 0; index < 7; index++) {
@@ -15,7 +17,9 @@ export const insertBar = async (formState: FormState, formData: FormData): Promi
       openingHours.push({
         day_of_week: index + 1,
         opens_at: parseInt(opens_at as string),
-        closes_at: parseInt(closes_at as string)
+        opens_at_min: 0,
+        closes_at: parseInt(closes_at as string),
+        closes_at_min: 0
       })
     }
   }
@@ -30,7 +34,9 @@ export const insertBar = async (formState: FormState, formData: FormData): Promi
       happyHours.push({
         day_of_week: index + 1,
         starts_at: parseInt(starts_at as string),
+        starts_at_min: 0,
         ends_at: parseInt(ends_at as string),
+        ends_at_min: 0,
         price: parseInt(price as string),
         volume: parseInt(volume as string),
         ppv: ppv
