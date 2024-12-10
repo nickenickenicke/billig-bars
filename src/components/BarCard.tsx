@@ -1,10 +1,9 @@
 import { Bar } from '@/models/Bar'
 import { normalizeMeters } from '@/utils/locationTools'
-import { getPricePerCl } from '@/utils/priceTools'
 import { BarCardPill } from './BarCardPill'
 import Link from 'next/link'
 import { CurrentLocation } from '@/models/Location'
-import { checkIsOpen, getClosingHour, normalizeTimeFromDB } from '@/utils/timeTools'
+import { getClosingHour, normalizeTimeFromDB } from '@/utils/timeTools'
 
 interface BarCardProps {
   bar: Bar
@@ -27,7 +26,7 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
               ) : null}
               <address className="block">{bar.address}</address>
               <span>
-                {checkIsOpen(bar.opening_hours)
+                {bar.is_open
                   ? 'Öppet till ' + normalizeTimeFromDB(getClosingHour(bar.opening_hours))
                   : 'Stängt'}
               </span>
@@ -41,14 +40,17 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
               </div>
               <div className="flex aspect-square w-[50px] items-center justify-center rounded-full bg-yellow-500">
                 <div className="flex flex-col items-center justify-center text-white">
-                  <span className="">{getPricePerCl(bar.beer_price, bar.beer_volume)}</span>
+                  <span className="">{bar.beer_ppv}</span>
                   <span className="text-sm">kr/cl</span>
                 </div>
               </div>
             </div>
           </div>
           <div className="flex flex-col justify-between gap-2">
-            <aside>{bar.beer_price === 39 && <BarCardPill>Billigast</BarCardPill>}</aside>
+            <aside>
+              {bar.beer_price === 39 && <BarCardPill>Billigast</BarCardPill>}{' '}
+              {bar.is_happy_hour && <BarCardPill>HAPPY HOUR</BarCardPill>}
+            </aside>
             <div className="flex aspect-square w-[100px] items-center justify-center rounded-full bg-green-price">
               <div className="flex flex-col items-center justify-center text-white">
                 <span className="text-5xl">{bar.beer_price}</span>

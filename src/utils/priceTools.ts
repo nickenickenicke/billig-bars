@@ -10,7 +10,15 @@ export const getHappyHourPrice = (happyHours: HappyHours[]): HappyHourPriceDetai
 
   const happyHour = happyHours.find(happyHour => happyHour.day_of_week === currentDay)
   //TODO: handle this potential error better
-  if (!happyHour) return { price: 999, volume: 999 }
+  if (!happyHour) return { price: 999, volume: 999, ppv: 999 }
 
-  return { price: happyHour.price, volume: happyHour.volume || 40 }
+  return { price: happyHour.price, volume: happyHour.volume, ppv: happyHour.ppv }
+}
+
+export const calculatePPV = (price: string, volume: string): number => {
+  const priceInt = parseInt(price)
+  const volumeInt = parseInt(volume)
+  const parsedPrice = parseFloat((priceInt / volumeInt).toFixed(3))
+
+  return +parsedPrice
 }

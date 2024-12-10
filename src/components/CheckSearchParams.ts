@@ -1,6 +1,6 @@
 'use client'
 
-import { getBarsWithQueryObject } from '@/actions/getBars'
+import { getBarsWithQueryObjectCheckOpen } from '@/actions/getBars'
 import { GlobalStateContext } from '@/contexts/GlobalStateContext'
 import { StateActionType } from '@/reducers/GlobalStateReducer'
 import { checkParams } from '@/utils/paramTools'
@@ -13,16 +13,14 @@ export const CheckSearchParams = () => {
   const searchParams = useSearchParams()
 
   useEffect(() => {
-    if (searchParams.size === 0) {
-      return
-    }
     if (initiated) {
       return
     }
 
     const initiate = async () => {
       const newQuery = checkParams(searchParams)
-      const newBars = await getBarsWithQueryObject(newQuery, globalState.currentLocation)
+
+      const newBars = await getBarsWithQueryObjectCheckOpen(newQuery, globalState.currentLocation)
       dispatch({
         type: StateActionType.UPDATED_BARS,
         payload: JSON.stringify(newBars)

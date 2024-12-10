@@ -23,6 +23,7 @@ export const defaultBarState: Bar[] = [
     city: 'Teststaden',
     beer_volume: 40,
     beer_price: 45,
+    beer_ppv: 1.125,
     id: 'test',
     long: 18.0771446228027,
     lat: 59.3076553344727,
