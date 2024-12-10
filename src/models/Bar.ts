@@ -18,14 +18,18 @@ export type Bar = {
 
 export type OpeningHours = {
   opens_at: number
+  opens_at_min: number
   closes_at: number
+  closes_at_min: number
   day_of_week: number
   id?: string
 }
 
 export type HappyHours = {
   starts_at: number
+  starts_at_min: number
   ends_at: number
+  ends_at_min: number
   day_of_week: number
   volume: number
   price: number
