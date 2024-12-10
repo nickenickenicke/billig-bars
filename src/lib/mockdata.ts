@@ -18,43 +18,57 @@ const mockBars: Bar[] = [
       {
         id: '7315d020-30f8-48d1-af09-f9150a7f0be3',
         opens_at: 13,
+        opens_at_min: 0,
         closes_at: 1,
+        closes_at_min: 0,
         day_of_week: 1
       },
       {
         id: 'e22009e1-e724-4b09-9a18-4e772ba27582',
         opens_at: 13,
+        opens_at_min: 0,
         closes_at: 1,
+        closes_at_min: 0,
         day_of_week: 2
       },
       {
         id: 'f3f584b8-0e66-463a-9d29-f89b45b7810b',
         opens_at: 13,
+        opens_at_min: 0,
         closes_at: 3,
+        closes_at_min: 0,
         day_of_week: 3
       },
       {
         id: '8ab384eb-5376-4199-b7f5-87aae18197b0',
         opens_at: 13,
+        opens_at_min: 0,
         closes_at: 3,
+        closes_at_min: 0,
         day_of_week: 4
       },
       {
         id: '500d5b84-aab7-4698-9cd1-2d21ec68b133',
         opens_at: 13,
+        opens_at_min: 0,
         closes_at: 3,
+        closes_at_min: 0,
         day_of_week: 5
       },
       {
         id: 'd1302a1c-56aa-4639-9030-2c527e58ca9d',
         opens_at: 11,
+        opens_at_min: 0,
         closes_at: 3,
+        closes_at_min: 0,
         day_of_week: 6
       },
       {
         id: 'c6fc6d8f-4347-4b6b-ad88-c22619f43f42',
         opens_at: 11,
+        opens_at_min: 0,
         closes_at: 1,
+        closes_at_min: 0,
         day_of_week: 7
       }
     ],
@@ -75,43 +89,57 @@ const mockBars: Bar[] = [
       {
         id: '2a9c3b81-9467-4023-af0b-34190f1d9f26',
         opens_at: 11,
+        opens_at_min: 0,
         closes_at: 24,
+        closes_at_min: 0,
         day_of_week: 1
       },
       {
         id: '4987601f-0ce6-4431-8566-ae8bf75d75e7',
         opens_at: 11,
+        opens_at_min: 0,
         closes_at: 24,
+        closes_at_min: 0,
         day_of_week: 2
       },
       {
         id: '93e690b1-8f3a-496d-a077-83eecbfcb6ea',
         opens_at: 11,
+        opens_at_min: 0,
         closes_at: 3,
+        closes_at_min: 0,
         day_of_week: 3
       },
       {
         id: '6bce49d9-5761-4a47-83b1-129a6b491ba7',
         opens_at: 11,
+        opens_at_min: 0,
         closes_at: 3,
+        closes_at_min: 0,
         day_of_week: 4
       },
       {
         id: '31c39118-faf1-4777-bb6e-71e6dd3790e9',
         opens_at: 11,
+        opens_at_min: 0,
         closes_at: 3,
+        closes_at_min: 0,
         day_of_week: 5
       },
       {
         id: '37eeb346-113b-426e-928f-e32c8ecb6b6d',
-        opens_at: 1130,
+        opens_at: 11,
+        opens_at_min: 30,
         closes_at: 3,
+        closes_at_min: 0,
         day_of_week: 6
       },
       {
         id: '24eb8f1b-7da7-4fd2-b03e-74abbade4bd8',
-        opens_at: 1130,
+        opens_at: 11,
+        opens_at_min: 30,
         closes_at: 23,
+        closes_at_min: 0,
         day_of_week: 7
       }
     ],
@@ -132,43 +160,57 @@ const mockBars: Bar[] = [
       {
         id: 'e326a359-6e01-4096-8197-f2a64e20aafd',
         opens_at: 15,
+        opens_at_min: 0,
         closes_at: 0,
+        closes_at_min: 0,
         day_of_week: 1
       },
       {
         id: 'e3de92a4-7c44-4923-827c-77ba32a9a644',
         opens_at: 15,
+        opens_at_min: 0,
         closes_at: 0,
+        closes_at_min: 0,
         day_of_week: 2
       },
       {
         id: 'c7fc29b1-d650-48a2-a798-f5bbd9784d0e',
         opens_at: 15,
+        opens_at_min: 0,
         closes_at: 0,
+        closes_at_min: 0,
         day_of_week: 3
       },
       {
         id: '30741287-66e8-4561-9246-593b134f1018',
         opens_at: 15,
+        opens_at_min: 0,
         closes_at: 0,
+        closes_at_min: 0,
         day_of_week: 4
       },
       {
         id: '4358f9f5-8186-4703-b1fc-1a4b0c241589',
         opens_at: 15,
+        opens_at_min: 0,
         closes_at: 1,
+        closes_at_min: 0,
         day_of_week: 5
       },
       {
         id: '6f5acb32-cf4b-42f9-8c84-3314e919fbff',
         opens_at: 12,
+        opens_at_min: 0,
         closes_at: 1,
+        closes_at_min: 0,
         day_of_week: 6
       },
       {
         id: 'f51a453d-1433-4a9c-a808-99736be05b03',
         opens_at: 12,
+        opens_at_min: 0,
         closes_at: 0,
+        closes_at_min: 0,
         day_of_week: 7
       }
     ],
@@ -189,43 +231,57 @@ const mockBars: Bar[] = [
       {
         id: '43069954-f646-4162-be4c-d61120a1a921',
         opens_at: 14,
+        opens_at_min: 0,
         closes_at: 1,
+        closes_at_min: 0,
         day_of_week: 1
       },
       {
         id: '0250d4b7-44fc-49c6-9d61-eb4d100c0e4d',
         opens_at: 14,
+        opens_at_min: 0,
         closes_at: 1,
+        closes_at_min: 0,
         day_of_week: 2
       },
       {
         id: 'f9bc237f-2a06-4b6a-a44a-a2443b541dce',
         opens_at: 14,
+        opens_at_min: 0,
         closes_at: 3,
+        closes_at_min: 0,
         day_of_week: 3
       },
       {
         id: '4ee68286-0829-450a-98eb-aaf181b70993',
         opens_at: 14,
+        opens_at_min: 0,
         closes_at: 1,
+        closes_at_min: 0,
         day_of_week: 4
       },
       {
         id: 'd84e31ad-2f27-4056-989a-c1b013454d6c',
         opens_at: 14,
+        opens_at_min: 0,
         closes_at: 3,
+        closes_at_min: 0,
         day_of_week: 5
       },
       {
         id: '4cc008ca-3791-4c27-9452-d389161fe272',
         opens_at: 14,
+        opens_at_min: 0,
         closes_at: 3,
+        closes_at_min: 0,
         day_of_week: 6
       },
       {
         id: '975db969-5bf0-4dcf-859f-95f52fd8a21a',
         opens_at: 14,
+        opens_at_min: 0,
         closes_at: 1,
+        closes_at_min: 0,
         day_of_week: 7
       }
     ],
@@ -236,7 +292,9 @@ const mockBars: Bar[] = [
         volume: 40,
         ppv: 0.975,
         ends_at: 17,
+        ends_at_min: 0,
         starts_at: 14,
+        starts_at_min: 0,
         day_of_week: 1
       },
       {
@@ -245,7 +303,9 @@ const mockBars: Bar[] = [
         volume: 40,
         ppv: 0.975,
         ends_at: 17,
+        ends_at_min: 0,
         starts_at: 14,
+        starts_at_min: 0,
         day_of_week: 2
       },
       {
@@ -254,7 +314,9 @@ const mockBars: Bar[] = [
         volume: 40,
         ppv: 0.975,
         ends_at: 17,
+        ends_at_min: 0,
         starts_at: 14,
+        starts_at_min: 0,
         day_of_week: 3
       },
       {
@@ -263,7 +325,9 @@ const mockBars: Bar[] = [
         volume: 40,
         ppv: 0.975,
         ends_at: 17,
+        ends_at_min: 0,
         starts_at: 14,
+        starts_at_min: 0,
         day_of_week: 4
       },
       {
@@ -272,7 +336,9 @@ const mockBars: Bar[] = [
         volume: 40,
         ppv: 0.975,
         ends_at: 17,
+        ends_at_min: 0,
         starts_at: 14,
+        starts_at_min: 0,
         day_of_week: 5
       },
       {
@@ -281,7 +347,9 @@ const mockBars: Bar[] = [
         volume: 40,
         ppv: 0.975,
         ends_at: 17,
+        ends_at_min: 0,
         starts_at: 14,
+        starts_at_min: 0,
         day_of_week: 6
       },
       {
@@ -290,7 +358,9 @@ const mockBars: Bar[] = [
         volume: 40,
         ppv: 0.975,
         ends_at: 17,
+        ends_at_min: 0,
         starts_at: 14,
+        starts_at_min: 0,
         day_of_week: 7
       }
     ]
@@ -315,43 +385,57 @@ export const singleBarMockData: Bar = {
     {
       id: '43069954-f646-4162-be4c-d61120a1a921',
       opens_at: 14,
+      opens_at_min: 0,
       closes_at: 1,
+      closes_at_min: 0,
       day_of_week: 1
     },
     {
       id: '0250d4b7-44fc-49c6-9d61-eb4d100c0e4d',
       opens_at: 14,
+      opens_at_min: 0,
       closes_at: 1,
+      closes_at_min: 0,
       day_of_week: 2
     },
     {
       id: 'f9bc237f-2a06-4b6a-a44a-a2443b541dce',
       opens_at: 14,
+      opens_at_min: 0,
       closes_at: 3,
+      closes_at_min: 0,
       day_of_week: 3
     },
     {
       id: '4ee68286-0829-450a-98eb-aaf181b70993',
       opens_at: 14,
+      opens_at_min: 0,
       closes_at: 1,
+      closes_at_min: 0,
       day_of_week: 4
     },
     {
       id: 'd84e31ad-2f27-4056-989a-c1b013454d6c',
       opens_at: 14,
+      opens_at_min: 0,
       closes_at: 3,
+      closes_at_min: 0,
       day_of_week: 5
     },
     {
       id: '4cc008ca-3791-4c27-9452-d389161fe272',
       opens_at: 14,
+      opens_at_min: 0,
       closes_at: 3,
+      closes_at_min: 0,
       day_of_week: 6
     },
     {
       id: '975db969-5bf0-4dcf-859f-95f52fd8a21a',
       opens_at: 14,
+      opens_at_min: 0,
       closes_at: 1,
+      closes_at_min: 0,
       day_of_week: 7
     }
   ],
@@ -362,7 +446,9 @@ export const singleBarMockData: Bar = {
       price: 39,
       volume: 40,
       ends_at: 17,
+      ends_at_min: 0,
       starts_at: 14,
+      starts_at_min: 0,
       day_of_week: 1
     },
     {
@@ -371,7 +457,9 @@ export const singleBarMockData: Bar = {
       price: 39,
       volume: 40,
       ends_at: 17,
+      ends_at_min: 0,
       starts_at: 14,
+      starts_at_min: 0,
       day_of_week: 2
     },
     {
@@ -380,7 +468,9 @@ export const singleBarMockData: Bar = {
       price: 39,
       volume: 40,
       ends_at: 17,
+      ends_at_min: 0,
       starts_at: 14,
+      starts_at_min: 0,
       day_of_week: 3
     },
     {
@@ -389,7 +479,9 @@ export const singleBarMockData: Bar = {
       price: 39,
       volume: 40,
       ends_at: 17,
+      ends_at_min: 0,
       starts_at: 14,
+      starts_at_min: 0,
       day_of_week: 4
     },
     {
@@ -398,7 +490,9 @@ export const singleBarMockData: Bar = {
       price: 39,
       volume: 40,
       ends_at: 17,
+      ends_at_min: 0,
       starts_at: 14,
+      starts_at_min: 0,
       day_of_week: 5
     },
     {
@@ -407,7 +501,9 @@ export const singleBarMockData: Bar = {
       price: 39,
       volume: 40,
       ends_at: 17,
+      ends_at_min: 0,
       starts_at: 14,
+      starts_at_min: 0,
       day_of_week: 6
     },
     {
@@ -416,7 +512,9 @@ export const singleBarMockData: Bar = {
       price: 39,
       volume: 40,
       ends_at: 17,
+      ends_at_min: 0,
       starts_at: 14,
+      starts_at_min: 0,
       day_of_week: 7
     }
   ]
