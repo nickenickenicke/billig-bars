@@ -5,10 +5,17 @@ interface BarPriceProps {
   isHappyHour: boolean
   beer_price: number
   beer_volume: number
+  beer_ppv: number
   happyHours: HappyHours[]
 }
 
-export const BarPrice = ({ isHappyHour, happyHours, beer_price, beer_volume }: BarPriceProps) => {
+export const BarPrice = ({
+  isHappyHour,
+  happyHours,
+  beer_price,
+  beer_volume,
+  beer_ppv
+}: BarPriceProps) => {
   if (isHappyHour) {
     const happyHourPriceDetails: HappyHourPriceDetails = getHappyHourPrice(happyHours)
     return (
@@ -17,7 +24,7 @@ export const BarPrice = ({ isHappyHour, happyHours, beer_price, beer_volume }: B
           <span className="line-through">{beer_price}</span> {happyHourPriceDetails.price} kr
         </p>
         <p>{happyHourPriceDetails.volume} cl</p>
-        <p>kr/cl: {getPricePerCl(happyHourPriceDetails.price, happyHourPriceDetails.volume)}kr</p>
+        <p>{happyHourPriceDetails.ppv} kr/cl</p>
       </>
     )
   }
@@ -25,7 +32,7 @@ export const BarPrice = ({ isHappyHour, happyHours, beer_price, beer_volume }: B
     <>
       <p>{beer_price} kr</p>
       <p>{beer_volume} cl</p>
-      <p>kr/cl: {getPricePerCl(beer_price, beer_volume)}kr</p>
+      <p>{beer_ppv} kr/cl</p>
     </>
   )
 }

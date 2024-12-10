@@ -36,6 +36,7 @@ export type HappyHours = {
 export type HappyHourPriceDetails = {
   price: number
   volume: number
+  ppv: number
 }
 
 export type BarFormData = {
