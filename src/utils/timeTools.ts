@@ -13,7 +13,11 @@ export const getCurrentMinute = (): number => {
   return new Date().getMinutes()
 }
 
-export const getClosingHour = (openingHours: OpeningHours[], dayToCheck?: number): number => {
+export const getWeekdayName = (day: number) => {
+  return day === 0 ? weekdayNames[6] : weekdayNames[day - 1]
+}
+
+export const getClosingHour = (openingHours: OpeningHours[], dayToCheck?: number): string => {
   const dayToCompare = dayToCheck || getTodaysWeekday()
 
   const index = openingHours.findIndex(day => {
@@ -21,24 +25,18 @@ export const getClosingHour = (openingHours: OpeningHours[], dayToCheck?: number
   })
 
   if (index === -1) {
-    return -1
+    return ''
   }
 
-  return openingHours[index].closes_at
+  return normalizeTimeFromDB(openingHours[index].closes_at, openingHours[index].closes_at_min)
 }
 
-export const getWeekdayName = (day: number) => {
-  return day === 0 ? weekdayNames[6] : weekdayNames[day - 1]
-}
+export const normalizeTimeFromDB = (hour: number, min: number): string => {
+  let normalized: string = hour < 10 ? '0' + hour : hour + ''
 
-export const normalizeTimeFromDB = (time: number): string => {
-  if (time > 999) {
-    return time.toString().slice(0, 2) + ':' + time.toString().slice(2)
+  if (min) {
+    normalized += ':' + (min < 10 ? '0' + min : min)
   }
 
-  if (time < 10) {
-    return '0' + time.toString()
-  }
-
-  return time.toString()
+  return normalized
 }
