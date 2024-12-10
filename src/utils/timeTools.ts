@@ -9,6 +9,10 @@ export const getCurrentHour = (): number => {
   return new Date().getHours()
 }
 
+export const getCurrentMinute = (): number => {
+  return new Date().getMinutes()
+}
+
 export const checkIsHappyHour = (happyHours: HappyHours[]): boolean => {
   const currentHour = getCurrentHour()
   const currentDay = getTodaysWeekday()
