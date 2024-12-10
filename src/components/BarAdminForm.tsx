@@ -8,8 +8,6 @@ import { FormOpeningHours } from '@/components/form/FormOpeningHours'
 import { FormSubmitButton } from './form/FormSubmitButton'
 import { useFormState } from 'react-dom'
 
-//TODO: Implement minutes
-
 export const BarAdminForm = () => {
   const [formState, action] = useFormState(insertBar, { message: '' })
   return (
