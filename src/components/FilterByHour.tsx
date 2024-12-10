@@ -1,9 +1,7 @@
 'use client'
 
 import { GlobalStateContext } from '@/contexts/GlobalStateContext'
-import { StateActionType } from '@/reducers/GlobalStateReducer'
 import { useContext } from 'react'
-//TODO: update this to use new query
 export const FilterByHour = () => {
   const {
     globalState: { currentQuery },
@@ -11,16 +9,8 @@ export const FilterByHour = () => {
   } = useContext(GlobalStateContext)
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (e.target.value === '') {
-      return dispatch({
-        type: StateActionType.FILTERED_BY_HOUR,
-        payload: e.target.value
-      })
-    }
-    dispatch({
-      type: StateActionType.FILTERED_BY_HOUR,
-      payload: e.target.value
-    })
+    //TODO: update this to use new query
+    console.log('FilterByHour.handleChange', e.target.value)
   }
 
   const currentlySelectedHour = currentQuery.hour || 999

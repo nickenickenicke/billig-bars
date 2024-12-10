@@ -3,4 +3,5 @@ export type SupabaseQuery = {
   currentlong?: number
   day_to_compare: number
   hour_to_compare: number
+  min_to_compare: number
 }

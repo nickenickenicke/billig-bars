@@ -5,7 +5,7 @@ import { CurrentQuery } from '@/models/GlobalState'
 import { CurrentLocation } from '@/models/Location'
 import { SupabaseQuery } from '@/models/Queries'
 import { createClient } from '@/utils/supabase/server'
-import { getCurrentHour, getTodaysWeekday } from '@/utils/timeTools'
+import { getCurrentHour, getCurrentMinute, getTodaysWeekday } from '@/utils/timeTools'
 
 export const getBarsByLocation = async (location: CurrentLocation) => {
   const supabase = await createClient()
@@ -52,8 +52,9 @@ export const getBarsWithQueryObjectCheckOpen = async (
   // const dbQuery: SupabaseQuery = {
   //   currentlat: 59.30780523805108,
   //   currentlong: 18.07725504267913,
-  //   day_to_compare: 2,
-  //   hour_to_compare: 16
+  //   day_to_compare: 6,
+  //   hour_to_compare: 1,
+  //   min_to_compare: 1
   // }
 
   const supabase = await createClient()
@@ -61,7 +62,7 @@ export const getBarsWithQueryObjectCheckOpen = async (
   //No location, no need to order by distance
   if (dbQuery.currentlat === 0 || dbQuery.currentlong === 0) {
     const { data, error } = await supabase
-      .rpc('openandhappy', dbQuery)
+      .rpc('barswithminutes', dbQuery)
       .order('beer_price', { ascending })
 
     if (error) {
@@ -74,7 +75,7 @@ export const getBarsWithQueryObjectCheckOpen = async (
 
   //With location, order by distance
   const { data, error } = await supabase
-    .rpc('openandhappy', dbQuery)
+    .rpc('barswithminutes', dbQuery)
     .order('dist_meters', { ascending: true })
     .order('beer_price', { ascending })
 
@@ -87,13 +88,15 @@ export const getBarsWithQueryObjectCheckOpen = async (
 }
 
 const createSupabaseQuery = (query: CurrentQuery, location: CurrentLocation): SupabaseQuery => {
+  const min = query.min || getCurrentMinute()
   const hour = query.hour || getCurrentHour()
   const day = query.day || getTodaysWeekday()
 
   if (location.currentlat === 0) {
     return {
       day_to_compare: day,
-      hour_to_compare: hour
+      hour_to_compare: hour,
+      min_to_compare: min
     }
   }
 
@@ -101,6 +104,7 @@ const createSupabaseQuery = (query: CurrentQuery, location: CurrentLocation): Su
     currentlat: location.currentlat,
     currentlong: location.currentlong,
     day_to_compare: day,
-    hour_to_compare: hour
+    hour_to_compare: hour,
+    min_to_compare: min
   }
 }

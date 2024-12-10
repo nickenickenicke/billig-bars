@@ -13,7 +13,7 @@ export const BarHappyHours = ({ happyHours }: BarHappyHoursProps) => {
         {happyHours.map((happyHour, i) => {
           return (
             <li key={happyHour.id!}>
-              {`${getWeekdayName(happyHour.day_of_week)}: ${normalizeTimeFromDB(happyHour.starts_at)} - ${normalizeTimeFromDB(happyHour.ends_at)}`}
+              {`${getWeekdayName(happyHour.day_of_week)}: ${normalizeTimeFromDB(happyHour.starts_at, happyHour.starts_at_min)} - ${normalizeTimeFromDB(happyHour.ends_at, happyHour.ends_at_min)}`}
               <br />
               {`Volym: ${happyHour.volume}cl, pris: ${happyHour.price}kr, pris per cl: ${happyHour.ppv}kr`}
             </li>
