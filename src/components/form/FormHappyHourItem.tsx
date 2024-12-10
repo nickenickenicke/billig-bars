@@ -3,7 +3,9 @@ import { weekdayNames } from '@/lib/weekdays'
 interface FormHappyHourItemProps {
   day: number
   happy_starts_at: string
+  happy_starts_at_min: string
   happy_ends_at: string
+  happy_ends_at_min: string
   happy_volume: string
   happy_price: string
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
@@ -13,7 +15,9 @@ interface FormHappyHourItemProps {
 export const FormHappyHourItem = ({
   day,
   happy_starts_at,
+  happy_starts_at_min,
   happy_ends_at,
+  happy_ends_at_min,
   happy_price,
   happy_volume,
   handleChange,
@@ -22,7 +26,7 @@ export const FormHappyHourItem = ({
   return (
     <div className="form-group">
       <h3>{`${weekdayNames[day - 1]} (Day ${day}) Happy Hour:`}</h3>
-      <div className="grid grid-cols-5 grid-rows-2">
+      <div className="grid grid-cols-6 grid-rows-3">
         <label htmlFor={`happy_starts_at_${day}`}>Starts at</label>
         <input
           type="number"
@@ -32,6 +36,17 @@ export const FormHappyHourItem = ({
           max="23"
           className=""
           value={happy_starts_at}
+          onChange={handleChange}
+        />
+        <label htmlFor={`happy_starts_at_min_${day}`}>min</label>
+        <input
+          type="number"
+          name={`happy_starts_at_min_${day}`}
+          id={`happy_starts_at_min_${day}`}
+          min="0"
+          max="59"
+          className=""
+          value={happy_starts_at_min}
           onChange={handleChange}
         />
         <label htmlFor={`happy_ends_at_${day}`}>Ends at</label>
@@ -44,11 +59,22 @@ export const FormHappyHourItem = ({
           value={happy_ends_at}
           onChange={handleChange}
         />
-        <button className="row-span-2" type="button" onClick={handleClearDay}>
-          Clear
-        </button>
-        <label htmlFor={`happy_volume_${day}`}>Volume (cl)</label>
+        <label htmlFor={`happy_ends_at_min_${day}`}>min</label>
         <input
+          type="number"
+          name={`happy_ends_at_min_${day}`}
+          id={`happy_ends_at_min_${day}`}
+          min="0"
+          max="59"
+          className=""
+          value={happy_ends_at_min}
+          onChange={handleChange}
+        />
+        <label className="col-start-5 row-start-1" htmlFor={`happy_volume_${day}`}>
+          Volume (cl)
+        </label>
+        <input
+          className="col-start-6 row-start-1"
           type="number"
           name={`happy_volume_${day}`}
           id={`happy_volume_${day}`}
@@ -63,6 +89,9 @@ export const FormHappyHourItem = ({
           value={happy_price}
           onChange={handleChange}
         />
+        <button className="col-span-6" type="button" onClick={handleClearDay}>
+          Clear
+        </button>
       </div>
     </div>
   )
