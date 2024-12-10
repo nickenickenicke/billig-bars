@@ -4,7 +4,7 @@ import { BarOpeningHours } from '@/components/BarOpeningHours'
 import { Bar } from '@/models/Bar'
 import { normalizeMeters, normalizePostalCode } from '@/utils/locationTools'
 import { createClient } from '@/utils/supabase/server'
-import { getCurrentHour, getTodaysWeekday } from '@/utils/timeTools'
+import { getCurrentHour, getCurrentMinute, getTodaysWeekday } from '@/utils/timeTools'
 import { redirect } from 'next/navigation'
 import { singleBarMockData } from '@/lib/mockdata'
 
@@ -19,11 +19,15 @@ type SupabaseQuery = {
   currentlong?: number
   day_to_compare?: number
   hour_to_compare?: number
+  min_to_compare?: number
 }
 
 export default async function BarPage({ params, searchParams }: BarPageProps) {
   const supabaseQuery: SupabaseQuery = {
-    p_uuid: params.id
+    p_uuid: params.id,
+    day_to_compare: parseInt(searchParams.day as string) || getTodaysWeekday(),
+    hour_to_compare: parseInt(searchParams.hour as string) || getCurrentHour(),
+    min_to_compare: parseInt(searchParams.min as string) || getCurrentMinute()
   }
 
   if (
@@ -34,17 +38,9 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
     supabaseQuery.currentlong = parseFloat(searchParams.currentlong as string) || 0
   }
 
-  if (searchParams.day) {
-    supabaseQuery.day_to_compare = parseInt(searchParams.day as string) || getTodaysWeekday()
-  }
-
-  if (searchParams.hour) {
-    supabaseQuery.hour_to_compare = parseInt(searchParams.hour as string) || getCurrentHour()
-  }
-
   const supabase = await createClient()
 
-  let { data, error } = await supabase.rpc('singledayhour', supabaseQuery)
+  let { data, error } = await supabase.rpc('singledayminutes', supabaseQuery)
 
   if (error) {
     console.error(error)
