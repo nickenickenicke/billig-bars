@@ -32,9 +32,13 @@ export const getClosingHour = (openingHours: OpeningHours[], dayToCheck?: number
 }
 
 export const normalizeTimeFromDB = (hour: number, min: number): string => {
+  if (hour < 0 || hour > 24) {
+    return ''
+  }
+
   let normalized: string = hour < 10 ? '0' + hour : hour + ''
 
-  if (min > 0) {
+  if (min > 0 && min < 60) {
     normalized += ':' + (min < 10 ? '0' + min : min)
   }
 
