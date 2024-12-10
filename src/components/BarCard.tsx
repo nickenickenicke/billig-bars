@@ -26,9 +26,7 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
               ) : null}
               <address className="block">{bar.address}</address>
               <span>
-                {bar.is_open
-                  ? 'Öppet till ' + normalizeTimeFromDB(getClosingHour(bar.opening_hours))
-                  : 'Stängt'}
+                {bar.is_open ? 'Öppet till ' + getClosingHour(bar.opening_hours) : 'Stängt'}
               </span>
             </div>
             <div className="flex flex-row-reverse gap-2 pr-2">
