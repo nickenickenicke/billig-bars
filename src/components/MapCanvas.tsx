@@ -7,24 +7,17 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import { MapPopup } from './MapPopup'
 import { MapBarMarker } from './MapBarMarker'
 import { MapCurrentLocationMarker } from './MapCurrentLocationMarker'
-import { MapLocation } from '@/models/Location'
+import { Bar, defaultBar } from '@/models/Bar'
 
 export const MapCanvas = () => {
   const {
     globalState: { bars, currentLocation }
   } = useContext(GlobalStateContext)
-  const [popupLocation, setPopupLocation] = useState<MapLocation>({
-    long: 0,
-    lat: 0
-  })
-
+  const [popupBar, setPopupBar] = useState<Bar>(defaultBar)
   const [isPopupOpen, setIsPopupOpen] = useState(false)
 
-  const handleMarkerClick = (long: number, lat: number) => {
-    setPopupLocation({
-      long,
-      lat
-    })
+  const handleMarkerClick = (bar: Bar) => {
+    setPopupBar(bar)
     setIsPopupOpen(true)
   }
 
@@ -42,7 +35,8 @@ export const MapCanvas = () => {
       >
         {isPopupOpen && (
           <MapPopup
-            popupLocation={popupLocation}
+            bar={popupBar}
+            currentLocation={currentLocation}
             handleClosePopup={() => {
               setIsPopupOpen(false)
             }}
@@ -55,7 +49,7 @@ export const MapCanvas = () => {
           <MapBarMarker
             key={bar.id}
             bar={bar}
-            handleBarMarkerClick={(long, lat) => handleMarkerClick(long, lat)}
+            handleBarMarkerClick={(long, lat) => handleMarkerClick(bar)}
           />
         ))}
       </Map>
