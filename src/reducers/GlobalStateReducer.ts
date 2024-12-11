@@ -3,8 +3,6 @@ import { defaultCurrentQuery, GlobalState } from '@/models/GlobalState'
 import { CurrentLocation } from '@/models/Location'
 
 export enum StateActionType {
-  UPDATED_BARS,
-  UPDATED_LOCATION,
   UPDATED_STATE
 }
 
@@ -43,46 +41,17 @@ export const defaultGlobalState: GlobalState = {
 
 export const GlobalStateReducer = (prevState: GlobalState, action: StateAction): GlobalState => {
   switch (action.type) {
-    case StateActionType.UPDATED_BARS: {
-      const updatedBars: Bar[] = JSON.parse(action.payload) || []
-      if (updatedBars.length === 0) return prevState
-      return {
-        ...prevState,
-        bars: updatedBars,
-        barsFromApi: updatedBars,
-        currentQuery: { ...prevState.currentQuery, hour: null }
-      }
-    }
-    case StateActionType.UPDATED_LOCATION: {
-      const updatedLocation: CurrentLocation = JSON.parse(action.payload) || defaultCurrentLocation
-      if (updatedLocation.currentlat === 0 && updatedLocation.currentlong === 0) return prevState
-      return { ...prevState, currentLocation: updatedLocation }
-    }
     case StateActionType.UPDATED_STATE: {
       const updatedState: GlobalState = JSON.parse(action.payload) || defaultGlobalState
       if (
         updatedState.bars.length != 0 &&
         updatedState.barsFromApi.length != 0 &&
         updatedState.currentLocation.currentlat != 0 &&
-        updatedState.currentLocation.currentlong != 0
-      )
-        return { ...updatedState, currentQuery: defaultCurrentQuery }
-      if (updatedState.bars.length != 0)
-        return {
-          ...prevState,
-          bars: updatedState.bars,
-          barsFromApi: updatedState.bars,
-          currentQuery: defaultCurrentQuery
-        }
-      if (
-        updatedState.currentLocation.currentlat != 0 &&
-        updatedState.currentLocation.currentlong != 0
-      )
-        return {
-          ...prevState,
-          currentLocation: updatedState.currentLocation,
-          currentQuery: defaultCurrentQuery
-        }
+        updatedState.currentLocation.currentlong != 0 &&
+        updatedState.currentQuery
+      ) {
+        return updatedState
+      }
       return prevState
     }
 
