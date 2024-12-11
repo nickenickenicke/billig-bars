@@ -1,4 +1,4 @@
-import { Bar } from '@/models/Bar'
+import { Bar, defaultBar } from '@/models/Bar'
 import { defaultCurrentQuery, GlobalState } from '@/models/GlobalState'
 import { CurrentLocation } from '@/models/Location'
 
@@ -11,21 +11,7 @@ export type StateAction = {
   payload: string
 }
 
-export const defaultBarState: Bar[] = [
-  {
-    name: 'Testbaren',
-    address: 'Testgatan 104',
-    postal_code: 12345,
-    city: 'Teststaden',
-    beer_volume: 40,
-    beer_price: 45,
-    beer_ppv: 1.125,
-    id: 'test',
-    long: 18.0771446228027,
-    lat: 59.3076553344727,
-    opening_hours: []
-  }
-]
+export const defaultBarsState: Bar[] = [defaultBar]
 
 export const defaultCurrentLocation: CurrentLocation = {
   currentlat: 0,
@@ -33,8 +19,8 @@ export const defaultCurrentLocation: CurrentLocation = {
 }
 
 export const defaultGlobalState: GlobalState = {
-  bars: defaultBarState,
-  barsFromApi: defaultBarState,
+  bars: defaultBarsState,
+  barsFromApi: defaultBarsState,
   currentLocation: defaultCurrentLocation,
   currentQuery: defaultCurrentQuery
 }

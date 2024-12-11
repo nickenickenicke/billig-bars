@@ -57,3 +57,17 @@ export type BarFormData = {
   opening_hours: OpeningHours[]
   happy_hours?: HappyHours[]
 }
+
+export const defaultBar: Bar = {
+  name: '',
+  address: '',
+  postal_code: 0,
+  city: '',
+  beer_volume: 0,
+  beer_price: 0,
+  beer_ppv: 0,
+  id: 'default',
+  long: 0,
+  lat: 0,
+  opening_hours: []
+}
