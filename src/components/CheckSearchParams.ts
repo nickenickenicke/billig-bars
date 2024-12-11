@@ -2,6 +2,7 @@
 
 import { getBarsWithQueryObjectCheckOpen } from '@/actions/getBars'
 import { GlobalStateContext } from '@/contexts/GlobalStateContext'
+import { GlobalState } from '@/models/GlobalState'
 import { StateActionType } from '@/reducers/GlobalStateReducer'
 import { checkParams } from '@/utils/paramTools'
 import { useSearchParams } from 'next/navigation'
@@ -21,9 +22,15 @@ export const CheckSearchParams = () => {
       const newQuery = checkParams(searchParams)
 
       const newBars = await getBarsWithQueryObjectCheckOpen(newQuery, globalState.currentLocation)
+      const newState: GlobalState = {
+        ...globalState,
+        bars: newBars,
+        barsFromApi: newBars,
+        currentQuery: newQuery
+      }
       dispatch({
-        type: StateActionType.UPDATED_BARS,
-        payload: JSON.stringify(newBars)
+        type: StateActionType.UPDATED_STATE,
+        payload: JSON.stringify(newState)
       })
       setInitiated(true)
     }
