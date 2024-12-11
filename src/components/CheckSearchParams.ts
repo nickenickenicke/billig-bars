@@ -6,7 +6,7 @@ import { GlobalState } from '@/models/GlobalState'
 import { StateActionType } from '@/reducers/GlobalStateReducer'
 import { checkParams } from '@/utils/paramTools'
 import { useSearchParams } from 'next/navigation'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 
 export const CheckSearchParams = () => {
   const { globalState, dispatch } = useContext(GlobalStateContext)
@@ -14,6 +14,10 @@ export const CheckSearchParams = () => {
   const searchParams = useSearchParams()
 
   useEffect(() => {
+    //TODO: OK THIS IS WHERE WE MIGHT USE A MEMO?
+    console.log('useeffect')
+    console.log(searchParams)
+
     if (initiated) {
       return
     }
@@ -22,12 +26,17 @@ export const CheckSearchParams = () => {
       const newQuery = checkParams(searchParams)
 
       const newBars = await getBarsWithQueryObjectCheckOpen(newQuery, globalState.currentLocation)
+
+      console.log(newQuery)
+      console.log(newBars)
+
       const newState: GlobalState = {
         ...globalState,
         bars: newBars,
         barsFromApi: newBars,
         currentQuery: newQuery
       }
+
       dispatch({
         type: StateActionType.UPDATED_STATE,
         payload: JSON.stringify(newState)
@@ -37,10 +46,6 @@ export const CheckSearchParams = () => {
 
     initiate()
   }, [searchParams, dispatch, globalState.currentLocation, initiated])
-
-  if (searchParams.size === 0) {
-    return null
-  }
 
   return null
 }
