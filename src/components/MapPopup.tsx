@@ -19,6 +19,7 @@ export const MapPopup = ({ bar, currentLocation, handleClosePopup }: MapPopupPro
       anchor="bottom"
       onClose={handleClosePopup}
       offset={30}
+      className="overflow-x-hidden"
     >
       <Link
         className="block text-lg underline"
