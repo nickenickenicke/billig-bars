@@ -1,30 +1,31 @@
 'use client'
 
 import { GlobalStateContext } from '@/contexts/GlobalStateContext'
+import { useRouter } from 'next/navigation'
 import { useContext, useState } from 'react'
 
 export const FilterByHour = () => {
   const {
-    globalState: { currentQuery },
-    dispatch
+    globalState: { currentQuery }
   } = useContext(GlobalStateContext)
   const [currentlySelectedHour, setCurrentlySelectedHour] = useState<string>(
     currentQuery.hour === null ? 'now' : currentQuery.hour.toString()
   )
+  const router = useRouter()
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     switch (e.target.value) {
       case 'now': {
         if (currentQuery.hour === null) break
-
+        router.push('/bars')
         break
       }
       case '-1': {
-        console.log('byter ingenting')
         break
       }
       default:
-        console.log('byter till', e.target.value)
+        if (currentQuery.hour?.toString() === e.target.value) break
+        router.push('/bars?hour=' + e.target.value)
         break
     }
     setCurrentlySelectedHour(e.target.value)
