@@ -29,11 +29,19 @@ export const GlobalStateReducer = (prevState: GlobalState, action: StateAction):
   switch (action.type) {
     case StateActionType.UPDATED_STATE: {
       const updatedState: GlobalState = JSON.parse(action.payload) || defaultGlobalState
+
       if (
         updatedState.bars.length != 0 &&
         updatedState.barsFromApi.length != 0 &&
         updatedState.currentLocation.currentlat != 0 &&
         updatedState.currentLocation.currentlong != 0 &&
+        updatedState.currentQuery
+      ) {
+        return updatedState
+      }
+      if (
+        updatedState.bars.length != 0 &&
+        updatedState.barsFromApi.length != 0 &&
         updatedState.currentQuery
       ) {
         return updatedState
