@@ -27,7 +27,7 @@ export const FormInput = ({
     <div className={`form-group flex flex-col ${className ? className : ''}`}>
       <label htmlFor={name}>{label}</label>
       <input
-        inputMode={numericInput ? 'numeric' : undefined}
+        inputMode={numericInput ? 'decimal' : undefined}
         type={text ? 'text' : 'number'}
         id={name}
         name={name}
