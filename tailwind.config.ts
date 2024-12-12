@@ -15,6 +15,14 @@ const config: Config = {
         green: {
           price: '#42be65'
         }
+      },
+      fontFamily: {
+        sans: [
+          'var(--font-space-grotesk)',
+          {
+            fontFeatureSettings: '"ss04", "ss02"'
+          }
+        ]
       }
     }
   },
