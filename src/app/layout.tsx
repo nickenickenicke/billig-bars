@@ -3,6 +3,7 @@ import './globals.css'
 import { Providers } from '@/reducers/Providers'
 import { Navigation } from '@/components/Navigation'
 import localFont from 'next/font/local'
+import { Protest_Riot } from 'next/font/google'
 
 export const metadata: Metadata = {
   title: 'Billig Bira',
@@ -14,6 +15,13 @@ export const spaceGrotesk = localFont({
   variable: '--font-space-grotesk'
 })
 
+export const protestRiot = Protest_Riot({
+  variable: '--font-protest-riot',
+  subsets: ['latin'],
+  weight: ['400'],
+  display: 'swap'
+})
+
 export default function RootLayout({
   children
 }: Readonly<{
@@ -21,7 +29,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={``}>
-      <body className={`${spaceGrotesk.variable} mb-16 font-sans antialiased`}>
+      <body
+        className={`${spaceGrotesk.variable} ${protestRiot.variable} mb-16 font-sans antialiased`}
+      >
         <header>
           <Navigation />
         </header>

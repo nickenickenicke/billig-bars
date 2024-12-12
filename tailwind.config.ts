@@ -22,7 +22,8 @@ const config: Config = {
           {
             fontFeatureSettings: '"ss04", "ss02"'
           }
-        ]
+        ],
+        price: ['var(--font-protest-riot)']
       }
     }
   },
