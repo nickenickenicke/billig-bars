@@ -2,7 +2,7 @@
 
 import { GlobalStateContext } from '@/contexts/GlobalStateContext'
 import { useRouter } from 'next/navigation'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 export const FilterByHour = () => {
   const {
@@ -12,6 +12,12 @@ export const FilterByHour = () => {
     currentQuery.hour === null ? 'now' : currentQuery.hour.toString()
   )
   const router = useRouter()
+  useEffect(() => {
+    if (currentQuery.hour === null && currentlySelectedHour === 'now') return
+    if (currentQuery.hour?.toString() === currentlySelectedHour) return
+
+    setCurrentlySelectedHour(currentQuery.hour === null ? 'now' : currentQuery.hour.toString())
+  }, [currentQuery.hour, currentlySelectedHour])
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     switch (e.target.value) {
