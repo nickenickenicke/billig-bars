@@ -6,21 +6,19 @@ import { GlobalState } from '@/models/GlobalState'
 import { StateActionType } from '@/reducers/GlobalStateReducer'
 import { checkParams } from '@/utils/paramTools'
 import { useSearchParams } from 'next/navigation'
-import { useContext, useEffect, useMemo, useState } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 
 export const CheckSearchParams = () => {
   const { globalState, dispatch } = useContext(GlobalStateContext)
-  const [initiated, setInitiated] = useState(false)
+  const prevSeachParamsRef = useRef<string | null>(null)
   const searchParams = useSearchParams()
 
   useEffect(() => {
-    //TODO: OK THIS IS WHERE WE MIGHT USE A MEMO?
-    console.log('useeffect')
-    console.log(searchParams)
-
-    if (initiated) {
+    const currentSearchParams = searchParams.toString()
+    if (prevSeachParamsRef.current === currentSearchParams) {
       return
     }
+    prevSeachParamsRef.current = currentSearchParams
 
     const initiate = async () => {
       const newQuery = checkParams(searchParams)
@@ -41,11 +39,9 @@ export const CheckSearchParams = () => {
         type: StateActionType.UPDATED_STATE,
         payload: JSON.stringify(newState)
       })
-      setInitiated(true)
     }
-
     initiate()
-  }, [searchParams, dispatch, globalState.currentLocation, initiated])
+  }, [searchParams, globalState, dispatch])
 
   return null
 }
