@@ -29,7 +29,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={``}>
-      <body className={`${rubik.variable} ${protestRiot.variable} mb-16 font-sans antialiased`}>
+      <body
+        className={`${rubik.variable} ${protestRiot.variable} mb-16 bg-white font-sans antialiased`}
+      >
         <header>
           <Navigation />
         </header>
