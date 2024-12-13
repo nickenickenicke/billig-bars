@@ -16,7 +16,7 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
       <section className="">
         <Link
           href={`/bars/${bar.id}${currentLocation ? `?currentlat=${currentLocation.currentlat}&currentlong=${currentLocation.currentlong}` : ''}`}
-          className="flex justify-between rounded-sm bg-slate-300 p-2"
+          className="my-1 flex justify-between rounded-none border border-gray-900 bg-gray-50 px-2 py-3"
         >
           <div className="flex flex-1 flex-col">
             <div>
@@ -45,7 +45,7 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
             </div>
           </div>
           <div className="flex flex-col justify-between gap-2">
-            <aside>
+            <aside className="flex flex-row-reverse flex-wrap">
               {bar.beer_price === 39 && <BarCardPill>Billigast</BarCardPill>}{' '}
               {bar.is_happy_hour && <BarCardPill>HAPPY HOUR</BarCardPill>}
             </aside>
