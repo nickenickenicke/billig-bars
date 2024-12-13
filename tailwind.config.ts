@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import { fontFamily } from 'tailwindcss/defaultTheme'
 
 const config: Config = {
   content: [
@@ -15,6 +16,15 @@ const config: Config = {
         green: {
           price: '#42be65'
         }
+      },
+      fontFamily: {
+        sans: [
+          ['var(--font-rubik)', ...fontFamily.sans],
+          {
+            fontFeatureSettings: '"ss04", "ss02"'
+          }
+        ],
+        price: ['var(--font-protest-riot)']
       }
     }
   },

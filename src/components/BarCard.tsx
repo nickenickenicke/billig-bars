@@ -49,10 +49,12 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
               {bar.beer_price === 39 && <BarCardPill>Billigast</BarCardPill>}{' '}
               {bar.is_happy_hour && <BarCardPill>HAPPY HOUR</BarCardPill>}
             </aside>
-            <div className="flex aspect-square w-[100px] items-center justify-center rounded-full bg-green-price">
+            <div className="flex aspect-square w-[100px] -rotate-[10deg] items-center justify-center rounded-full bg-green-price">
               <div className="flex flex-col items-center justify-center text-white">
-                <span className="text-5xl">{bar.beer_price}</span>
-                <span className="text-sm leading-3">KR</span>
+                <span className="font-price text-5xl tracking-tighter">
+                  {bar.beer_price}
+                  <span className="inline-block -translate-y-[0.33rem]">:</span>-
+                </span>
               </div>
             </div>
           </div>
