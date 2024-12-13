@@ -5,7 +5,7 @@ import { Navigation } from '@/components/Navigation'
 import { Protest_Riot, Rubik } from 'next/font/google'
 
 export const metadata: Metadata = {
-  title: 'Billig Bira',
+  title: 'Billig Bärs',
   description: 'Drink up!'
 }
 
