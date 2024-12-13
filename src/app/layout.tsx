@@ -2,17 +2,17 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Providers } from '@/reducers/Providers'
 import { Navigation } from '@/components/Navigation'
-import localFont from 'next/font/local'
-import { Protest_Riot } from 'next/font/google'
+import { Protest_Riot, Rubik } from 'next/font/google'
 
 export const metadata: Metadata = {
   title: 'Billig Bira',
   description: 'Drink up!'
 }
 
-export const spaceGrotesk = localFont({
-  src: './fonts/SpaceGrotesk.woff2',
-  variable: '--font-space-grotesk'
+export const rubik = Rubik({
+  variable: '--font-rubik',
+  subsets: ['latin'],
+  display: 'swap'
 })
 
 export const protestRiot = Protest_Riot({
@@ -29,9 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={``}>
-      <body
-        className={`${spaceGrotesk.variable} ${protestRiot.variable} mb-16 font-sans antialiased`}
-      >
+      <body className={`${rubik.variable} ${protestRiot.variable} mb-16 font-sans antialiased`}>
         <header>
           <Navigation />
         </header>

@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import { fontFamily } from 'tailwindcss/defaultTheme'
 
 const config: Config = {
   content: [
@@ -18,7 +19,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: [
-          'var(--font-space-grotesk)',
+          ['var(--font-rubik)', ...fontFamily.sans],
           {
             fontFeatureSettings: '"ss04", "ss02"'
           }
