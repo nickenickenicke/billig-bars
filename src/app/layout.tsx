@@ -33,7 +33,7 @@ export default function RootLayout({
         <header>
           <Navigation />
         </header>
-        <main className="mt-[90px] overflow-x-hidden px-2">
+        <main className="mt-[75px] overflow-x-hidden">
           <Providers>{children}</Providers>
         </main>
       </body>

@@ -11,10 +11,12 @@ export const BarsView = () => {
   return (
     <MapProvider>
       <MapCanvas />
-      <FilterBar />
-      <GeolocateButton />
-      <FilterStatus />
-      <BarsList />
+      <article className="px-2">
+        <FilterBar />
+        <GeolocateButton />
+        <FilterStatus />
+        <BarsList />
+      </article>
     </MapProvider>
   )
 }

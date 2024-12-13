@@ -1,5 +1,9 @@
 import { BarAdminForm } from '@/components/BarAdminForm'
 
 export default async function Bars() {
-  return <BarAdminForm />
+  return (
+    <article className="px-2">
+      <BarAdminForm />
+    </article>
+  )
 }

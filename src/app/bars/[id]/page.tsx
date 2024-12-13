@@ -53,7 +53,7 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
     const bar: Bar = data[0]
 
     return (
-      <>
+      <article className="px-2">
         <h1>{bar.name}</h1>
         {bar.dist_meters && bar.dist_meters > 0 ? <p>{normalizeMeters(bar.dist_meters)}</p> : null}
         {bar.is_happy_hour && <span>HAPPY HOUR</span>}
@@ -72,7 +72,7 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
         <BarOpeningHours openingHours={bar.opening_hours} />
         {bar.happy_hours && <BarHappyHours happyHours={bar.happy_hours} />}
         <pre className="text-xs">{JSON.stringify(bar, null, 2)}</pre>
-      </>
+      </article>
     )
   }
 
