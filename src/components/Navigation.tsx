@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Logo } from './svgs/Logo'
 import { Hamburger } from './Hamburger'
 import { useEffect, useRef, useState } from 'react'
+import { NavLink } from './NavLink'
 
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -29,7 +30,7 @@ export const Navigation = () => {
 
   return (
     <nav
-      className="fixed top-0 z-[10] grid w-full grid-cols-2 grid-rows-[70px,_0fr] justify-between bg-white transition-all data-[open=true]:grid-rows-[70px,_1fr]"
+      className="group fixed top-0 z-[10] grid w-full grid-cols-2 grid-rows-[70px,_0fr] justify-between bg-white transition-all data-[open=true]:grid-rows-[70px,_1fr]"
       data-open={isMenuOpen}
       ref={menuRef}
     >
@@ -41,34 +42,22 @@ export const Navigation = () => {
       <div className="flex items-center justify-end">
         <Hamburger isMenuOpen={isMenuOpen} handleClick={handleClick} />
       </div>
-      <div className="col-span-2 row-[2/3] overflow-hidden">
+      <div className="col-span-2 row-[2/3] overflow-hidden group-data-[open=true]:pb-2 group-data-[open=true]:shadow-sm">
         <ul className="flex h-full flex-col items-end justify-center gap-2">
           <li className="contents">
-            <Link
-              href={'/'}
-              className="flex h-[70px] w-full items-center px-4"
-              onClick={handleClick}
-            >
-              Home
-            </Link>
+            <NavLink href={'/bars'} handleClick={handleClick}>
+              Hitta barer
+            </NavLink>
           </li>
           <li className="contents">
-            <Link
-              href={'/bars'}
-              className="flex h-[70px] w-full items-center px-4"
-              onClick={handleClick}
-            >
-              Bars
-            </Link>
-          </li>
-          <li className="contents">
-            <Link
-              href={'/testing-ground'}
-              className="flex h-[70px] w-full items-center px-4"
-              onClick={handleClick}
-            >
+            <NavLink href={'/testing-ground'} handleClick={handleClick}>
               Test
-            </Link>
+            </NavLink>
+          </li>
+          <li className="contents">
+            <NavLink href={'/testing-ground'} handleClick={handleClick}>
+              Om Billig Bärs
+            </NavLink>
           </li>
         </ul>
       </div>
