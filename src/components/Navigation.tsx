@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { Logo } from './svgs/Logo'
+import { Hamburger } from './Hamburger'
 
 export const Navigation = () => {
   return (
@@ -8,11 +8,7 @@ export const Navigation = () => {
       <Link href={'/'} className="flex h-full items-center justify-center pl-4 text-4xl">
         <Logo className="h-8" />
       </Link>
-      <button className="aspect-square border-none">
-        <div className="block h-0.5 w-8 -translate-y-2 bg-black"></div>
-        <div className="block h-0.5 w-8 bg-black"></div>
-        <div className="block h-0.5 w-8 translate-y-2 bg-black"></div>
-      </button>
+      <Hamburger />
       {/* <ul className="flex h-full items-center justify-end gap-2">
         <li>
           <Link href={'/'} className="flex h-[70px] min-w-20 items-center px-4">
