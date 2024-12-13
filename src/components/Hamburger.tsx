@@ -2,16 +2,17 @@
 
 import { useState } from 'react'
 
-export const Hamburger = () => {
-  const [isOpen, setIsOpen] = useState(false)
+interface HamburgerProps {
+  isMenuOpen: boolean
+  handleClick: () => void
+}
 
+export const Hamburger = ({ isMenuOpen, handleClick }: HamburgerProps) => {
   return (
     <button
       className="group aspect-square border-none"
-      data-open={isOpen}
-      onClick={() => {
-        setIsOpen(!isOpen)
-      }}
+      data-open={isMenuOpen}
+      onClick={handleClick}
     >
       <div className="block h-0.5 w-8 -translate-y-2 bg-black transition group-data-[open=true]:translate-y-0.5"></div>
       <div className="block h-0.5 w-8 bg-black"></div>

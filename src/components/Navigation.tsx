@@ -1,14 +1,23 @@
+'use client'
+
 import Link from 'next/link'
 import { Logo } from './svgs/Logo'
 import { Hamburger } from './Hamburger'
+import { useState } from 'react'
 
 export const Navigation = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const handleClick = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
   return (
     <nav className="fixed top-0 z-[10] flex h-[70px] w-full justify-between bg-white">
       <Link href={'/'} className="flex h-full items-center justify-center pl-4 text-4xl">
         <Logo className="h-8" />
       </Link>
-      <Hamburger />
+      <Hamburger isMenuOpen={isMenuOpen} handleClick={handleClick} />
       {/* <ul className="flex h-full items-center justify-end gap-2">
         <li>
           <Link href={'/'} className="flex h-[70px] min-w-20 items-center px-4">
