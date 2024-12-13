@@ -10,7 +10,7 @@ interface HamburgerProps {
 export const Hamburger = ({ isMenuOpen, handleClick }: HamburgerProps) => {
   return (
     <button
-      className="group aspect-square border-none"
+      className="group flex aspect-square h-full flex-col items-center justify-center rounded-none border-none bg-transparent"
       data-is-menu-open={isMenuOpen}
       onClick={handleClick}
     >
