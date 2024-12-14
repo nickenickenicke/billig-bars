@@ -16,11 +16,11 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
       <section className="">
         <Link
           href={`/bars/${bar.id}${currentLocation ? `?currentlat=${currentLocation.currentlat}&currentlong=${currentLocation.currentlong}` : ''}`}
-          className="my-1 flex justify-between rounded-none border border-gray-900 bg-gray-50 px-2 py-3"
+          className="flex justify-between rounded-none border-b border-b-gray-900 bg-white px-2 py-5"
         >
           <div className="flex flex-1 flex-col">
             <div>
-              <h3 className="text-xl">{bar.name}</h3>
+              <h3 className="text-2xl font-medium">{bar.name}</h3>
               {bar.dist_meters && bar.dist_meters != -1 ? (
                 <span className="block">{normalizeMeters(bar.dist_meters)}</span>
               ) : null}

@@ -11,7 +11,7 @@ export const BarsList = () => {
   } = useContext(GlobalStateContext)
   return (
     <>
-      <article className="flex flex-col gap-2">
+      <article className="flex flex-col">
         {bars.map(bar => (
           <BarCard key={bar.id + 'card'} bar={bar} currentLocation={currentLocation} />
         ))}
