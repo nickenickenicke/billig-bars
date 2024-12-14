@@ -16,6 +16,12 @@ const config: Config = {
         green: {
           price: '#42be65'
         },
+        yellow: {
+          price: '#DBAE47'
+        },
+        red: {
+          price: '#D66F4F'
+        },
         white: '#FAFAFA',
         black: '#000'
       },
