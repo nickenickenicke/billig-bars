@@ -15,7 +15,9 @@ const config: Config = {
 
         green: {
           price: '#42be65'
-        }
+        },
+        white: '#FAFAFA',
+        black: '#000'
       },
       fontFamily: {
         sans: [
