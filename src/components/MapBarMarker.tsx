@@ -1,3 +1,4 @@
+import { ppvUpperThresholds } from '@/lib/priceThresholds'
 import { Bar } from '@/models/Bar'
 import { Marker } from '@vis.gl/react-maplibre'
 
@@ -20,9 +21,9 @@ export const MapBarMarker = ({ bar, handleBarMarkerClick }: MapBarMarkerProps) =
     >
       <span
         className={`aspect-square rounded-full bg-green-price p-2 ${
-          bar.beer_ppv < 1.125
+          bar.beer_ppv < ppvUpperThresholds.cheap
             ? 'bg-green-price'
-            : bar.beer_ppv < 1.5
+            : bar.beer_ppv < ppvUpperThresholds.average
               ? 'bg-yellow-price'
               : 'bg-red-price'
         }`}

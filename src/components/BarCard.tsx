@@ -4,6 +4,7 @@ import { BarCardPill } from './BarCardPill'
 import Link from 'next/link'
 import { CurrentLocation } from '@/models/Location'
 import { getClosingHour, normalizeTimeFromDB } from '@/utils/timeTools'
+import { ppvUpperThresholds } from '@/lib/priceThresholds'
 
 interface BarCardProps {
   bar: Bar
@@ -24,7 +25,7 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
               {bar.dist_meters && bar.dist_meters != -1 ? (
                 <span className="block">{normalizeMeters(bar.dist_meters)}</span>
               ) : null}
-              <address className="block">{bar.address}</address>
+              <address className="block not-italic">{bar.address}</address>
               <span>
                 {bar.is_open ? 'Öppet till ' + getClosingHour(bar.opening_hours) : 'Stängt'}
               </span>
@@ -50,9 +51,9 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
             </aside>
             <div
               className={`flex aspect-square w-[100px] -rotate-[10deg] items-center justify-center rounded-full ${
-                bar.beer_ppv < 1.125
+                bar.beer_ppv < ppvUpperThresholds.cheap
                   ? 'bg-green-price'
-                  : bar.beer_ppv < 1.5
+                  : bar.beer_ppv < ppvUpperThresholds.average
                     ? 'bg-yellow-price'
                     : 'bg-red-price'
               }`}
