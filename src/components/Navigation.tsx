@@ -30,7 +30,7 @@ export const Navigation = () => {
 
   return (
     <nav
-      className="group fixed top-0 z-[10] grid w-full grid-cols-2 grid-rows-[var(--navbar-height),_0fr] justify-between bg-white transition-all data-[open=true]:grid-rows-[70px,_1fr]"
+      className="group fixed top-0 z-[10] grid w-full grid-cols-2 grid-rows-[var(--navbar-height),_0fr] justify-between bg-white transition-all data-[open=true]:grid-rows-[var(--navbar-height),_1fr]"
       data-open={isMenuOpen}
       ref={menuRef}
     >
