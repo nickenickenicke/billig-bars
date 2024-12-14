@@ -7,6 +7,8 @@ interface MapBarMarkerProps {
 }
 
 export const MapBarMarker = ({ bar, handleBarMarkerClick }: MapBarMarkerProps) => {
+  console.log(bar.name)
+
   return (
     <Marker
       longitude={bar.long}
@@ -16,7 +18,17 @@ export const MapBarMarker = ({ bar, handleBarMarkerClick }: MapBarMarkerProps) =
         handleBarMarkerClick(bar.long, bar.lat)
       }}
     >
-      <span className="aspect-square rounded-full bg-green-price p-2">{bar.beer_price}</span>
+      <span
+        className={`aspect-square rounded-full bg-green-price p-2 ${
+          bar.beer_ppv < 1.125
+            ? 'bg-green-price'
+            : bar.beer_ppv < 1.5
+              ? 'bg-yellow-price'
+              : 'bg-red-price'
+        }`}
+      >
+        {bar.beer_price}
+      </span>
     </Marker>
   )
 }
