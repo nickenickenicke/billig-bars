@@ -33,6 +33,9 @@ const config: Config = {
           }
         ],
         price: ['var(--font-protest-riot)']
+      },
+      spacing: {
+        navbar: 'var(--navbar-height)'
       }
     }
   },

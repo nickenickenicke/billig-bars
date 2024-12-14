@@ -35,7 +35,7 @@ export default function RootLayout({
         <header>
           <Navigation />
         </header>
-        <main className="mt-[75px] overflow-x-hidden">
+        <main className="mt-navbar overflow-x-hidden">
           <Providers>{children}</Providers>
         </main>
       </body>
