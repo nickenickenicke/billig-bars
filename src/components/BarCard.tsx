@@ -31,15 +31,14 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
             </div>
             <div className="flex flex-row-reverse gap-2 pr-2">
               <div className="flex aspect-square w-[50px] items-center justify-center rounded-full bg-yellow-500">
-                <div className="flex flex-col items-center justify-center text-white">
-                  <span className="">{bar.beer_volume}</span>
-                  <span className="text-sm">CL</span>
+                <div className="flex flex-col items-center justify-center text-xs text-black">
+                  <span className="">{bar.beer_volume} cl</span>
                 </div>
               </div>
               <div className="flex aspect-square w-[50px] items-center justify-center rounded-full bg-yellow-500">
-                <div className="flex flex-col items-center justify-center text-white">
-                  <span className="">{bar.beer_ppv}</span>
-                  <span className="text-sm">kr/cl</span>
+                <div className="flex flex-col items-center justify-center text-xs text-black">
+                  <span className="">{bar.beer_ppv.toFixed(2)}</span>
+                  <span className="">kr/cl</span>
                 </div>
               </div>
             </div>
@@ -49,8 +48,16 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
               {bar.beer_price === 39 && <BarCardPill>Billigast</BarCardPill>}{' '}
               {bar.is_happy_hour && <BarCardPill>HAPPY HOUR</BarCardPill>}
             </aside>
-            <div className="flex aspect-square w-[100px] -rotate-[10deg] items-center justify-center rounded-full bg-green-price">
-              <div className="flex flex-col items-center justify-center text-white">
+            <div
+              className={`flex aspect-square w-[100px] -rotate-[10deg] items-center justify-center rounded-full ${
+                bar.beer_ppv < 1.125
+                  ? 'bg-green-price'
+                  : bar.beer_ppv < 1.5
+                    ? 'bg-yellow-price'
+                    : 'bg-red-price'
+              }`}
+            >
+              <div className="flex flex-col items-center justify-center text-black">
                 <span className="font-price text-5xl tracking-tighter">
                   {bar.beer_price}
                   <span className="inline-block -translate-y-[0.33rem]">:</span>-
