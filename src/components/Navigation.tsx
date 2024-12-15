@@ -36,7 +36,7 @@ export const Navigation = () => {
     >
       <div className="flex items-center justify-start pl-4">
         <Link href={'/'} className="">
-          <SvgLogo className="h-8 -translate-y-0.5" />
+          <SvgLogo className="h-8 -translate-y-0.5 fill-black" />
         </Link>
       </div>
       <div className="flex items-center justify-end">
