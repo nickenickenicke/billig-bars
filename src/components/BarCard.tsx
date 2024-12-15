@@ -17,56 +17,61 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
       <section className="">
         <Link
           href={`/bars/${bar.id}${currentLocation ? `?currentlat=${currentLocation.currentlat}&currentlong=${currentLocation.currentlong}` : ''}`}
-          className="flex justify-between rounded-none border-b border-b-gray-900 bg-white px-2 py-5"
+          className="grid grid-cols-[1fr_1fr_auto_100px] grid-rows-[1fr_auto_50px] justify-between rounded-none border-b border-b-gray-900 bg-white px-2 py-5"
         >
-          <div className="flex flex-1 flex-col">
-            <div>
-              <h3 className="text-2xl font-medium">{bar.name}</h3>
-              {bar.dist_meters && bar.dist_meters != -1 ? (
-                <span className="block">{normalizeMeters(bar.dist_meters)}</span>
-              ) : null}
-              <address className="block not-italic">{bar.address}</address>
-              <span className="block">
-                {bar.is_open ? 'Öppet till ' + getClosingHour(bar.opening_hours) : 'Stängt'}
-              </span>
-            </div>
-            <div className="flex flex-row-reverse gap-2 pr-2">
-              <div
-                className={`flex aspect-square w-[50px] items-center justify-center rounded-full border ${
-                  bar.beer_ppv < ppvUpperThresholds.cheap
-                    ? 'border-green-price'
-                    : bar.beer_ppv < ppvUpperThresholds.average
-                      ? 'border-yellow-price'
-                      : 'border-red-price'
-                }`}
-              >
-                <div className="flex flex-col items-center justify-center text-xs text-black">
-                  <span className="">{bar.beer_volume} cl</span>
-                </div>
+          {/* old left div */}
+          <div className="col-[1/3] row-[1/3]">
+            <h3 className="text-2xl font-medium">{bar.name}</h3>
+            {bar.dist_meters && bar.dist_meters != -1 ? (
+              <span className="block">{normalizeMeters(bar.dist_meters)}</span>
+            ) : null}
+            <address className="block not-italic">{bar.address}</address>
+            <span className="block">
+              {bar.is_open ? 'Öppet till ' + getClosingHour(bar.opening_hours) : 'Stängt'}
+            </span>
+          </div>
+
+          <div className="col-[1/4] row-[3/4] flex flex-row-reverse gap-2 pr-2">
+            <div
+              className={`flex aspect-square w-[50px] items-center justify-center rounded-full border ${
+                bar.beer_ppv < ppvUpperThresholds.cheap
+                  ? 'border-green-price'
+                  : bar.beer_ppv < ppvUpperThresholds.average
+                    ? 'border-yellow-price'
+                    : 'border-red-price'
+              }`}
+            >
+              <div className="flex flex-col items-center justify-center text-xs text-black">
+                <span className="">{bar.beer_volume} cl</span>
               </div>
-              <div
-                className={`flex aspect-square w-[50px] items-center justify-center rounded-full border ${
-                  bar.beer_ppv < ppvUpperThresholds.cheap
-                    ? 'border-green-price'
-                    : bar.beer_ppv < ppvUpperThresholds.average
-                      ? 'border-yellow-price'
-                      : 'border-red-price'
-                }`}
-              >
-                <div className="flex flex-col items-center justify-center text-xs text-black">
-                  <span className="">{bar.beer_ppv.toFixed(2)}</span>
-                  <span className="">kr/cl</span>
-                </div>
+            </div>
+            <div
+              className={`flex aspect-square w-[50px] items-center justify-center rounded-full border ${
+                bar.beer_ppv < ppvUpperThresholds.cheap
+                  ? 'border-green-price'
+                  : bar.beer_ppv < ppvUpperThresholds.average
+                    ? 'border-yellow-price'
+                    : 'border-red-price'
+              }`}
+            >
+              <div className="flex flex-col items-center justify-center text-xs text-black">
+                <span className="">{bar.beer_ppv.toFixed(2)}</span>
+                <span className="">kr/cl</span>
               </div>
             </div>
           </div>
-          <div className="flex flex-col justify-between gap-2">
-            <aside className="flex flex-row-reverse flex-wrap">
-              {bar.beer_price === 39 && <BarCardPill>Billigast</BarCardPill>}{' '}
-              {bar.is_happy_hour && <BarCardPill>HAPPY HOUR</BarCardPill>}
-            </aside>
+
+          <div className="col-[3/5] row-[1/2] flex flex-col flex-wrap items-end justify-start gap-2">
+            {bar.beer_price === 39 && (
+              <>
+                <BarCardPill>Billigast</BarCardPill> <BarCardPill>Happy hour</BarCardPill>
+              </>
+            )}{' '}
+            {bar.is_happy_hour && <BarCardPill>HAPPY HOUR</BarCardPill>}
+          </div>
+          <div className={`col-[4/5] row-[2/4] mt-4 flex flex-col items-end justify-end`}>
             <div
-              className={`flex aspect-square w-[100px] -rotate-[10deg] items-center justify-center rounded-full ${
+              className={`flex h-[100px] w-[100px] -rotate-[10deg] flex-col items-center justify-center place-self-end self-end rounded-full text-black ${
                 bar.beer_ppv < ppvUpperThresholds.cheap
                   ? 'bg-green-price'
                   : bar.beer_ppv < ppvUpperThresholds.average
@@ -74,12 +79,10 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
                     : 'bg-red-price'
               }`}
             >
-              <div className="flex flex-col items-center justify-center text-black">
-                <span className="font-price text-5xl tracking-tighter">
-                  {bar.beer_price}
-                  <span className="inline-block -translate-y-[0.33rem]">:</span>-
-                </span>
-              </div>
+              <span className="font-price text-5xl tracking-tighter">
+                {bar.beer_price}
+                <span className="inline-block -translate-y-[0.33rem]">:</span>-
+              </span>
             </div>
           </div>
         </Link>
