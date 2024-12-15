@@ -1,10 +1,10 @@
-interface LogoProps {
+interface SvgLogoProps {
   width?: number
   height?: number
   className?: string
 }
 
-export const Logo = ({ width, height, className }: LogoProps) => {
+export const SvgLogo = ({ width, height, className }: SvgLogoProps) => {
   return (
     <svg
       data-name="logo"

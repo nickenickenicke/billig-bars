@@ -1,10 +1,10 @@
-interface MascotProps {
+interface SvgMascotProps {
   width?: number
   height?: number
   className?: string
 }
 
-export const Mascot = ({ width, height, className }: MascotProps) => {
+export const SvgMascot = ({ width, height, className }: SvgMascotProps) => {
   return (
     <svg
       data-name="mascot"

@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Logo } from './svgs/Logo'
+import { SvgLogo } from './svgs/SvgLogo'
 import { Hamburger } from './Hamburger'
 import { useEffect, useRef, useState } from 'react'
 import { NavLink } from './NavLink'
@@ -36,7 +36,7 @@ export const Navigation = () => {
     >
       <div className="flex items-center justify-start pl-4">
         <Link href={'/'} className="">
-          <Logo className="h-8 -translate-y-0.5" />
+          <SvgLogo className="h-8 -translate-y-0.5" />
         </Link>
       </div>
       <div className="flex items-center justify-end">
