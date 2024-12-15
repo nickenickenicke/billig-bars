@@ -26,17 +26,33 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
                 <span className="block">{normalizeMeters(bar.dist_meters)}</span>
               ) : null}
               <address className="block not-italic">{bar.address}</address>
-              <span>
+              <span className="block">
                 {bar.is_open ? 'Öppet till ' + getClosingHour(bar.opening_hours) : 'Stängt'}
               </span>
             </div>
             <div className="flex flex-row-reverse gap-2 pr-2">
-              <div className="flex aspect-square w-[50px] items-center justify-center rounded-full bg-yellow-500">
+              <div
+                className={`flex aspect-square w-[50px] items-center justify-center rounded-full border ${
+                  bar.beer_ppv < ppvUpperThresholds.cheap
+                    ? 'border-green-price'
+                    : bar.beer_ppv < ppvUpperThresholds.average
+                      ? 'border-yellow-price'
+                      : 'border-red-price'
+                }`}
+              >
                 <div className="flex flex-col items-center justify-center text-xs text-black">
                   <span className="">{bar.beer_volume} cl</span>
                 </div>
               </div>
-              <div className="flex aspect-square w-[50px] items-center justify-center rounded-full bg-yellow-500">
+              <div
+                className={`flex aspect-square w-[50px] items-center justify-center rounded-full border ${
+                  bar.beer_ppv < ppvUpperThresholds.cheap
+                    ? 'border-green-price'
+                    : bar.beer_ppv < ppvUpperThresholds.average
+                      ? 'border-yellow-price'
+                      : 'border-red-price'
+                }`}
+              >
                 <div className="flex flex-col items-center justify-center text-xs text-black">
                   <span className="">{bar.beer_ppv.toFixed(2)}</span>
                   <span className="">kr/cl</span>
