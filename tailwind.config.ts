@@ -23,7 +23,7 @@ const config: Config = {
           price: '#D66F4F'
         },
         white: '#FAFAFA',
-        black: '#000'
+        black: '#171717'
       },
       fontFamily: {
         sans: [
