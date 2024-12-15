@@ -12,7 +12,7 @@ export const Footer = () => {
           <li>Hitta barer</li>
           <li>Om Billig Bärs</li>
         </ul>
-        <p className="block max-w-[25ch]">
+        <p className="mb-20 block max-w-[25ch]">
           Bla bla lite info kanske som till exempel att Nicke har gjort den här och han är så bra!
         </p>
       </div>
