@@ -30,7 +30,7 @@ export const MapCanvas = () => {
           latitude: currentLocation.currentlat || 59.314654,
           zoom: 12
         }}
-        style={{ width: '100%', aspectRatio: '1/1' }}
+        style={{ width: '100%', aspectRatio: '18/15' }}
         mapStyle="https://tiles.openfreemap.org/styles/bright"
       >
         {isPopupOpen && (
