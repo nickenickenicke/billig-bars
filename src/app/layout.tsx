@@ -3,6 +3,7 @@ import './globals.css'
 import { Providers } from '@/reducers/Providers'
 import { Navigation } from '@/components/Navigation'
 import { Protest_Riot, Rubik } from 'next/font/google'
+import { Footer } from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'Billig Bärs',
@@ -29,15 +30,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={``}>
-      <body
-        className={`${rubik.variable} ${protestRiot.variable} mb-16 bg-white font-sans antialiased`}
-      >
+      <body className={`${rubik.variable} ${protestRiot.variable} bg-white font-sans antialiased`}>
         <header>
           <Navigation />
         </header>
         <main className="mt-navbar overflow-x-hidden">
           <Providers>{children}</Providers>
         </main>
+        <Footer />
       </body>
     </html>
   )
