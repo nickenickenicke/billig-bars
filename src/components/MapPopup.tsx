@@ -45,7 +45,7 @@ export const MapPopup = ({ bar, currentLocation, handleClosePopup }: MapPopupPro
           Mer information
         </Link>
       </div>
-      <div className="col-[2/4] row-[2/3] self-end pr-1">
+      <div className="col-[2/4] row-[2/3] place-self-end pr-1">
         <div
           className={`flex h-[50px] w-[50px] -rotate-[10deg] flex-col items-center justify-center place-self-end self-end rounded-full text-black ${
             bar.beer_ppv < ppvUpperThresholds.cheap
