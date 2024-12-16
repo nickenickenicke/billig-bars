@@ -2,7 +2,9 @@ import { weekdayNames } from '@/lib/weekdays'
 import { OpeningHours } from '@/models/Bar'
 
 export const getTodaysWeekday = (): number => {
-  return new Date().getDay()
+  let weekday = new Date().getDay()
+  if (weekday === 0) weekday = 7
+  return weekday
 }
 
 export const getCurrentHour = (): number => {
