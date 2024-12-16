@@ -8,6 +8,7 @@ import { MapPopup } from './MapPopup'
 import { MapBarMarker } from './MapBarMarker'
 import { MapCurrentLocationMarker } from './MapCurrentLocationMarker'
 import { Bar, defaultBar } from '@/models/Bar'
+import '@/app/styles/maplibre.css'
 
 export const MapCanvas = () => {
   const {

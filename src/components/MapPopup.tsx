@@ -19,10 +19,10 @@ export const MapPopup = ({ bar, currentLocation, handleClosePopup }: MapPopupPro
       anchor="bottom"
       onClose={handleClosePopup}
       offset={30}
-      className="overflow-x-hidden"
+      className="overflow-x-hidden font-sans"
     >
       <Link
-        className="block text-lg underline"
+        className="block text-lg"
         href={`/bars/${bar.id}${currentLocation.currentlat !== 0 ? `?currentlat=${currentLocation.currentlat}&currentlong=${currentLocation.currentlong}` : ''}`}
       >
         {bar.name}
@@ -33,6 +33,12 @@ export const MapPopup = ({ bar, currentLocation, handleClosePopup }: MapPopupPro
       <span className="block">
         {bar.is_open ? 'Öppet till ' + getClosingHour(bar.opening_hours) : 'Stängt'}
       </span>
+      <Link
+        className="block"
+        href={`/bars/${bar.id}${currentLocation.currentlat !== 0 ? `?currentlat=${currentLocation.currentlat}&currentlong=${currentLocation.currentlong}` : ''}`}
+      >
+        Mer information *pil*
+      </Link>
     </Popup>
   )
 }
