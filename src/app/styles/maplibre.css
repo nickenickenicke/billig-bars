@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: auto 1fr 2.5rem;
   grid-template-rows: auto 1fr 10px;
-  /* width: 200px; */
 }
 .maplibregl-popup-anchor-bottom .maplibregl-popup-tip {
   place-self: start center;
