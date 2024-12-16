@@ -24,7 +24,7 @@ export const MapPopup = ({ bar, currentLocation, handleClosePopup }: MapPopupPro
       className="overflow-x-hidden font-sans"
     >
       <Link
-        className="col-[1/3] row-[1/2] pt-1 text-lg font-medium"
+        className="col-[1/3] row-[1/2] pt-1 text-lg font-medium focus-within:outline-none"
         href={`/bars/${bar.id}${currentLocation.currentlat !== 0 ? `?currentlat=${currentLocation.currentlat}&currentlong=${currentLocation.currentlong}` : ''}`}
       >
         {bar.name}
