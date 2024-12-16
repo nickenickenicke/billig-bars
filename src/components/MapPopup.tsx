@@ -22,23 +22,25 @@ export const MapPopup = ({ bar, currentLocation, handleClosePopup }: MapPopupPro
       className="overflow-x-hidden font-sans"
     >
       <Link
-        className="block text-lg"
+        className="col-[1/2] row-[1/2] pt-1 text-lg"
         href={`/bars/${bar.id}${currentLocation.currentlat !== 0 ? `?currentlat=${currentLocation.currentlat}&currentlong=${currentLocation.currentlong}` : ''}`}
       >
         {bar.name}
       </Link>
-      <span className="block">
-        {bar.beer_price}kr, {bar.beer_volume}cl
-      </span>
-      <span className="block">
-        {bar.is_open ? 'Öppet till ' + getClosingHour(bar.opening_hours) : 'Stängt'}
-      </span>
-      <Link
-        className="block"
-        href={`/bars/${bar.id}${currentLocation.currentlat !== 0 ? `?currentlat=${currentLocation.currentlat}&currentlong=${currentLocation.currentlong}` : ''}`}
-      >
-        Mer information *pil*
-      </Link>
+      <div className="col-[1/3] row-[2/3] pr-4">
+        <span className="block">
+          {bar.beer_price}kr, {bar.beer_volume}cl
+        </span>
+        <span className="block">
+          {bar.is_open ? 'Öppet till ' + getClosingHour(bar.opening_hours) : 'Stängt'}
+        </span>
+        <Link
+          className="block"
+          href={`/bars/${bar.id}${currentLocation.currentlat !== 0 ? `?currentlat=${currentLocation.currentlat}&currentlong=${currentLocation.currentlong}` : ''}`}
+        >
+          Mer information *pil*
+        </Link>
+      </div>
     </Popup>
   )
 }
