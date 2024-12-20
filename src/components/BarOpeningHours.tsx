@@ -1,5 +1,6 @@
 import { OpeningHours } from '@/models/Bar'
 import { getWeekdayName, normalizeTimeFromDB } from '@/utils/timeTools'
+import { Fragment } from 'react'
 
 interface BarOpeningHoursProps {
   openingHours: OpeningHours[]
@@ -7,12 +8,16 @@ interface BarOpeningHoursProps {
 export const BarOpeningHours = ({ openingHours }: BarOpeningHoursProps) => {
   return (
     <>
-      <ul>
+      <ul className="grid grid-cols-[auto_1fr] gap-2">
+        <li className="col-span-2 font-medium uppercase">Öppettider</li>
         {openingHours.map((openingHour, i) => {
           return (
-            <li key={openingHour.id!}>
-              {`${getWeekdayName(openingHour.day_of_week)}: ${normalizeTimeFromDB(openingHour.opens_at, openingHour.opens_at_min)} - ${normalizeTimeFromDB(openingHour.closes_at, openingHour.closes_at_min)}`}
-            </li>
+            <Fragment key={openingHour.id!}>
+              <li className="mr-4">{getWeekdayName(openingHour.day_of_week)}</li>
+              <li>
+                {`${normalizeTimeFromDB(openingHour.opens_at, openingHour.opens_at_min)} - ${normalizeTimeFromDB(openingHour.closes_at, openingHour.closes_at_min)}`}
+              </li>
+            </Fragment>
           )
         })}
       </ul>
