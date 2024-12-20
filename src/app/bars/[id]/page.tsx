@@ -7,6 +7,8 @@ import { createClient } from '@/utils/supabase/server'
 import { getCurrentHour, getCurrentMinute, getTodaysWeekday } from '@/utils/timeTools'
 import { redirect } from 'next/navigation'
 import { singleBarMockData } from '@/lib/mockdata'
+import { BeerPriceCircle } from '@/components/BeerPriceCircle'
+import { BeerStats } from '@/components/BeerStats'
 
 interface BarPageProps {
   params: { id: string }
@@ -54,21 +56,20 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
 
     return (
       <article className="px-2">
-        <h1>{bar.name}</h1>
+        <h1 className="text-4xl font-medium">{bar.name}</h1>
         {bar.dist_meters && bar.dist_meters > 0 ? <p>{normalizeMeters(bar.dist_meters)}</p> : null}
-        {bar.is_happy_hour && <span>HAPPY HOUR</span>}
-        <BarPrice
-          isHappyHour={bar.is_happy_hour || false}
-          beer_price={bar.beer_price}
-          beer_volume={bar.beer_volume}
-          beer_ppv={bar.beer_ppv}
-          happyHours={bar.happy_hours || []}
-        />
         <address>
           {bar.address}
           <br />
           {normalizePostalCode(bar.postal_code)} {bar.city}
         </address>
+        <div className="grid grid-cols-[auto_1fr] gap-2">
+          <h3 className="col-span-2 row-span-1 font-medium uppercase">Normalpris</h3>
+          <BeerPriceCircle beer_ppv={bar.beer_ppv} beer_price={bar.beer_price} />
+          <div className="flex basis-0 items-end justify-start gap-2">
+            <BeerStats beer_ppv={bar.beer_ppv} beer_volume={bar.beer_volume} />
+          </div>
+        </div>
         <BarOpeningHours openingHours={bar.opening_hours} />
         {bar.happy_hours && <BarHappyHours happyHours={bar.happy_hours} />}
         <pre className="text-xs">{JSON.stringify(bar, null, 2)}</pre>
