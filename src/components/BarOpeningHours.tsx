@@ -9,7 +9,9 @@ export const BarOpeningHours = ({ openingHours }: BarOpeningHoursProps) => {
   return (
     <>
       <ul className="grid grid-cols-[auto_1fr] gap-2">
-        <li className="col-span-2 font-medium uppercase">Öppettider</li>
+        <li className="col-span-2">
+          <h3 className="font-medium uppercase">Öppettider</h3>
+        </li>
         {openingHours.map((openingHour, i) => {
           return (
             <Fragment key={openingHour.id!}>
