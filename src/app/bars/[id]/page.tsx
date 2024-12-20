@@ -9,6 +9,7 @@ import { redirect } from 'next/navigation'
 import { singleBarMockData } from '@/lib/mockdata'
 import { BeerPriceCircle } from '@/components/BeerPriceCircle'
 import { BeerStats } from '@/components/BeerStats'
+import { MapCanvas } from '@/components/MapCanvas'
 
 interface BarPageProps {
   params: { id: string }
@@ -55,25 +56,30 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
     const bar: Bar = data[0]
 
     return (
-      <article className="px-2">
-        <h1 className="text-4xl font-medium">{bar.name}</h1>
-        {bar.dist_meters && bar.dist_meters > 0 ? <p>{normalizeMeters(bar.dist_meters)}</p> : null}
-        <address>
-          {bar.address}
-          <br />
-          {normalizePostalCode(bar.postal_code)} {bar.city}
-        </address>
-        <div className="grid grid-cols-[auto_1fr] gap-2">
-          <h3 className="col-span-2 row-span-1 font-medium uppercase">Normalpris</h3>
-          <BeerPriceCircle beer_ppv={bar.beer_ppv} beer_price={bar.beer_price} small />
-          <div className="flex basis-0 items-end justify-start gap-2">
-            <BeerStats beer_ppv={bar.beer_ppv} beer_volume={bar.beer_volume} />
+      <>
+        <MapCanvas />
+        <article className="px-2">
+          <h1 className="text-4xl font-medium">{bar.name}</h1>
+          {bar.dist_meters && bar.dist_meters > 0 ? (
+            <p>{normalizeMeters(bar.dist_meters)}</p>
+          ) : null}
+          <address>
+            {bar.address}
+            <br />
+            {normalizePostalCode(bar.postal_code)} {bar.city}
+          </address>
+          <div className="grid grid-cols-[auto_1fr] gap-2">
+            <h3 className="col-span-2 row-span-1 font-medium uppercase">Normalpris</h3>
+            <BeerPriceCircle beer_ppv={bar.beer_ppv} beer_price={bar.beer_price} small />
+            <div className="flex basis-0 items-end justify-start gap-2">
+              <BeerStats beer_ppv={bar.beer_ppv} beer_volume={bar.beer_volume} />
+            </div>
           </div>
-        </div>
-        {bar.happy_hours && <BarHappyHours happyHours={bar.happy_hours} />}
-        <BarOpeningHours openingHours={bar.opening_hours} />
-        <pre className="text-xs">{JSON.stringify(bar, null, 2)}</pre>
-      </article>
+          {bar.happy_hours && <BarHappyHours happyHours={bar.happy_hours} />}
+          <BarOpeningHours openingHours={bar.opening_hours} />
+          <pre className="text-xs">{JSON.stringify(bar, null, 2)}</pre>
+        </article>
+      </>
     )
   }
 
