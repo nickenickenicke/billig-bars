@@ -65,13 +65,13 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
         </address>
         <div className="grid grid-cols-[auto_1fr] gap-2">
           <h3 className="col-span-2 row-span-1 font-medium uppercase">Normalpris</h3>
-          <BeerPriceCircle beer_ppv={bar.beer_ppv} beer_price={bar.beer_price} />
+          <BeerPriceCircle beer_ppv={bar.beer_ppv} beer_price={bar.beer_price} small />
           <div className="flex basis-0 items-end justify-start gap-2">
             <BeerStats beer_ppv={bar.beer_ppv} beer_volume={bar.beer_volume} />
           </div>
         </div>
-        <BarOpeningHours openingHours={bar.opening_hours} />
         {bar.happy_hours && <BarHappyHours happyHours={bar.happy_hours} />}
+        <BarOpeningHours openingHours={bar.opening_hours} />
         <pre className="text-xs">{JSON.stringify(bar, null, 2)}</pre>
       </article>
     )
