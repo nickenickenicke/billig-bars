@@ -5,6 +5,7 @@ import { normalizeMeters } from '@/utils/locationTools'
 import { getClosingHour } from '@/utils/timeTools'
 import { Popup } from '@vis.gl/react-maplibre'
 import Link from 'next/link'
+import { BeerPriceCircle } from './BeerPriceCircle'
 
 interface MapPopupProps {
   bar: Bar
@@ -46,20 +47,7 @@ export const MapPopup = ({ bar, currentLocation, handleClosePopup }: MapPopupPro
         </Link>
       </div>
       <div className="col-[2/4] row-[2/3] place-self-end pr-1">
-        <div
-          className={`flex h-[50px] w-[50px] -rotate-[10deg] flex-col items-center justify-center place-self-end self-end rounded-full text-black ${
-            bar.beer_ppv < ppvUpperThresholds.cheap
-              ? 'bg-green-price'
-              : bar.beer_ppv < ppvUpperThresholds.average
-                ? 'bg-yellow-price'
-                : 'bg-red-price'
-          }`}
-        >
-          <span className="font-price text-2xl tracking-tighter">
-            {bar.beer_price}
-            <span className="inline-block -translate-y-[0.18rem]">:</span>-
-          </span>
-        </div>
+        <BeerPriceCircle beer_ppv={bar.beer_ppv} beer_price={bar.beer_price} mapPopup />
         <span className="block text-center">{bar.beer_volume} cl</span>
       </div>
     </Popup>
