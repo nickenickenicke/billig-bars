@@ -1,4 +1,3 @@
-import { BarHappyHours } from '@/components/BarHappyHours'
 import { BarOpeningHours } from '@/components/BarOpeningHours'
 import { Bar } from '@/models/Bar'
 import { normalizeMeters, normalizePostalCode } from '@/utils/locationTools'
@@ -10,9 +9,8 @@ import { BeerPriceCircle } from '@/components/BeerPriceCircle'
 import { BeerStats } from '@/components/BeerStats'
 import { MapCanvas } from '@/components/MapCanvas'
 import Link from 'next/link'
-import { BarCardInformation } from '@/components/BarCardInformation'
 import { BarCardPill } from '@/components/BarCardPill'
-import { BarSubheading } from '@/components/BarSubheading'
+import { BarPriceInformation } from '@/components/BarPriceInformation'
 
 interface BarPageProps {
   params: { id: string }
@@ -92,21 +90,8 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
               <BeerPriceCircle beer_ppv={bar.beer_ppv} beer_price={bar.beer_price} />
             </div>
           </div>
-          {bar.happy_hours && bar.happy_hours.length > 0 && (
-            <>
-              <BarSubheading className="mb-4">Prisinformation</BarSubheading>
-              <div className="grid grid-cols-[auto_1fr] gap-2">
-                <h3 className="col-span-2 row-span-1 font-medium uppercase">Normalpris</h3>
-                <BeerPriceCircle beer_ppv={bar.beer_ppv} beer_price={bar.beer_price} small />
-                <div className="flex basis-0 items-end justify-start gap-2">
-                  <BeerStats beer_ppv={bar.beer_ppv} beer_volume={bar.beer_volume} />
-                </div>
-              </div>
-              <BarHappyHours happyHours={bar.happy_hours} />
-            </>
-          )}
+          {bar.happy_hours && bar.happy_hours.length > 0 && <BarPriceInformation bar={bar} />}
           <BarOpeningHours openingHours={bar.opening_hours} />
-          {/* <pre className="text-xs">{JSON.stringify(bar, null, 2)}</pre> */}
         </article>
       </>
     )

@@ -1,8 +1,7 @@
 import { HappyHours } from '@/models/Bar'
 import { getWeekdayName, normalizeTimeFromDB } from '@/utils/timeTools'
-import { Fragment } from 'react'
 import { BeerPriceCircle } from './BeerPriceCircle'
-import { BeerStats } from './BeerStats'
+import { BeerStatsCircle } from './BeerStatsCircle'
 
 interface BarHappyHoursProps {
   happyHours: HappyHours[]
@@ -65,23 +64,28 @@ export const BarHappyHours = ({ happyHours }: BarHappyHoursProps) => {
 
   return (
     <>
+      <h3 className="font-medium uppercase">Happy hours</h3>
       <ul className="grid grid-cols-[auto_1fr] gap-2">
-        <li className="col-span-2">
-          <h3 className="font-medium uppercase">Happy hours</h3>
-        </li>
         {groupedHappyHours.map((group, i) => {
           return (
-            <Fragment key={i}>
-              <li className="block">{getDayRange(group.days)}</li>
-              <li className="block">
+            <li key={i}>
+              <span className="block">{getDayRange(group.days)}</span>
+              <span className="block">
                 {normalizeTimeFromDB(group.starts_at, group.starts_at_min)} -{' '}
                 {normalizeTimeFromDB(group.ends_at, group.ends_at_min)}
-              </li>
-              <li className="col-span-2 flex gap-2">
-                <BeerPriceCircle beer_ppv={group.ppv} beer_price={group.price} small />
-                <BeerStats beer_ppv={group.ppv} beer_volume={group.volume} />
-              </li>
-            </Fragment>
+              </span>
+              <ul className="col-span-2 flex basis-0 items-end justify-start gap-2">
+                <li>
+                  <BeerPriceCircle beer_ppv={group.ppv} beer_price={group.price} small />
+                </li>
+                <li>
+                  <BeerStatsCircle beer_ppv={group.ppv} beer_volume={group.volume} displayVolume />
+                </li>
+                <li>
+                  <BeerStatsCircle beer_ppv={group.ppv} beer_volume={group.volume} displayPpv />
+                </li>
+              </ul>
+            </li>
           )
         })}
       </ul>
