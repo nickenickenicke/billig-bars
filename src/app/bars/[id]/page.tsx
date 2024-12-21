@@ -1,5 +1,4 @@
 import { BarHappyHours } from '@/components/BarHappyHours'
-import { BarPrice } from '@/components/BarPrice'
 import { BarOpeningHours } from '@/components/BarOpeningHours'
 import { Bar } from '@/models/Bar'
 import { normalizeMeters, normalizePostalCode } from '@/utils/locationTools'
@@ -10,6 +9,7 @@ import { singleBarMockData } from '@/lib/mockdata'
 import { BeerPriceCircle } from '@/components/BeerPriceCircle'
 import { BeerStats } from '@/components/BeerStats'
 import { MapCanvas } from '@/components/MapCanvas'
+import Link from 'next/link'
 
 interface BarPageProps {
   params: { id: string }
@@ -58,7 +58,10 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
     return (
       <>
         <MapCanvas singleBar={bar} />
-        <article className="px-2">
+        <article className="mt-2 px-2">
+          <span className="mb-2 block text-right text-sm">
+            <Link href={'/bars'}>{'< '}Tillbaka till alla barer</Link>
+          </span>
           <h1 className="text-4xl font-medium">{bar.name}</h1>
           {bar.dist_meters && bar.dist_meters > 0 ? (
             <p>{normalizeMeters(bar.dist_meters)}</p>
