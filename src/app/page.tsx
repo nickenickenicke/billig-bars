@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <article className="mt-6 px-2">
       <article className="grid grid-cols-3 grid-rows-[auto_auto_1fr_2fr]">
-        <div className="bg-bg-mustard col-[1/4] row-[1/4] rounded-lg"></div>
+        <div className="col-[1/4] row-[1/4] rounded-lg bg-bg-mustard"></div>
         <h2 className="col-[1/4] row-[1/2] px-3 pt-4 text-2xl font-medium">
           Söders billigaste bärs
         </h2>
