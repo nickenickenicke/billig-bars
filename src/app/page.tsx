@@ -28,7 +28,7 @@ export default function Home() {
             </Link>
           </div>
         </section>
-        <figure className="col-[1/4] row-[3/5] place-items-center">
+        <figure className="col-[1/4] row-[3/5] justify-self-center">
           <SvgMascot className="w-48" />
         </figure>
       </article>
