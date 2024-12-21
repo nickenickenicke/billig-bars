@@ -1,9 +1,11 @@
-import { BarsList } from '@/components/BarsList'
-import { GeolocateButton } from '@/components/GeolocateButton'
+import { BarCard } from '@/components/BarCard'
+import { Subheading } from '@/components/Subheading'
 import { SvgMascot } from '@/components/svgs/SvgMascot'
+import { getCurrentlyCheapestBar } from '@/services/barServices'
 import Link from 'next/link'
 
-export default function Home() {
+export default async function Home() {
+  const bars = await getCurrentlyCheapestBar()
   return (
     <article className="mt-6 px-2">
       <article className="grid grid-cols-3 grid-rows-[auto_auto_3fr_4fr]">
@@ -32,6 +34,12 @@ export default function Home() {
           <SvgMascot className="w-48" />
         </figure>
       </article>
+      {bars.length > 0 && (
+        <>
+          <Subheading>Billigast just nu</Subheading>
+          <BarCard bar={bars[0]} />
+        </>
+      )}
 
       <div className="mt-8 rounded-lg bg-bg-pink">
         <h2 className="px-3 pt-4 text-2xl font-medium">Hur funkar det?</h2>
