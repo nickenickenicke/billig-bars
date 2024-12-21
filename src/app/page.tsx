@@ -34,7 +34,7 @@ export default async function Home() {
           <SvgMascot className="w-48" />
         </figure>
       </article>
-      {bars.length > 0 && (
+      {bars.length > 0 && bars[0].is_open && (
         <>
           <Subheading>Billigast just nu</Subheading>
           <BarCard bar={bars[0]} />
