@@ -10,6 +10,9 @@ import { BeerPriceCircle } from '@/components/BeerPriceCircle'
 import { BeerStats } from '@/components/BeerStats'
 import { MapCanvas } from '@/components/MapCanvas'
 import Link from 'next/link'
+import { BarCardInformation } from '@/components/BarCardInformation'
+import { BarCardPill } from '@/components/BarCardPill'
+import { BarSubheading } from '@/components/BarSubheading'
 
 interface BarPageProps {
   params: { id: string }
@@ -62,23 +65,46 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
           <span className="mb-2 block text-right text-sm">
             <Link href={'/bars'}>{'< '}Tillbaka till alla barer</Link>
           </span>
-          <h1 className="text-4xl font-medium">{bar.name}</h1>
-          {bar.dist_meters && bar.dist_meters > 0 ? (
-            <p>{normalizeMeters(bar.dist_meters)}</p>
-          ) : null}
-          <address>
-            {bar.address}
-            <br />
-            {normalizePostalCode(bar.postal_code)} {bar.city}
-          </address>
-          <div className="grid grid-cols-[auto_1fr] gap-2">
-            <h3 className="col-span-2 row-span-1 font-medium uppercase">Normalpris</h3>
-            <BeerPriceCircle beer_ppv={bar.beer_ppv} beer_price={bar.beer_price} small />
-            <div className="flex basis-0 items-end justify-start gap-2">
+
+          <div className="grid grid-cols-[1fr_1fr_auto_100px] grid-rows-[1fr_auto_50px] justify-between rounded-none bg-white">
+            <div className="col-[1/3] row-[1/3]">
+              <h1 className="text-4xl font-medium">{bar.name}</h1>
+              {bar.dist_meters && bar.dist_meters > 0 ? (
+                <p>{normalizeMeters(bar.dist_meters)}</p>
+              ) : null}
+              <address>
+                {bar.address}
+                <br />
+                {normalizePostalCode(bar.postal_code)} {bar.city}
+              </address>
+            </div>
+
+            <div className="col-[1/4] row-[3/4] flex flex-row-reverse gap-2 pr-2">
               <BeerStats beer_ppv={bar.beer_ppv} beer_volume={bar.beer_volume} />
             </div>
+
+            <div className="col-[3/5] row-[1/2] flex flex-col flex-wrap items-end justify-start gap-2">
+              <BarCardPill>Öppet</BarCardPill>
+              <BarCardPill>Happy hour</BarCardPill>
+            </div>
+
+            <div className={`col-[4/5] row-[2/4] mt-4 flex flex-col items-end justify-end`}>
+              <BeerPriceCircle beer_ppv={bar.beer_ppv} beer_price={bar.beer_price} />
+            </div>
           </div>
-          {bar.happy_hours && <BarHappyHours happyHours={bar.happy_hours} />}
+          {bar.happy_hours && bar.happy_hours.length > 0 && (
+            <>
+              <BarSubheading>Prisinformation</BarSubheading>
+              <div className="grid grid-cols-[auto_1fr] gap-2">
+                <h3 className="col-span-2 row-span-1 font-medium uppercase">Normalpris</h3>
+                <BeerPriceCircle beer_ppv={bar.beer_ppv} beer_price={bar.beer_price} small />
+                <div className="flex basis-0 items-end justify-start gap-2">
+                  <BeerStats beer_ppv={bar.beer_ppv} beer_volume={bar.beer_volume} />
+                </div>
+              </div>
+              <BarHappyHours happyHours={bar.happy_hours} />
+            </>
+          )}
           <BarOpeningHours openingHours={bar.opening_hours} />
           {/* <pre className="text-xs">{JSON.stringify(bar, null, 2)}</pre> */}
         </article>

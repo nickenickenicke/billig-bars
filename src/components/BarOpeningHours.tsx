@@ -1,6 +1,7 @@
 import { OpeningHours } from '@/models/Bar'
 import { getWeekdayName, normalizeTimeFromDB } from '@/utils/timeTools'
 import { Fragment } from 'react'
+import { BarSubheading } from './BarSubheading'
 
 interface BarOpeningHoursProps {
   openingHours: OpeningHours[]
@@ -10,7 +11,9 @@ export const BarOpeningHours = ({ openingHours }: BarOpeningHoursProps) => {
     <>
       <ul className="grid grid-cols-[auto_1fr] gap-2">
         <li className="col-span-2">
-          <h3 className="font-medium uppercase">Öppettider</h3>
+          {/* <h3 className="font-medium uppercase">Öppettider</h3> */}
+
+          <BarSubheading>Öppettider</BarSubheading>
         </li>
         {openingHours.map((openingHour, i) => {
           return (
