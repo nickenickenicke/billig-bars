@@ -94,7 +94,7 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
           </div>
           {bar.happy_hours && bar.happy_hours.length > 0 && (
             <>
-              <BarSubheading>Prisinformation</BarSubheading>
+              <BarSubheading className="mb-4">Prisinformation</BarSubheading>
               <div className="grid grid-cols-[auto_1fr] gap-2">
                 <h3 className="col-span-2 row-span-1 font-medium uppercase">Normalpris</h3>
                 <BeerPriceCircle beer_ppv={bar.beer_ppv} beer_price={bar.beer_price} small />

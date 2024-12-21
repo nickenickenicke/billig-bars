@@ -13,7 +13,7 @@ export const BarOpeningHours = ({ openingHours }: BarOpeningHoursProps) => {
         <li className="col-span-2">
           {/* <h3 className="font-medium uppercase">Öppettider</h3> */}
 
-          <BarSubheading>Öppettider</BarSubheading>
+          <BarSubheading className="mb-2">Öppettider</BarSubheading>
         </li>
         {openingHours.map((openingHour, i) => {
           return (
