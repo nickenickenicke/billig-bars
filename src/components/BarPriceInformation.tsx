@@ -11,8 +11,8 @@ interface BarPriceInformationProps {
 export const BarPriceInformation = ({ bar }: BarPriceInformationProps) => {
   return (
     <>
-      <BarSubheading className="mb-4">Prisinformation</BarSubheading>
-      <h3 className="font-medium uppercase">Normalpris</h3>
+      <BarSubheading className="mb-6">Prisinformation</BarSubheading>
+      <h3 className="mb-4 font-medium uppercase">Normalpris</h3>
       <ul className="flex basis-0 items-end justify-start gap-2">
         <li>
           <BeerPriceCircle beer_ppv={bar.beer_ppv} beer_price={bar.beer_price} small />

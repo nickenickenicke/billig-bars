@@ -9,7 +9,7 @@ interface BarOpeningHoursProps {
 export const BarOpeningHours = ({ openingHours }: BarOpeningHoursProps) => {
   return (
     <>
-      <ul className="grid grid-cols-[auto_1fr] gap-2">
+      <ul className="mb-8 grid grid-cols-[auto_1fr] gap-2">
         <li className="col-span-2">
           {/* <h3 className="font-medium uppercase">Öppettider</h3> */}
 
