@@ -1,6 +1,6 @@
 import { Bar } from '@/models/Bar'
 import { BarHappyHours } from './BarHappyHours'
-import { BarSubheading } from './BarSubheading'
+import { Subheading } from './Subheading'
 import { BeerPriceCircle } from './BeerPriceCircle'
 import { BeerStatsCircle } from './BeerStatsCircle'
 
@@ -11,7 +11,7 @@ interface BarPriceInformationProps {
 export const BarPriceInformation = ({ bar }: BarPriceInformationProps) => {
   return (
     <>
-      <BarSubheading className="mb-6">Prisinformation</BarSubheading>
+      <Subheading className="mb-6">Prisinformation</Subheading>
       <h3 className="mb-4 font-medium uppercase">Normalpris</h3>
       <ul className="flex basis-0 items-end justify-start gap-2">
         <li>
