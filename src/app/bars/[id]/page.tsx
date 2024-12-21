@@ -57,7 +57,7 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
 
     return (
       <>
-        <MapCanvas />
+        <MapCanvas singleBar={bar} />
         <article className="px-2">
           <h1 className="text-4xl font-medium">{bar.name}</h1>
           {bar.dist_meters && bar.dist_meters > 0 ? (
@@ -77,7 +77,7 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
           </div>
           {bar.happy_hours && <BarHappyHours happyHours={bar.happy_hours} />}
           <BarOpeningHours openingHours={bar.opening_hours} />
-          <pre className="text-xs">{JSON.stringify(bar, null, 2)}</pre>
+          {/* <pre className="text-xs">{JSON.stringify(bar, null, 2)}</pre> */}
         </article>
       </>
     )

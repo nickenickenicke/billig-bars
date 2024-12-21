@@ -11,9 +11,10 @@ interface MapPopupProps {
   bar: Bar
   currentLocation: CurrentLocation
   handleClosePopup: () => void
+  singleBar?: boolean
 }
 
-export const MapPopup = ({ bar, currentLocation, handleClosePopup }: MapPopupProps) => {
+export const MapPopup = ({ bar, currentLocation, handleClosePopup, singleBar }: MapPopupProps) => {
   return (
     <Popup
       longitude={bar.long}
@@ -23,6 +24,7 @@ export const MapPopup = ({ bar, currentLocation, handleClosePopup }: MapPopupPro
       onClose={handleClosePopup}
       offset={30}
       className="overflow-x-hidden font-sans"
+      closeButton={singleBar ? false : true}
     >
       <Link
         className="col-[1/3] row-[1/2] pt-1 text-lg font-medium focus-within:outline-none"
@@ -39,12 +41,14 @@ export const MapPopup = ({ bar, currentLocation, handleClosePopup }: MapPopupPro
           {bar.is_open ? 'Öppet till ' + getClosingHour(bar.opening_hours) : 'Stängt'}
         </span>
 
-        <Link
-          className="mt-1 block underline"
-          href={`/bars/${bar.id}${currentLocation.currentlat !== 0 ? `?currentlat=${currentLocation.currentlat}&currentlong=${currentLocation.currentlong}` : ''}`}
-        >
-          Mer information
-        </Link>
+        {!singleBar && (
+          <Link
+            className="mt-1 block underline"
+            href={`/bars/${bar.id}${currentLocation.currentlat !== 0 ? `?currentlat=${currentLocation.currentlat}&currentlong=${currentLocation.currentlong}` : ''}`}
+          >
+            Mer information
+          </Link>
+        )}
       </div>
       <div className="col-[2/4] row-[2/3] place-self-end pr-1">
         <BeerPriceCircle beer_ppv={bar.beer_ppv} beer_price={bar.beer_price} small />

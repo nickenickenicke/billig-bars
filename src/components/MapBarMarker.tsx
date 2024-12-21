@@ -5,11 +5,10 @@ import { Marker } from '@vis.gl/react-maplibre'
 interface MapBarMarkerProps {
   bar: Bar
   handleBarMarkerClick: (long: number, lat: number) => void
+  singleBar?: Bar
 }
 
 export const MapBarMarker = ({ bar, handleBarMarkerClick }: MapBarMarkerProps) => {
-  console.log(bar.name)
-
   return (
     <Marker
       longitude={bar.long}
