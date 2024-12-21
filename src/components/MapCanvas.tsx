@@ -8,8 +8,13 @@ import { MapPopup } from './MapPopup'
 import { MapBarMarker } from './MapBarMarker'
 import { MapCurrentLocationMarker } from './MapCurrentLocationMarker'
 import { Bar, defaultBar } from '@/models/Bar'
+import '@/app/styles/maplibre.css'
 
-export const MapCanvas = () => {
+interface MapCanvasProps {
+  singleBar?: Bar
+}
+
+export const MapCanvas = ({ singleBar }: MapCanvasProps) => {
   const {
     globalState: { bars, currentLocation }
   } = useContext(GlobalStateContext)
@@ -26,11 +31,11 @@ export const MapCanvas = () => {
       <Map
         id="beerMap"
         initialViewState={{
-          longitude: currentLocation.currentlong || 18.069215,
-          latitude: currentLocation.currentlat || 59.314654,
-          zoom: 12
+          longitude: singleBar ? singleBar.long : currentLocation.currentlong || 18.069215,
+          latitude: singleBar ? singleBar.lat + 0.001 : currentLocation.currentlat || 59.314654,
+          zoom: singleBar ? 14 : 12
         }}
-        style={{ width: '100%', aspectRatio: '1/1' }}
+        style={{ width: '100%', aspectRatio: '18/15' }}
         mapStyle="https://tiles.openfreemap.org/styles/bright"
       >
         {isPopupOpen && (
@@ -42,16 +47,32 @@ export const MapCanvas = () => {
             }}
           />
         )}
+        {singleBar && (
+          <MapPopup
+            bar={singleBar}
+            currentLocation={currentLocation}
+            handleClosePopup={() => {}}
+            singleBar
+          />
+        )}
         {currentLocation.currentlat > 0 && currentLocation.currentlong > 0 ? (
           <MapCurrentLocationMarker currentLocation={currentLocation} />
         ) : null}
-        {bars.map(bar => (
+        {singleBar ? (
           <MapBarMarker
-            key={bar.id}
-            bar={bar}
-            handleBarMarkerClick={(long, lat) => handleMarkerClick(bar)}
+            key={singleBar.id}
+            bar={singleBar}
+            handleBarMarkerClick={(long, lat) => null}
           />
-        ))}
+        ) : (
+          bars.map(bar => (
+            <MapBarMarker
+              key={bar.id}
+              bar={bar}
+              handleBarMarkerClick={(long, lat) => handleMarkerClick(bar)}
+            />
+          ))
+        )}
       </Map>
     </>
   )

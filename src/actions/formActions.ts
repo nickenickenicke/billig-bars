@@ -51,6 +51,9 @@ export const insertBar = async (formState: FormState, formData: FormData): Promi
     formData.get('beer_volume') as string
   )
 
+  const escapedLong = (formData.get('longitude') as string).replace(',', '.')
+  const escapedLat = (formData.get('latitude') as string).replace(',', '.')
+
   const barData: BarFormData = {
     name: (formData.get('name') as string).trim(),
     address: (formData.get('address') as string).trim(),
@@ -59,9 +62,9 @@ export const insertBar = async (formState: FormState, formData: FormData): Promi
     beer_volume: parseInt(formData.get('beer_volume') as string),
     beer_price: parseInt(formData.get('beer_price') as string),
     beer_ppv,
-    long: parseFloat(formData.get('longitude') as string),
-    lat: parseFloat(formData.get('latitude') as string),
-    location: `POINT(${formData.get('longitude')} ${formData.get('latitude')})`,
+    long: parseFloat(escapedLong),
+    lat: parseFloat(escapedLat),
+    location: `POINT(${escapedLong} ${escapedLat})`,
     opening_hours: openingHours,
     happy_hours: happyHours
   }

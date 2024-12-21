@@ -1,28 +1,66 @@
+'use client'
+
 import Link from 'next/link'
+import { SvgLogo } from './svgs/SvgLogo'
+import { Hamburger } from './Hamburger'
+import { useEffect, useRef, useState } from 'react'
+import { NavLink } from './NavLink'
 
 export const Navigation = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  const handleClick = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
+  useEffect(() => {
+    if (!menuRef.current) return
+
+    const handleClickOutsideMenu = (event: MouseEvent) => {
+      if (!menuRef.current?.contains(event.target as Node)) {
+        setIsMenuOpen(false)
+      }
+    }
+    window.addEventListener('mousedown', handleClickOutsideMenu)
+    return () => {
+      window.removeEventListener('mousedown', handleClickOutsideMenu)
+    }
+  }, [menuRef])
+
   return (
-    <nav className="fixed top-0 z-[10] flex h-[70px] w-full justify-between bg-slate-600 px-4 text-white">
-      <Link href={'/'} className="flex aspect-square h-full items-center justify-center text-4xl">
-        🍻
-      </Link>
-      <ul className="flex h-full items-center justify-end gap-2">
-        <li>
-          <Link href={'/'} className="flex h-[70px] min-w-20 items-center px-4">
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link href={'/bars'} className="flex h-[70px] min-w-20 items-center px-4">
-            Bars
-          </Link>
-        </li>
-        <li>
-          <Link href={'/testing-ground'} className="flex h-[70px] min-w-20 items-center px-4">
-            Test
-          </Link>
-        </li>
-      </ul>
+    <nav
+      className="group fixed top-0 z-[10] grid w-full grid-cols-2 grid-rows-[var(--navbar-height),_0fr] justify-between bg-white transition-all data-[open=true]:grid-rows-[var(--navbar-height),_1fr]"
+      data-open={isMenuOpen}
+      ref={menuRef}
+    >
+      <div className="flex items-center justify-start pl-4">
+        <Link href={'/'} className="">
+          <SvgLogo className="h-8 -translate-y-0.5 fill-black" />
+        </Link>
+      </div>
+      <div className="flex items-center justify-end">
+        <Hamburger isMenuOpen={isMenuOpen} handleClick={handleClick} />
+      </div>
+      <div className="col-span-2 row-[2/3] overflow-hidden group-data-[open=true]:pb-2 group-data-[open=true]:shadow-sm">
+        <ul className="flex h-full flex-col items-end justify-center gap-2">
+          <li className="contents">
+            <NavLink href={'/bars'} handleClick={handleClick}>
+              Hitta barer
+            </NavLink>
+          </li>
+          <li className="contents">
+            <NavLink href={'/testing-ground'} handleClick={handleClick}>
+              Test
+            </NavLink>
+          </li>
+          <li className="contents">
+            <NavLink href={'/testing-ground'} handleClick={handleClick}>
+              Om Billig Bärs
+            </NavLink>
+          </li>
+        </ul>
+      </div>
     </nav>
   )
 }

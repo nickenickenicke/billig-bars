@@ -1,5 +1,5 @@
 import { HappyHours } from '@/models/Bar'
-import { getWeekdayName, normalizeTimeFromDB } from '../timeTools'
+import { getWeekdayName, normalizeTimeFromDB, getTodaysWeekday } from '../timeTools'
 import * as timeTools from '../timeTools'
 
 let mockedGetTodaysWeekday: jest.SpyInstance<number>
@@ -22,6 +22,47 @@ describe('Testing getWeekdayName', () => {
     const result = getWeekdayName(sunday)
     //Assert
     expect(result).toBe('Söndag')
+  })
+})
+
+describe('Testing getTodaysWeekday', () => {
+  afterEach(() => {
+    jest.useRealTimers()
+  })
+  test('should return 1', () => {
+    //Assign
+    const mockedDate = new Date(2024, 11, 16) //Monday
+    jest.useFakeTimers({
+      now: mockedDate
+    })
+    //Act
+    const result = getTodaysWeekday()
+    //Assert
+    expect(result).toBe(1)
+  })
+  test('should return 7', () => {
+    //Assign
+    const mockedDate = new Date(2024, 11, 15) //Sunday
+    jest.useFakeTimers({
+      now: mockedDate
+    })
+    jest.setSystemTime(mockedDate)
+    //Act
+    const result = getTodaysWeekday()
+    //Assert
+    expect(result).toBe(7)
+  })
+  test('should return 3', () => {
+    //Assign
+    const mockedDate = new Date(2024, 11, 18) //Wednesday
+    jest.useFakeTimers({
+      now: mockedDate
+    })
+    jest.setSystemTime(mockedDate)
+    //Act
+    const result = getTodaysWeekday()
+    //Assert
+    expect(result).toBe(3)
   })
 })
 

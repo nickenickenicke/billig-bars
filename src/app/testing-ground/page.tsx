@@ -6,5 +6,9 @@ export default async function TestingGround() {
   let bars: Bar[] = []
   bars = await getBars()
 
-  return <>{<DisplayBars bars={bars} />}</>
+  return (
+    <article className="px-2">
+      <DisplayBars bars={bars} />
+    </article>
+  )
 }

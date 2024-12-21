@@ -3,7 +3,10 @@ import { normalizeMeters } from '@/utils/locationTools'
 import { BarCardPill } from './BarCardPill'
 import Link from 'next/link'
 import { CurrentLocation } from '@/models/Location'
-import { getClosingHour, normalizeTimeFromDB } from '@/utils/timeTools'
+import { getClosingHour } from '@/utils/timeTools'
+import { BeerPriceCircle } from './BeerPriceCircle'
+import { BeerStats } from './BeerStats'
+import { BarCardInformation } from './BarCardInformation'
 
 interface BarCardProps {
   bar: Bar
@@ -16,47 +19,27 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
       <section className="">
         <Link
           href={`/bars/${bar.id}${currentLocation ? `?currentlat=${currentLocation.currentlat}&currentlong=${currentLocation.currentlong}` : ''}`}
-          className="flex justify-between rounded-sm bg-slate-300 p-2"
+          className="grid grid-cols-[1fr_1fr_auto_100px] grid-rows-[1fr_auto_50px] justify-between rounded-none border-b border-b-gray-900 bg-white px-2 py-5"
         >
-          <div className="flex flex-1 flex-col">
-            <div>
-              <h3 className="text-xl">{bar.name}</h3>
-              {bar.dist_meters && bar.dist_meters != -1 ? (
-                <span className="block">{normalizeMeters(bar.dist_meters)}</span>
-              ) : null}
-              <address className="block">{bar.address}</address>
-              <span>
-                {bar.is_open ? 'Öppet till ' + getClosingHour(bar.opening_hours) : 'Stängt'}
-              </span>
-            </div>
-            <div className="flex flex-row-reverse gap-2 pr-2">
-              <div className="flex aspect-square w-[50px] items-center justify-center rounded-full bg-yellow-500">
-                <div className="flex flex-col items-center justify-center text-white">
-                  <span className="">{bar.beer_volume}</span>
-                  <span className="text-sm">CL</span>
-                </div>
-              </div>
-              <div className="flex aspect-square w-[50px] items-center justify-center rounded-full bg-yellow-500">
-                <div className="flex flex-col items-center justify-center text-white">
-                  <span className="">{bar.beer_ppv}</span>
-                  <span className="text-sm">kr/cl</span>
-                </div>
-              </div>
-            </div>
+          <div className="col-[1/3] row-[1/3]">
+            <BarCardInformation bar={bar} />
           </div>
-          <div className="flex flex-col justify-between gap-2">
-            <aside>
-              {bar.beer_price === 39 && <BarCardPill>Billigast</BarCardPill>}{' '}
-              {bar.is_happy_hour && <BarCardPill>HAPPY HOUR</BarCardPill>}
-            </aside>
-            <div className="flex aspect-square w-[100px] -rotate-[10deg] items-center justify-center rounded-full bg-green-price">
-              <div className="flex flex-col items-center justify-center text-white">
-                <span className="font-price text-5xl tracking-tighter">
-                  {bar.beer_price}
-                  <span className="inline-block -translate-y-[0.33rem]">:</span>-
-                </span>
-              </div>
-            </div>
+
+          <div className="col-[1/4] row-[3/4] flex flex-row-reverse gap-2 pr-2">
+            <BeerStats beer_ppv={bar.beer_ppv} beer_volume={bar.beer_volume} />
+          </div>
+
+          <div className="col-[3/5] row-[1/2] flex flex-col flex-wrap items-end justify-start gap-2">
+            {bar.beer_price === 39 && (
+              <>
+                <BarCardPill>Billigast</BarCardPill> <BarCardPill>Happy hour</BarCardPill>
+              </>
+            )}{' '}
+            {bar.is_happy_hour && <BarCardPill>HAPPY HOUR</BarCardPill>}
+          </div>
+
+          <div className={`col-[4/5] row-[2/4] mt-4 flex flex-col items-end justify-end`}>
+            <BeerPriceCircle beer_ppv={bar.beer_ppv} beer_price={bar.beer_price} />
           </div>
         </Link>
       </section>
