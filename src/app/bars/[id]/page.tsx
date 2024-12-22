@@ -39,7 +39,7 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
 
   const supabase = await createClient()
 
-  let { data, error } = await supabase.rpc('bartimestamp', supabaseQuery)
+  let { data, error } = await supabase.rpc('barnextopen', supabaseQuery)
 
   if (error) {
     console.error(error)
