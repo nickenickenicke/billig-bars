@@ -15,9 +15,9 @@ export type Bar = {
   opening_hours: OpeningHours[]
   happy_hours?: HappyHours[]
   dist_meters?: number
-  is_open?: boolean
-  opens_at?: string
-  is_happy_hour?: boolean
+  is_open: boolean
+  opens_at: string
+  is_happy_hour: boolean
 }
 
 export type OpeningHours = {
@@ -72,5 +72,8 @@ export const defaultBar: Bar = {
   id: 'default',
   long: 0,
   lat: 0,
+  is_open: false,
+  is_happy_hour: false,
+  opens_at: 'Closed',
   opening_hours: []
 }
