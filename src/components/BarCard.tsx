@@ -1,9 +1,7 @@
 import { Bar } from '@/models/Bar'
-import { normalizeMeters } from '@/utils/locationTools'
 import { BarCardPill } from './BarCardPill'
 import Link from 'next/link'
 import { CurrentLocation } from '@/models/Location'
-import { getClosingHour } from '@/utils/timeTools'
 import { BeerPriceCircle } from './BeerPriceCircle'
 import { BeerStats } from './BeerStats'
 import { BarCardInformation } from './BarCardInformation'
@@ -30,12 +28,7 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
           </div>
 
           <div className="col-[3/5] row-[1/2] flex flex-col flex-wrap items-end justify-start gap-2">
-            {bar.beer_price === 39 && (
-              <>
-                <BarCardPill>Billigast</BarCardPill> <BarCardPill>Happy hour</BarCardPill>
-              </>
-            )}{' '}
-            {bar.is_happy_hour && <BarCardPill>HAPPY HOUR</BarCardPill>}
+            {bar.is_happy_hour && <BarCardPill>Happy Hour</BarCardPill>}
           </div>
 
           <div className={`col-[4/5] row-[2/4] mt-4 flex flex-col items-end justify-end`}>

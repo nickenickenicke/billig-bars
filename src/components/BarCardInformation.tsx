@@ -1,6 +1,6 @@
 import { Bar } from '@/models/Bar'
 import { normalizeMeters } from '@/utils/locationTools'
-import { getClosingHour } from '@/utils/timeTools'
+import { getClosingHour, getOpeningHour } from '@/utils/timeTools'
 
 interface BarCardInformationProps {
   bar: Bar
@@ -15,7 +15,9 @@ export const BarCardInformation = ({ bar }: BarCardInformationProps) => {
       ) : null}
       <address className="block not-italic">{bar.address}</address>
       <span className="block">
-        {bar.is_open ? 'Öppet till ' + getClosingHour(bar.opening_hours) : 'Stängt'}
+        {bar.is_open
+          ? 'Öppet till ' + getClosingHour(bar.opening_hours)
+          : getOpeningHour(bar.opens_at)}
       </span>
     </>
   )
