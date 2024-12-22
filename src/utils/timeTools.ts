@@ -33,8 +33,28 @@ export const getClosingHour = (openingHours: OpeningHours[], dayToCheck?: number
   return normalizeTimeFromDB(openingHours[index].closes_at)
 }
 
+export const getOpeningHour = (opens_at: string): string => {
+  console.log(opens_at)
+
+  if (opens_at === 'open') {
+    return 'Öppet'
+  }
+
+  const parsedString = normalizeTimeFromDB(opens_at)
+  if (parsedString !== '') {
+    return parsedString
+  }
+
+  return 'Stängt'
+}
+
 export const normalizeTimeFromDB = (time: string): string => {
   const [hour, min] = time.split(':').map(Number)
+
+  if (isNaN(hour) || isNaN(min)) {
+    return ''
+  }
+
   if (hour < 0 || hour > 24) {
     return ''
   }
