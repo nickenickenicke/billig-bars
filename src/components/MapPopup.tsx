@@ -51,7 +51,7 @@ export const MapPopup = ({ bar, currentLocation, handleClosePopup, singleBar }: 
         )}
       </div>
       <div className="col-[2/4] row-[2/3] place-self-end pr-1">
-        <BeerPriceCircle beer_ppv={bar.beer_ppv} beer_price={bar.beer_price} small />
+        <BeerPriceCircle beer_ppv={bar.current_ppv} beer_price={bar.current_price} small />
         <span className="block text-center">{bar.beer_volume} cl</span>
       </div>
     </Popup>

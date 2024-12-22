@@ -26,7 +26,7 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
           </div>
 
           <div className="col-[1/4] row-[3/4] flex flex-row-reverse gap-2 pr-2">
-            <BeerStats beer_ppv={bar.beer_ppv} beer_volume={bar.beer_volume} />
+            <BeerStats beer_ppv={bar.current_ppv} beer_volume={bar.current_volume} />
           </div>
 
           <div className="col-[3/5] row-[1/2] flex flex-col flex-wrap items-end justify-start gap-2">
@@ -39,7 +39,7 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
           </div>
 
           <div className={`col-[4/5] row-[2/4] mt-4 flex flex-col items-end justify-end`}>
-            <BeerPriceCircle beer_ppv={bar.beer_ppv} beer_price={bar.beer_price} />
+            <BeerPriceCircle beer_ppv={bar.current_ppv} beer_price={bar.current_price} />
           </div>
         </Link>
       </section>
