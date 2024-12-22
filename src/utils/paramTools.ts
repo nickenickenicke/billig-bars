@@ -6,21 +6,21 @@ export const checkParams = (params: URLSearchParams): CurrentQuery => {
   if (params.get('sort') === 'desc') {
     desc = true
   }
-  let min: number | null = getCurrentMinute()
+  let min: number | null = null
   if (params.get('min')) {
     min = parseInt(params.get('min') as string) || min
     if (min !== null && (min < 0 || min > 59)) {
       min = getCurrentMinute()
     }
   }
-  let hour: number | null = getCurrentHour()
+  let hour: number | null = null
   if (params.get('hour')) {
     hour = parseInt(params.get('hour') as string) || hour
     if (hour !== null && (hour < 0 || hour > 23)) {
       hour = getCurrentHour()
     }
   }
-  let day: number | null = getTodaysWeekday()
+  let day: number | null = null
   if (params.get('day')) {
     day = parseInt(params.get('day') as string) || day
     if (day !== null && (day < 0 || day > 7)) {

@@ -5,37 +5,7 @@ import { CurrentQuery } from '@/models/GlobalState'
 import { CurrentLocation } from '@/models/Location'
 import { SupabaseQuery } from '@/models/Queries'
 import { createClient } from '@/utils/supabase/server'
-import { getCurrentHour, getCurrentMinute, getTodaysWeekday } from '@/utils/timeTools'
-
-export const getBarsByLocation = async (location: CurrentLocation) => {
-  const supabase = await createClient()
-
-  const { data, error } = await supabase
-    .rpc('get_bars', location)
-    .order('dist_meters', { ascending: true })
-
-  if (error) {
-    console.error(error)
-    return []
-  }
-
-  return data
-}
-
-export const getBars = async () => {
-  const supabase = await createClient()
-
-  const { data, error } = await supabase
-    .rpc('get_bars', {})
-    .order('beer_price', { ascending: true })
-
-  if (error) {
-    console.error(error)
-    return []
-  }
-
-  return data
-}
+import { addZero, getCurrentHour, getCurrentMinute, getTodaysWeekday } from '@/utils/timeTools'
 
 export const getBarsWithQueryObjectCheckOpen = async (
   query: CurrentQuery,
@@ -52,30 +22,15 @@ export const getBarsWithQueryObjectCheckOpen = async (
   // const dbQuery: SupabaseQuery = {
   //   currentlat: 59.30780523805108,
   //   currentlong: 18.07725504267913,
-  //   day_to_compare: 6,
-  //   hour_to_compare: 1,
-  //   min_to_compare: 1
+  //   comparison_timestamp = '2027-02-01T13:30:00.000Z'
   // }
 
   const supabase = await createClient()
 
-  //No location, no need to order by distance
-  if (dbQuery.currentlat === 0 || dbQuery.currentlong === 0) {
-    const { data, error } = await supabase
-      .rpc('barswithminutes', dbQuery)
-      .order('beer_price', { ascending })
-
-    if (error) {
-      console.error(error)
-      return []
-    }
-
-    return data
-  }
-
   //With location, order by distance
   const { data, error } = await supabase
-    .rpc('barswithminutes', dbQuery)
+    .rpc('barstimestamp', dbQuery)
+    .order('is_open', { ascending: false })
     .order('dist_meters', { ascending: true })
     .order('beer_price', { ascending })
 
@@ -88,23 +43,28 @@ export const getBarsWithQueryObjectCheckOpen = async (
 }
 
 const createSupabaseQuery = (query: CurrentQuery, location: CurrentLocation): SupabaseQuery => {
-  const min = query.min || getCurrentMinute()
-  const hour = query.hour || getCurrentHour()
-  const day = query.day || getTodaysWeekday()
+  let comparison_timestamp = ''
+
+  if (query.day === null && query.hour === null && query.min === null) {
+    comparison_timestamp = new Date().toLocaleString('sv-SE', { timeZone: 'Europe/Stockholm' })
+  } else {
+    comparison_timestamp += '2027-02-0' + (query.day || getTodaysWeekday())
+    comparison_timestamp += 'T' + addZero(query.hour || getCurrentHour())
+    query.min === null && query.hour
+      ? (comparison_timestamp += ':00')
+      : (comparison_timestamp += ':' + addZero(query.min || getCurrentMinute()))
+    comparison_timestamp += ':00.000Z'
+  }
 
   if (location.currentlat === 0) {
     return {
-      day_to_compare: day,
-      hour_to_compare: hour,
-      min_to_compare: min
+      comparison_timestamp
     }
   }
 
   return {
     currentlat: location.currentlat,
     currentlong: location.currentlong,
-    day_to_compare: day,
-    hour_to_compare: hour,
-    min_to_compare: min
+    comparison_timestamp
   }
 }

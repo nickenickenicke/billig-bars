@@ -20,7 +20,7 @@ export const BarOpeningHours = ({ openingHours }: BarOpeningHoursProps) => {
             <Fragment key={openingHour.id!}>
               <li className="mr-4">{getWeekdayName(openingHour.day_of_week)}</li>
               <li>
-                {`${normalizeTimeFromDB(openingHour.opens_at, openingHour.opens_at_min)} - ${normalizeTimeFromDB(openingHour.closes_at, openingHour.closes_at_min)}`}
+                {`${normalizeTimeFromDB(openingHour.opens_at)} - ${normalizeTimeFromDB(openingHour.closes_at)}`}
               </li>
             </Fragment>
           )

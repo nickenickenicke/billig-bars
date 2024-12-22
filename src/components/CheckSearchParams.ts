@@ -25,9 +25,6 @@ export const CheckSearchParams = () => {
 
       const newBars = await getBarsWithQueryObjectCheckOpen(newQuery, globalState.currentLocation)
 
-      console.log(newQuery)
-      console.log(newBars)
-
       const newState: GlobalState = {
         ...globalState,
         bars: newBars,

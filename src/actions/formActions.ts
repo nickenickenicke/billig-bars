@@ -16,10 +16,8 @@ export const insertBar = async (formState: FormState, formData: FormData): Promi
     if (opens_at && closes_at) {
       openingHours.push({
         day_of_week: index + 1,
-        opens_at: parseInt(opens_at as string),
-        opens_at_min: parseInt(opens_at_min as string),
-        closes_at: parseInt(closes_at as string),
-        closes_at_min: parseInt(closes_at_min as string)
+        opens_at: (opens_at as string) + ':' + (opens_at_min as string),
+        closes_at: (closes_at as string) + ':' + (closes_at_min as string)
       })
     }
   }
@@ -35,10 +33,8 @@ export const insertBar = async (formState: FormState, formData: FormData): Promi
       const ppv = calculatePPV(price as string, volume as string)
       happyHours.push({
         day_of_week: index + 1,
-        starts_at: parseInt(starts_at as string),
-        starts_at_min: parseInt(starts_at_min as string),
-        ends_at: parseInt(ends_at as string),
-        ends_at_min: parseInt(ends_at_min as string),
+        starts_at: (starts_at as string) + ':' + (starts_at_min as string),
+        ends_at: (ends_at as string) + ':' + (ends_at_min as string),
         price: parseInt(price as string),
         volume: parseInt(volume as string),
         ppv: ppv

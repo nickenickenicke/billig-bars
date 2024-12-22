@@ -11,10 +11,8 @@ type GroupedHappyHours = {
   price: number
   volume: number
   ppv: number
-  starts_at: number
-  starts_at_min: number
-  ends_at: number
-  ends_at_min: number
+  starts_at: string
+  ends_at: string
   days: number[]
 }
 
@@ -25,16 +23,14 @@ export const BarHappyHours = ({ happyHours }: BarHappyHoursProps) => {
     const happyHoursGroups: Record<string, GroupedHappyHours> = {}
 
     happyHoursToGroup.forEach(happyHour => {
-      const key = `${happyHour.price}-${happyHour.volume}-${happyHour.ppv}-${happyHour.starts_at}-${happyHour.starts_at_min}-${happyHour.ends_at}-${happyHour.ends_at_min}`
+      const key = `${happyHour.price}-${happyHour.volume}-${happyHour.ppv}-${happyHour.starts_at}-${happyHour.ends_at}`
       if (!happyHoursGroups[key]) {
         happyHoursGroups[key] = {
           price: happyHour.price,
           volume: happyHour.volume,
           ppv: happyHour.ppv,
           starts_at: happyHour.starts_at,
-          starts_at_min: happyHour.starts_at_min,
           ends_at: happyHour.ends_at,
-          ends_at_min: happyHour.ends_at_min,
           days: []
         }
       }
@@ -74,8 +70,7 @@ export const BarHappyHours = ({ happyHours }: BarHappyHoursProps) => {
             >
               <span className="col-span-1 mr-3 block">{getDayRange(group.days)}</span>
               <span className="col-span-1 block">
-                {normalizeTimeFromDB(group.starts_at, group.starts_at_min)} -{' '}
-                {normalizeTimeFromDB(group.ends_at, group.ends_at_min)}
+                {normalizeTimeFromDB(group.starts_at)} - {normalizeTimeFromDB(group.ends_at)}
               </span>
               <ul className="col-span-2 flex basis-0 items-end justify-start gap-2">
                 <li>
