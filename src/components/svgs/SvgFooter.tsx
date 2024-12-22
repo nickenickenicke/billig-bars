@@ -13,6 +13,7 @@ export const SvgFooter = ({ width, height, className }: SvgFooterProps) => {
       className={className}
       width={width}
       height={height}
+      role="img"
     >
       <g id="footer-svg" data-name="Layer 1" className="fill-white">
         <path

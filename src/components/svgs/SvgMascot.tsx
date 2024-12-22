@@ -13,7 +13,12 @@ export const SvgMascot = ({ width, height, className }: SvgMascotProps) => {
       className={className}
       width={width}
       height={height}
+      role="img"
     >
+      <title>
+        An anthropomorphic beer glass in the style of a 1930s American cartoon walking happily
+        towards the right.
+      </title>
       <g id="c" data-name="Layer_1" className="fill-white">
         <g>
           <path

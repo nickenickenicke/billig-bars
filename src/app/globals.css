@@ -24,6 +24,12 @@ body {
   p {
     @apply mb-4 leading-relaxed;
   }
+  footer a {
+    @apply underline underline-offset-4;
+  }
+  footer a:hover {
+    @apply text-green-price;
+  }
 }
 
 @layer utilities {
