@@ -2,7 +2,7 @@ import { ppvUpperThresholds } from '@/lib/priceThresholds'
 import { Bar } from '@/models/Bar'
 import { CurrentLocation } from '@/models/Location'
 import { normalizeMeters } from '@/utils/locationTools'
-import { getClosingHour } from '@/utils/timeTools'
+import { getClosingHour, getOpeningHour } from '@/utils/timeTools'
 import { Popup } from '@vis.gl/react-maplibre'
 import Link from 'next/link'
 import { BeerPriceCircle } from './BeerPriceCircle'
@@ -38,7 +38,9 @@ export const MapPopup = ({ bar, currentLocation, handleClosePopup, singleBar }: 
           <span className="block">{normalizeMeters(bar.dist_meters)}</span>
         ) : null}
         <span className="block">
-          {bar.is_open ? 'Öppet till ' + getClosingHour(bar.opening_hours) : 'Stängt'}
+          {bar.is_open
+            ? 'Öppet till ' + getClosingHour(bar.opening_hours)
+            : getOpeningHour(bar.opens_at)}
         </span>
 
         {!singleBar && (
@@ -51,7 +53,7 @@ export const MapPopup = ({ bar, currentLocation, handleClosePopup, singleBar }: 
         )}
       </div>
       <div className="col-[2/4] row-[2/3] place-self-end pr-1">
-        <BeerPriceCircle beer_ppv={bar.beer_ppv} beer_price={bar.beer_price} small />
+        <BeerPriceCircle beer_ppv={bar.current_ppv} beer_price={bar.current_price} small />
         <span className="block text-center">{bar.beer_volume} cl</span>
       </div>
     </Popup>

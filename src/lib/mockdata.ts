@@ -11,10 +11,14 @@ export const singleBarMockData: Bar = {
   beer_volume: 40,
   beer_price: 59,
   beer_ppv: 1.475,
+  current_ppv: 0.975,
+  current_price: 39,
+  current_volume: 40,
   long: 18.0771446228027,
   lat: 59.3076553344727,
   dist_meters: 1359,
   is_open: true,
+  opens_at: 'open',
   is_happy_hour: true,
   opening_hours: [
     {

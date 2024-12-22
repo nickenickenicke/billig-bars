@@ -29,7 +29,7 @@ export const getBarsWithQueryObjectCheckOpen = async (
 
   //With location, order by distance
   const { data, error } = await supabase
-    .rpc('barstimestamp', dbQuery)
+    .rpc('barsnextopen', dbQuery)
     .order('is_open', { ascending: false })
     .order('dist_meters', { ascending: true })
     .order('beer_price', { ascending })

@@ -7,13 +7,17 @@ export type Bar = {
   beer_volume: number
   beer_price: number
   beer_ppv: number
+  current_price: number
+  current_volume: number
+  current_ppv: number
   long: number
   lat: number
   opening_hours: OpeningHours[]
   happy_hours?: HappyHours[]
   dist_meters?: number
-  is_open?: boolean
-  is_happy_hour?: boolean
+  is_open: boolean
+  opens_at: string
+  is_happy_hour: boolean
 }
 
 export type OpeningHours = {
@@ -62,8 +66,14 @@ export const defaultBar: Bar = {
   beer_volume: 0,
   beer_price: 0,
   beer_ppv: 0,
+  current_price: 0,
+  current_volume: 0,
+  current_ppv: 0,
   id: 'default',
   long: 0,
   lat: 0,
+  is_open: false,
+  is_happy_hour: false,
+  opens_at: 'Closed',
   opening_hours: []
 }

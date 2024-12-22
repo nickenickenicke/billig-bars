@@ -10,6 +10,7 @@ import { MapCanvas } from '@/components/MapCanvas'
 import Link from 'next/link'
 import { BarCardPill } from '@/components/BarCardPill'
 import { BarPriceInformation } from '@/components/BarPriceInformation'
+import { getClosingHour, getOpeningHour } from '@/utils/timeTools'
 
 interface BarPageProps {
   params: { id: string }
@@ -39,7 +40,7 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
 
   const supabase = await createClient()
 
-  let { data, error } = await supabase.rpc('bartimestamp', supabaseQuery)
+  let { data, error } = await supabase.rpc('barnextopen', supabaseQuery)
 
   if (error) {
     console.error(error)
@@ -70,19 +71,23 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
                 <br />
                 {normalizePostalCode(bar.postal_code)} {bar.city}
               </address>
+              <span className="block">
+                {bar.is_open
+                  ? 'Öppet till ' + getClosingHour(bar.opening_hours)
+                  : getOpeningHour(bar.opens_at)}
+              </span>
             </div>
 
             <div className="col-[1/4] row-[3/4] flex flex-row-reverse gap-2 pr-2">
-              <BeerStats beer_ppv={bar.beer_ppv} beer_volume={bar.beer_volume} />
+              <BeerStats beer_ppv={bar.current_ppv} beer_volume={bar.current_ppv} />
             </div>
 
             <div className="col-[3/5] row-[1/2] flex flex-col flex-wrap items-end justify-start gap-2">
-              <BarCardPill>Öppet</BarCardPill>
-              <BarCardPill>Happy hour</BarCardPill>
+              {bar.is_happy_hour && <BarCardPill>Happy hour</BarCardPill>}
             </div>
 
-            <div className={`col-[4/5] row-[2/4] mt-4 flex flex-col items-end justify-end`}>
-              <BeerPriceCircle beer_ppv={bar.beer_ppv} beer_price={bar.beer_price} />
+            <div className={`col-[4/5] row-[2/4] mt-4 flex flex-col items-end justify-end gap-2`}>
+              <BeerPriceCircle beer_ppv={bar.current_ppv} beer_price={bar.current_price} />
             </div>
           </div>
           {bar.happy_hours && bar.happy_hours.length > 0 && <BarPriceInformation bar={bar} />}
