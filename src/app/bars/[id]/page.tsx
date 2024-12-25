@@ -55,9 +55,11 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
     return (
       <>
         <MapCanvas singleBar={bar} />
-        <article className="mt-2 px-2">
-          <span className="mb-2 block text-right text-sm">
-            <Link href={'/bars'}>{'< '}Tillbaka till alla barer</Link>
+        <article className="mt-4 px-2">
+          <span className="mb-4 block text-right text-sm">
+            <Link href={'/bars'} className="underline underline-offset-2">
+              {'< '}Tillbaka till alla barer
+            </Link>
           </span>
 
           <div className="grid grid-cols-[1fr_1fr_auto_100px] grid-rows-[1fr_auto_50px] justify-between rounded-none bg-white">
