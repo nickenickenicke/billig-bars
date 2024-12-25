@@ -5,7 +5,7 @@ import { SvgLogo } from './svgs/SvgLogo'
 
 export const Footer = () => {
   return (
-    <footer className="mt-8 flex w-full flex-col items-center">
+    <footer className="mt-8 flex w-full flex-col items-center md:mt-28">
       <SvgFooter className="-mb-1 max-h-24 max-w-[100vw]" />
       <div className="grid min-h-40 w-full grid-cols-[auto] grid-rows-[auto_auto_auto_1fr] gap-10 bg-black px-4 pb-20 pt-6 text-white md:grid-cols-[15rem_auto_1fr] md:grid-rows-[auto_1fr] md:gap-6">
         <figure className="row-span-1 md:col-[1/2] md:row-[1/2]">
