@@ -8,9 +8,10 @@ import { BeerPriceCircle } from '@/components/BeerPriceCircle'
 import { BeerStats } from '@/components/BeerStats'
 import { MapCanvas } from '@/components/MapCanvas'
 import Link from 'next/link'
-import { BarCardPill } from '@/components/BarCardPill'
+import { BarPill } from '@/components/BarPill'
 import { BarPriceInformation } from '@/components/BarPriceInformation'
 import { getClosingHour, getOpeningHour } from '@/utils/timeTools'
+import { BarPills } from '@/components/BarPills'
 
 interface BarPageProps {
   params: { id: string }
@@ -84,8 +85,8 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
               <BeerStats beer_ppv={bar.current_ppv} beer_volume={bar.current_ppv} />
             </div>
 
-            <div className="col-[3/5] row-[1/2] flex flex-col flex-wrap items-end justify-start gap-2">
-              {bar.is_happy_hour && <BarCardPill>Happy hour</BarCardPill>}
+            <div className="col-[3/5] row-[1/2] flex flex-col flex-wrap items-end justify-start gap-2 pt-1.5">
+              <BarPills is_open={bar.is_open} is_happy_hour={bar.is_happy_hour} />
             </div>
 
             <div className={`col-[4/5] row-[2/4] mt-4 flex flex-col items-end justify-end gap-2`}>
