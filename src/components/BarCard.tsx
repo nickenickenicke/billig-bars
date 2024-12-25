@@ -5,6 +5,7 @@ import { CurrentLocation } from '@/models/Location'
 import { BeerPriceCircle } from './BeerPriceCircle'
 import { BeerStats } from './BeerStats'
 import { BarCardInformation } from './BarCardInformation'
+import { BarPills } from './BarPills'
 
 interface BarCardProps {
   bar: Bar
@@ -28,7 +29,7 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
           </div>
 
           <div className="col-[3/5] row-[1/2] flex flex-col flex-wrap items-end justify-start gap-2">
-            {bar.is_happy_hour && <BarPill>Happy Hour</BarPill>}
+            <BarPills is_open={bar.is_open} is_happy_hour={bar.is_happy_hour} />
           </div>
 
           <div className={`col-[4/5] row-[2/4] mt-4 flex flex-col items-end justify-end`}>
