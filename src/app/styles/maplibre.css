@@ -56,14 +56,17 @@
   margin: 0;
   padding: 0.25rem;
   font-size: 0.6rem;
-  width: 100vw;
 }
 
 .maplibregl-ctrl-attrib-button {
-  top: -10px;
+  top: -5px;
   right: 5px;
 }
 
 .maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-button {
-  top: -2px;
+  top: 3px;
+}
+
+.maplibregl-ctrl-attrib-inner {
+  padding-right: 2rem;
 }
