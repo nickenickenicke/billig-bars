@@ -34,8 +34,6 @@ export const getClosingHour = (openingHours: OpeningHours[], dayToCheck?: number
 }
 
 export const getOpeningHour = (opens_at: string): string => {
-  console.log(opens_at)
-
   if (opens_at === 'open') {
     return 'Öppet'
   }
