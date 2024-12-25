@@ -27,7 +27,7 @@ export const MapBarMarker = ({ bar, handleBarMarkerClick }: MapBarMarkerProps) =
               : 'bg-red-price'
         }`}
       >
-        {bar.beer_price} kr
+        {bar.current_price} kr
       </span>
     </Marker>
   )
