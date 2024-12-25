@@ -42,7 +42,7 @@ export const getOpeningHour = (opens_at: string): string => {
 
   const parsedString = normalizeTimeFromDB(opens_at)
   if (parsedString !== '') {
-    return parsedString
+    return 'Öppnar kl ' + parsedString
   }
 
   return 'Stängt'

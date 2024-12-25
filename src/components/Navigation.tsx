@@ -51,12 +51,12 @@ export const Navigation = () => {
           </li>
           <li className="contents">
             <NavLink href={'/testing-ground'} handleClick={handleClick}>
-              Test
+              Om Billig Bärs
             </NavLink>
           </li>
           <li className="contents">
-            <NavLink href={'/testing-ground'} handleClick={handleClick}>
-              Om Billig Bärs
+            <NavLink href={'/'} handleClick={handleClick}>
+              Startsida
             </NavLink>
           </li>
         </ul>
