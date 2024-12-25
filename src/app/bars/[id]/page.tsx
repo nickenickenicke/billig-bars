@@ -85,7 +85,7 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
               <BeerStats beer_ppv={bar.current_ppv} beer_volume={bar.current_ppv} />
             </div>
 
-            <div className="col-[3/5] row-[1/2] flex flex-col flex-wrap items-end justify-start gap-2">
+            <div className="col-[3/5] row-[1/2] flex flex-col flex-wrap items-end justify-start gap-2 pt-1.5">
               <BarPills is_open={bar.is_open} is_happy_hour={bar.is_happy_hour} />
             </div>
 
