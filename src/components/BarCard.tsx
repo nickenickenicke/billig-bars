@@ -1,5 +1,5 @@
 import { Bar } from '@/models/Bar'
-import { BarCardPill } from './BarCardPill'
+import { BarPill } from './BarPill'
 import Link from 'next/link'
 import { CurrentLocation } from '@/models/Location'
 import { BeerPriceCircle } from './BeerPriceCircle'
@@ -28,7 +28,7 @@ export const BarCard = ({ bar, currentLocation }: BarCardProps) => {
           </div>
 
           <div className="col-[3/5] row-[1/2] flex flex-col flex-wrap items-end justify-start gap-2">
-            {bar.is_happy_hour && <BarCardPill>Happy Hour</BarCardPill>}
+            {bar.is_happy_hour && <BarPill>Happy Hour</BarPill>}
           </div>
 
           <div className={`col-[4/5] row-[2/4] mt-4 flex flex-col items-end justify-end`}>
