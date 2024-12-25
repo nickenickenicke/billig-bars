@@ -66,7 +66,7 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
             <div className="col-[1/3] row-[1/3]">
               <h1 className="text-4xl font-medium">{bar.name}</h1>
               {bar.dist_meters && bar.dist_meters > 0 ? (
-                <p>{normalizeMeters(bar.dist_meters)}</p>
+                <span>{normalizeMeters(bar.dist_meters)}</span>
               ) : null}
               <address>
                 {bar.address}
