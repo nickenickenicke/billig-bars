@@ -54,7 +54,7 @@ export const Navigation = () => {
             </NavLink>
           </li>
           <li className="contents">
-            <NavLink href={'/testing-ground'} handleClick={handleLinkClick}>
+            <NavLink href={'/about'} handleClick={handleLinkClick}>
               Om Billig Bärs
             </NavLink>
           </li>
