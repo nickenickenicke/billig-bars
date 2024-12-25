@@ -10,8 +10,12 @@ export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 
-  const handleClick = () => {
+  const handleButtonClick = () => {
     setIsMenuOpen(!isMenuOpen)
+  }
+
+  const handleLinkClick = () => {
+    setIsMenuOpen(false)
   }
 
   useEffect(() => {
@@ -40,22 +44,22 @@ export const Navigation = () => {
         </Link>
       </div>
       <div className="flex items-center justify-end md:hidden">
-        <Hamburger isMenuOpen={isMenuOpen} handleClick={handleClick} />
+        <Hamburger isMenuOpen={isMenuOpen} handleClick={handleButtonClick} />
       </div>
-      <div className="col-span-2 row-[2/3] overflow-hidden group-data-[open=true]:pb-2 group-data-[open=true]:shadow-sm md:col-[2/3] md:row-[1/2] md:overflow-auto">
+      <div className="col-span-2 row-[2/3] overflow-hidden group-data-[open=true]:pb-2 group-data-[open=true]:shadow-sm md:col-[2/3] md:row-[1/2] md:overflow-auto md:group-data-[open=true]:pb-[unset] md:group-data-[open=true]:shadow-none">
         <ul className="flex h-full flex-col items-end justify-center gap-2 md:basis-0 md:flex-row md:justify-end">
           <li className="contents">
-            <NavLink href={'/bars'} handleClick={handleClick}>
+            <NavLink href={'/bars'} handleClick={handleLinkClick}>
               Hitta barer
             </NavLink>
           </li>
           <li className="contents">
-            <NavLink href={'/testing-ground'} handleClick={handleClick}>
+            <NavLink href={'/testing-ground'} handleClick={handleLinkClick}>
               Om Billig Bärs
             </NavLink>
           </li>
           <li className="contents md:hidden">
-            <NavLink href={'/'} handleClick={handleClick}>
+            <NavLink href={'/'} handleClick={handleLinkClick}>
               Startsida
             </NavLink>
           </li>
