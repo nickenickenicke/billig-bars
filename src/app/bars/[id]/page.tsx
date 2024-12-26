@@ -59,7 +59,7 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
           <div className="aspect-[18/15] md:sticky md:left-0 md:top-navbar md:col-[2/3] md:row-[1/2] md:aspect-[unset] md:h-[calc(100vh-var(--navbar-height))] md:w-full">
             <MapCanvas singleBar={bar} />
           </div>
-          <article className="mt-4 px-2 md:col-[1/2] md:row-[1/2] md:mt-0 md:px-8">
+          <article className="mt-4 px-2 md:col-[1/2] md:row-[1/2] md:mt-0 md:px-4 lg:px-8">
             <span className="mb-4 block text-right text-sm md:text-base">
               <Link href={'/bars'} className="underline underline-offset-2">
                 {'< '}Tillbaka till alla barer

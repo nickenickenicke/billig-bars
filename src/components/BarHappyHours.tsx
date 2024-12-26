@@ -60,13 +60,13 @@ export const BarHappyHours = ({ happyHours }: BarHappyHoursProps) => {
 
   return (
     <>
-      <h3 className="mb-2 mt-8 font-medium uppercase">Happy hour-priser</h3>
+      <h3 className="mb-2 mt-8 font-medium uppercase md:text-xl">Happy hour-priser</h3>
       <ul className="grid grid-cols-[auto_1fr] gap-y-1">
         {groupedHappyHours.map((group, i) => {
           return (
             <li
               key={i}
-              className="col-span-2 row-span-2 mb-4 grid grid-cols-subgrid grid-rows-subgrid"
+              className="col-span-2 row-span-2 mb-4 grid grid-cols-subgrid grid-rows-subgrid md:text-lg"
             >
               <span className="col-span-1 mr-3 block">{getDayRange(group.days)}</span>
               <span className="col-span-1 block">
