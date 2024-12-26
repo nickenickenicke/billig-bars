@@ -11,7 +11,7 @@ export const NavLink = ({ href, className, handleClick, children }: NavLinkProps
   return (
     <Link
       href={href}
-      className={`flex w-full items-center px-4 py-3 text-xl uppercase tracking-wide ${className ? className : ''} md:h-full md:w-[unset] md:gap-8 md:px-8 md:hover:bg-bg-blue`}
+      className={`flex w-full items-center px-4 py-3 text-xl uppercase tracking-wide ${className ? className : ''} md:h-full md:w-[unset] md:gap-8 md:px-8 md:underline md:underline-offset-2 md:hover:bg-bg-blue`}
       onClick={handleClick}
     >
       {children}
