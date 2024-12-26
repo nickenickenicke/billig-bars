@@ -8,11 +8,11 @@ export default async function Home() {
   const bars = await getCurrentlyCheapestBars()
   return (
     <article className="mt-6 grid grid-cols-12 grid-rows-[auto_auto_3fr_4fr_auto_auto] px-2 md:grid-rows-[auto_auto_auto_auto] md:gap-x-10 md:px-8 md:pt-10">
-      <div className="col-span-full row-[1/4] rounded-lg bg-bg-mustard lg:col-[1/8] lg:row-[1/3]"></div>
-      <h2 className="col-span-full row-[1/2] px-3 pt-4 text-2xl font-medium md:px-6 md:pt-8 md:text-4xl lg:col-[1/8]">
+      <div className="col-span-full row-[1/4] rounded-lg bg-bg-mustard md:col-[1/11] lg:col-[1/8] lg:row-[1/3]"></div>
+      <h2 className="col-span-full row-[1/2] px-3 pt-4 text-2xl font-medium md:col-[1/11] md:px-6 md:pt-8 md:text-4xl lg:col-[1/8]">
         Söders billigaste bärs
       </h2>
-      <section className="col-span-full row-[2/3] p-3 pb-6 md:px-6 md:pb-14 md:pt-6 md:text-xl lg:col-[1/8]">
+      <section className="col-span-full row-[2/3] p-3 pb-6 md:col-[1/11] md:px-6 md:pb-14 md:pt-6 md:text-xl lg:col-[1/8]">
         <p className="md:max-w-[55ch]">
           Törstig och pank? Var hittar du egentligen Söders billigaste bärs? Är det ens öppet nu?
           Och kan du fortfarande få tre stora stark för under en hundring?
@@ -29,8 +29,8 @@ export default async function Home() {
           </Link>
         </div>
       </section>
-      <figure className="col-span-full row-[3/6] justify-self-center lg:col-[8/12] lg:row-[1/3]">
-        <SvgMascot className="w-48 lg:h-full lg:w-[unset]" />
+      <figure className="col-span-full row-[3/6] justify-self-center md:col-[8/13] md:-mt-28 lg:col-[9/12] lg:row-[1/3] lg:mt-[unset]">
+        <SvgMascot className="w-48 md:w-64 lg:h-full lg:w-[unset]" />
       </figure>
 
       <section className="col-span-full row-[6/7] lg:col-[1/7] lg:row-[3/4] lg:mt-4">
@@ -44,7 +44,7 @@ export default async function Home() {
         )}
       </section>
 
-      <section className="col-span-full row-[7/8] mt-8 self-start rounded-lg bg-bg-pink px-3 pb-8 pt-4 md:px-6 md:pb-14 md:pt-8 md:text-xl lg:col-[7/13] lg:row-[3/4] lg:mt-14">
+      <section className="col-span-full row-[7/8] mt-8 self-start rounded-lg bg-bg-pink px-3 pb-8 pt-4 md:col-[2/12] md:px-6 md:pb-14 md:pt-8 md:text-xl lg:col-[7/13] lg:row-[3/4] lg:mt-14">
         <h2 className="text-2xl font-medium md:text-4xl">Hur funkar det?</h2>
         <p className="pt-3 md:max-w-[55ch] md:pt-6">
           Billig Bärs räknar på hur många centiliter öl man får per krona på en krog och ger efter
