@@ -19,7 +19,7 @@ export const MapBarMarker = ({ bar, handleBarMarkerClick }: MapBarMarkerProps) =
       }}
     >
       <span
-        className={`aspect-square rounded-full bg-green-price p-2 font-sans ${
+        className={`aspect-square rounded-full bg-green-price p-2 font-sans md:text-base ${
           bar.current_ppv < ppvUpperThresholds.cheap
             ? 'bg-green-price'
             : bar.current_ppv < ppvUpperThresholds.average

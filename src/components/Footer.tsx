@@ -5,10 +5,10 @@ import { SvgLogo } from './svgs/SvgLogo'
 
 export const Footer = () => {
   return (
-    <footer className="mt-8 flex w-full flex-col items-center">
+    <footer className="mt-8 flex w-full flex-col items-center md:mt-28">
       <SvgFooter className="-mb-1 max-h-24 max-w-[100vw]" />
       <div className="grid min-h-40 w-full grid-cols-[auto] grid-rows-[auto_auto_auto_1fr] gap-10 bg-black px-4 pb-20 pt-6 text-white md:grid-cols-[15rem_auto_1fr] md:grid-rows-[auto_1fr] md:gap-6">
-        <figure className="row-span-1 md:col-[1/3] md:row-[1/2]">
+        <figure className="row-span-1 md:col-[1/2] md:row-[1/2]">
           <SvgLogo className="h-6 fill-white" />
         </figure>
         <nav className="row-span-1 flex flex-col gap-3 text-xl tracking-wide md:col-[1/2] md:row-[2/3]">
@@ -22,7 +22,7 @@ export const Footer = () => {
             Om Billig Bärs
           </Link>
         </nav>
-        <section className="row-span-1 block max-w-[25ch] underline-offset-4">
+        <section className="row-span-1 block max-w-[25ch] underline-offset-4 md:text-lg">
           <p>
             Jag som har gjort Billig Bärs heter Nicke Bergman och sidan är mitt examensarbete i
             utbildningen Frontend Developer på{' '}
@@ -67,7 +67,7 @@ export const Footer = () => {
             .
           </p>
         </section>
-        <ScrollToTop className="row-span-1 cursor-pointer justify-self-end underline underline-offset-4 hover:text-green-price md:col-[3/4] md:row-[1/2]">
+        <ScrollToTop className="row-span-1 cursor-pointer justify-self-end underline underline-offset-4 hover:text-green-price md:col-[2/4] md:row-[1/2] md:text-lg">
           Tillbaka till starten av sidan
         </ScrollToTop>
       </div>

@@ -21,7 +21,7 @@ export const BeerStatsCircle = ({
   }
   return (
     <div
-      className={`flex aspect-square w-[50px] items-center justify-center rounded-full border ${
+      className={`flex aspect-square w-[50px] items-center justify-center rounded-full border bg-white ${
         beer_ppv < ppvUpperThresholds.cheap
           ? 'border-green-price'
           : beer_ppv < ppvUpperThresholds.average
