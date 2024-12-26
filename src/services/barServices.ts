@@ -1,7 +1,7 @@
 import { Bar } from '@/models/Bar'
 import { createClient } from '../utils/supabase/server'
 
-export const getCurrentlyCheapestBar = async (): Promise<Bar[]> => {
+export const getCurrentlyCheapestBars = async (): Promise<Bar[]> => {
   const supabase = await createClient()
   const { data, error } = await supabase
     .rpc('barsnextopen', {
@@ -9,7 +9,7 @@ export const getCurrentlyCheapestBar = async (): Promise<Bar[]> => {
     })
     .order('is_open', { ascending: false })
     .order('beer_ppv', { ascending: true })
-    .limit(1)
+    .limit(3)
   if (error) {
     return []
   }
