@@ -1,4 +1,5 @@
 import { BarCard } from '@/components/BarCard'
+import { ButtonLink } from '@/components/ButtonLink'
 import { Subheading } from '@/components/Subheading'
 import { SvgMascot } from '@/components/svgs/SvgMascot'
 import { getCurrentlyCheapestBars } from '@/services/barServices'
@@ -21,12 +22,7 @@ export default async function Home() {
           Du är inte ensam om dessa tankar. Och nu har du svaret på alla dina frågor framför dig.
         </p>
         <div className="flex basis-0 justify-center pt-4 md:pt-10">
-          <Link
-            href="/bars"
-            className="rounded-full border-2 border-black bg-black px-10 py-3 font-medium uppercase tracking-wider text-white"
-          >
-            Till barerna
-          </Link>
+          <ButtonLink href="/bars">Till barerna</ButtonLink>
         </div>
       </section>
       <figure className="col-span-full row-[3/6] justify-self-center md:col-[8/13] md:-mt-28 lg:col-[7/13] lg:-mt-48">
@@ -57,12 +53,7 @@ export default async function Home() {
           Om du är pigg i bollen kan du <Link href="/about">läsa precis hur det fungerar här</Link>.
         </p>
         <div className="flex basis-0 justify-center pt-4 md:pt-10">
-          <Link
-            href="/about"
-            className="rounded-full border-2 border-black bg-black px-10 py-3 font-medium uppercase tracking-wider text-white"
-          >
-            Om Billig Bärs
-          </Link>
+          <ButtonLink href="/about">Om Billig Bärs</ButtonLink>
         </div>
       </section>
     </article>
