@@ -9,7 +9,7 @@ interface BarCardInformationProps {
 export const BarCardInformation = ({ bar }: BarCardInformationProps) => {
   return (
     <>
-      <h3 className="text-2xl font-medium">{bar.name}</h3>
+      <h3 className="text-2xl font-medium md:text-3xl">{bar.name}</h3>
       {bar.dist_meters && bar.dist_meters != -1 ? (
         <span className="block">{normalizeMeters(bar.dist_meters)}</span>
       ) : null}

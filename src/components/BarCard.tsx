@@ -20,7 +20,7 @@ export const BarCard = ({ bar, currentLocation, className }: BarCardProps) => {
         href={`/bars/${bar.id}${currentLocation ? `?currentlat=${currentLocation.currentlat}&currentlong=${currentLocation.currentlong}` : ''}`}
         className={`grid grid-cols-[1fr_1fr_auto_100px] grid-rows-[1fr_auto_50px] justify-between rounded-none border-b border-b-gray-900 bg-white px-2 py-5 ${className ? className : ''} md:hover:bg-bg-blue`}
       >
-        <div className="col-[1/3] row-[1/3]">
+        <div className="col-[1/3] row-[1/3] md:text-lg">
           <BarCardInformation bar={bar} />
         </div>
 
