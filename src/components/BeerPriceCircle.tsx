@@ -15,12 +15,14 @@ export const BeerPriceCircle = ({ beer_ppv, beer_price, small }: BeerPriceCircle
           : beer_ppv < ppvUpperThresholds.average
             ? 'bg-yellow-price'
             : 'bg-red-price'
-      } ${small ? 'h-[50px] w-[50px]' : 'h-[100px] w-[100px]'} `}
+      } ${small ? 'h-[50px] w-[50px] md:h-[75px] md:w-[75px]' : 'h-[100px] w-[100px]'} `}
     >
-      <span className={`font-price tracking-tighter ${small ? 'text-2xl' : 'text-5xl'}`}>
+      <span
+        className={`font-price tracking-tighter ${small ? 'text-2xl md:text-4xl' : 'text-5xl'}`}
+      >
         {beer_price}
         <span
-          className={`inline-block ${small ? '-translate-y-[0.18rem]' : '-translate-y-[0.33rem]'}`}
+          className={`inline-block ${small ? '-translate-y-[0.18rem] md:-translate-y-[0.24rem]' : '-translate-y-[0.33rem]'}`}
         >
           :
         </span>
