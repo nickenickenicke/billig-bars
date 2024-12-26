@@ -60,14 +60,14 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
             <MapCanvas singleBar={bar} />
           </div>
           <article className="mt-4 px-2 md:col-[1/2] md:row-[1/2] md:mt-0 md:px-8">
-            <span className="mb-4 block text-right text-sm">
+            <span className="mb-4 block text-right text-sm md:text-base">
               <Link href={'/bars'} className="underline underline-offset-2">
                 {'< '}Tillbaka till alla barer
               </Link>
             </span>
 
             <div className="grid grid-cols-[1fr_1fr_auto_100px] grid-rows-[1fr_auto_50px] justify-between rounded-none bg-white">
-              <div className="col-[1/3] row-[1/3]">
+              <div className="col-[1/3] row-[1/3] text-lg">
                 <h1 className="text-4xl font-medium">{bar.name}</h1>
                 {bar.dist_meters && bar.dist_meters > 0 ? (
                   <span>{normalizeMeters(bar.dist_meters)}</span>
@@ -85,7 +85,7 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
               </div>
 
               <div className="col-[1/4] row-[3/4] flex flex-row-reverse gap-2 pr-2">
-                <BeerStats beer_ppv={bar.current_ppv} beer_volume={bar.current_ppv} />
+                <BeerStats beer_ppv={bar.current_ppv} beer_volume={bar.current_volume} />
               </div>
 
               <div className="col-[3/5] row-[1/2] flex flex-col flex-wrap items-end justify-start gap-2 pt-1.5">
