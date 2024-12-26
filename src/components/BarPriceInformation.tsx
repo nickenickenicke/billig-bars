@@ -12,7 +12,7 @@ export const BarPriceInformation = ({ bar }: BarPriceInformationProps) => {
   return (
     <>
       <Subheading className="mb-6">Prisinformation</Subheading>
-      <h3 className="mb-4 font-medium uppercase">Normalpris</h3>
+      <h3 className="mb-2 font-medium uppercase">Normalpris</h3>
       <ul className="flex basis-0 items-end justify-start gap-2">
         <li>
           <BeerPriceCircle beer_ppv={bar.beer_ppv} beer_price={bar.beer_price} small />
