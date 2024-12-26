@@ -33,7 +33,7 @@ export const MapPopup = ({ bar, currentLocation, handleClosePopup, singleBar }: 
       >
         {bar.name}
       </Link>
-      <div className="col-[1/2] row-[2/3] pr-4 text-sm font-normal leading-5 md:mt-1 md:text-base">
+      <div className="col-[1/2] row-[2/3] pr-4 text-sm font-normal leading-5 md:mt-1 md:pr-8 md:text-base">
         <span className="block">{bar.address}</span>
         {bar.dist_meters && bar.dist_meters != -1 ? (
           <span className="block">{normalizeMeters(bar.dist_meters)}</span>
@@ -53,7 +53,7 @@ export const MapPopup = ({ bar, currentLocation, handleClosePopup, singleBar }: 
           </Link>
         )}
       </div>
-      <div className="col-[2/4] row-[2/3] place-self-end pr-1 md:pl-4">
+      <div className="col-[2/4] row-[2/3] place-self-end pr-1">
         <BeerPriceCircle beer_ppv={bar.current_ppv} beer_price={bar.current_price} small />
         <span className="block text-center md:text-base">{bar.beer_volume} cl</span>
       </div>
