@@ -34,12 +34,12 @@ export default async function Home() {
       </figure>
 
       <section className="col-span-full row-[6/7] lg:col-[1/7] lg:row-[3/4] lg:mt-4">
-        {bars.length > 0 && bars[0].is_open && (
+        {bars.length > 0 && (
           <>
-            <Subheading>Billigast just nu</Subheading>
+            <Subheading>{bars[0]?.is_open ? 'Billigast just nu' : 'Billigaste bärsen'}</Subheading>
             <BarCard bar={bars[0]} />
-            {bars[1]?.is_open && <BarCard bar={bars[1]} className="hidden md:grid" />}
-            {bars[2]?.is_open && <BarCard bar={bars[2]} className="hidden md:grid" />}
+            {bars[1] && <BarCard bar={bars[1]} className="hidden md:grid" />}
+            {bars[2] && <BarCard bar={bars[2]} className="hidden md:grid" />}
           </>
         )}
       </section>
