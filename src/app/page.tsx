@@ -1,13 +1,13 @@
 import { BarCard } from '@/components/BarCard'
 import { Subheading } from '@/components/Subheading'
 import { SvgMascot } from '@/components/svgs/SvgMascot'
-import { getCurrentlyCheapestBar } from '@/services/barServices'
+import { getCurrentlyCheapestBars } from '@/services/barServices'
 import Link from 'next/link'
 
 export default async function Home() {
-  const bars = await getCurrentlyCheapestBar()
+  const bars = await getCurrentlyCheapestBars()
   return (
-    <article className="mt-6 grid grid-cols-12 grid-rows-[auto_auto_3fr_4fr_auto_auto] px-2 md:grid-rows-[auto_auto_auto_auto] md:gap-x-8 md:px-8 md:pt-10">
+    <article className="mt-6 grid grid-cols-12 grid-rows-[auto_auto_3fr_4fr_auto_auto] px-2 md:grid-rows-[auto_auto_auto_auto] md:gap-x-10 md:px-8 md:pt-10">
       <div className="col-span-full row-[1/4] rounded-lg bg-bg-mustard lg:col-[1/8] lg:row-[1/3]"></div>
       <h2 className="col-span-full row-[1/2] px-3 pt-4 text-2xl font-medium md:px-6 md:pt-8 md:text-4xl lg:col-[1/8]">
         Söders billigaste bärs
@@ -38,8 +38,8 @@ export default async function Home() {
           <>
             <Subheading>Billigast just nu</Subheading>
             <BarCard bar={bars[0]} />
-            <BarCard bar={bars[0]} className="hidden md:grid" />
-            <BarCard bar={bars[0]} className="hidden md:grid" />
+            {bars[1]?.is_open && <BarCard bar={bars[1]} className="hidden md:grid" />}
+            {bars[2]?.is_open && <BarCard bar={bars[2]} className="hidden md:grid" />}
           </>
         )}
       </section>
