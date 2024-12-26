@@ -22,7 +22,7 @@ export const Footer = () => {
             Om Billig Bärs
           </Link>
         </nav>
-        <section className="row-span-1 block max-w-[25ch] underline-offset-4">
+        <section className="row-span-1 block max-w-[25ch] underline-offset-4 md:text-lg">
           <p>
             Jag som har gjort Billig Bärs heter Nicke Bergman och sidan är mitt examensarbete i
             utbildningen Frontend Developer på{' '}
@@ -67,7 +67,7 @@ export const Footer = () => {
             .
           </p>
         </section>
-        <ScrollToTop className="row-span-1 cursor-pointer justify-self-end underline underline-offset-4 hover:text-green-price md:col-[2/4] md:row-[1/2]">
+        <ScrollToTop className="row-span-1 cursor-pointer justify-self-end underline underline-offset-4 hover:text-green-price md:col-[2/4] md:row-[1/2] md:text-lg">
           Tillbaka till starten av sidan
         </ScrollToTop>
       </div>
