@@ -14,7 +14,7 @@ export const BarsView = () => {
         <div className="aspect-[18/15] md:sticky md:left-0 md:top-navbar md:col-[2/3] md:row-[1/2] md:aspect-[unset] md:h-[calc(100vh-var(--navbar-height))] md:w-full">
           <MapCanvas />
         </div>
-        <article className="px-2 md:col-[1/2] md:row-[1/2] md:px-8">
+        <article className="px-2 md:col-[1/2] md:row-[1/2] md:px-4 lg:px-8">
           <FilterBar />
           <GeolocateButton />
           <FilterStatus />
