@@ -56,8 +56,8 @@ export const BarAdminForm = () => {
 
       <Subheading className="mb-4">Happy hours</Subheading>
       <FormHappyHours />
-      <span className="block">{formState.message && formState.message} </span>
-      <FormSubmitButton label={'Submit'} loadingMessage={'Loading...'} />
+      <span className="block p-2">{formState.message && formState.message} </span>
+      <FormSubmitButton label={'Submit'} loadingMessage={'Loading...'} className="mt-6" />
     </form>
   )
 }
