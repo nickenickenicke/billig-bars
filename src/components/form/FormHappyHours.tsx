@@ -114,8 +114,7 @@ export const FormHappyHours = () => {
   }
 
   return (
-    <div className="happy-hours bg-yellow-100 py-4">
-      <h3>Happy Hours</h3>
+    <div className="happy-hours bg-bg-mustard py-4">
       <button type="button" onClick={toggleHappyHours}>
         Show happy hours
       </button>
