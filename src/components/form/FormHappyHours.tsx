@@ -114,10 +114,13 @@ export const FormHappyHours = () => {
   }
 
   return (
-    <div className="happy-hours bg-yellow-100 py-4">
-      <h3>Happy Hours</h3>
-      <button type="button" onClick={toggleHappyHours}>
-        Show happy hours
+    <div className="happy-hours bg-bg-mustard px-2 py-4">
+      <button
+        type="button"
+        onClick={toggleHappyHours}
+        className={`w-full ${hasHappyHours ? 'mb-4' : ''}`}
+      >
+        {hasHappyHours ? 'Göm' : 'Visa'} happy hours
       </button>
       {hasHappyHours && (
         <>
@@ -134,8 +137,8 @@ export const FormHappyHours = () => {
               handleClearDay(1)
             }}
           />
-          <button type="button" onClick={useMondayValuesForAllDays}>
-            Use these values for all days
+          <button type="button" onClick={useMondayValuesForAllDays} className="mb-8 w-full">
+            Använd samma värden för alla dagar
           </button>
           <FormHappyHourItem
             day={2}

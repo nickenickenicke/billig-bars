@@ -84,8 +84,7 @@ export const FormOpeningHours = () => {
   }
 
   return (
-    <div className="opening-hours bg-slate-300 py-4">
-      <h3>Opening Hours</h3>
+    <div className="opening-hours bg-bg-pink px-2 py-4">
       <div id="opening-hours-container">
         <FormOpeningHoursItem
           day={1}
@@ -98,8 +97,8 @@ export const FormOpeningHours = () => {
             handleClosed(1)
           }}
         />
-        <button type="button" onClick={useMondayValuesForAllDays}>
-          Use these values for all days
+        <button type="button" onClick={useMondayValuesForAllDays} className="mb-4 w-full">
+          Använd samma värden för alla dagar
         </button>
 
         <FormOpeningHoursItem
