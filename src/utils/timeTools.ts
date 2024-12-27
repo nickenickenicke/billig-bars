@@ -72,3 +72,17 @@ export const addZero = (num: number): string => {
   }
   return num.toString()
 }
+
+export const adjustQueryTimestamp = (timestamp: Date) => {
+  let adjustedTimestamp = timestamp
+
+  const minutes = timestamp.getMinutes()
+
+  if (minutes < 30) {
+    adjustedTimestamp.setMinutes(0)
+  } else {
+    adjustedTimestamp.setMinutes(30)
+  }
+
+  return adjustedTimestamp
+}
