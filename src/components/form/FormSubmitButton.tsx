@@ -1,4 +1,5 @@
 import { useFormStatus } from 'react-dom'
+import { Button } from '../Button'
 
 type FormSubmitButtonProps = {
   label: string
@@ -9,8 +10,8 @@ export const FormSubmitButton = ({ label, loadingMessage }: FormSubmitButtonProp
   const { pending } = useFormStatus()
 
   return (
-    <button disabled={pending} type="submit" className="">
+    <Button type="submit" disabled={pending} className="">
       {pending ? loadingMessage : label}
-    </button>
+    </Button>
   )
 }
