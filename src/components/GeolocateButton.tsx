@@ -8,6 +8,7 @@ import { StateActionType } from '@/reducers/GlobalStateReducer'
 import { GlobalState } from '@/models/GlobalState'
 import { LoadingOverlay } from './LoadingOverlay'
 import { useMap } from '@vis.gl/react-maplibre'
+import { Button } from './Button'
 
 export const GeolocateButton = () => {
   const [loading, setLoading] = useState(false)
@@ -62,10 +63,10 @@ export const GeolocateButton = () => {
 
   return (
     <>
-      <button type="button" onClick={handleClick}>
-        Geolocate me!
-      </button>
-      {loading && <LoadingOverlay message="Getting location..." />}
+      <Button type="button" onClick={handleClick} className="my-4 w-full" geolocate>
+        Använd min plats
+      </Button>
+      {loading && <LoadingOverlay message="Hämtar din plats..." />}
     </>
   )
 }
