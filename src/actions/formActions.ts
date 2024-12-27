@@ -13,14 +13,16 @@ export const insertBar = async (formState: FormState, formData: FormData): Promi
     let opens_at_min = formData.get(`opens_at_min_${index + 1}`)
     let closes_at = formData.get(`closes_at_${index + 1}`)
     let closes_at_min = formData.get(`closes_at_min_${index + 1}`)
+
     if (opens_at && closes_at) {
       openingHours.push({
         day_of_week: index + 1,
-        opens_at: (opens_at as string) + ':' + (opens_at_min as string),
-        closes_at: (closes_at as string) + ':' + (closes_at_min as string)
+        opens_at: (opens_at as string) + ':' + ((opens_at_min as string) || '00'),
+        closes_at: (closes_at as string) + ':' + ((closes_at_min as string) || '00')
       })
     }
   }
+
   const happyHours: HappyHours[] = []
   for (let index = 0; index < 7; index++) {
     let starts_at = formData.get(`happy_starts_at_${index + 1}`)
@@ -33,8 +35,8 @@ export const insertBar = async (formState: FormState, formData: FormData): Promi
       const ppv = calculatePPV(price as string, volume as string)
       happyHours.push({
         day_of_week: index + 1,
-        starts_at: (starts_at as string) + ':' + (starts_at_min as string),
-        ends_at: (ends_at as string) + ':' + (ends_at_min as string),
+        starts_at: (starts_at as string) + ':' + ((starts_at_min as string) || '00'),
+        ends_at: (ends_at as string) + ':' + ((ends_at_min as string) || '00'),
         price: parseInt(price as string),
         volume: parseInt(volume as string),
         ppv: ppv
