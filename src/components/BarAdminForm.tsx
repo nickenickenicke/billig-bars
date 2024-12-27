@@ -13,14 +13,14 @@ export const BarAdminForm = () => {
   const [formState, action] = useFormState(insertBar, { message: '' })
   return (
     <form action={action} className="md:mx-auto md:w-1/2">
-      <Subheading className="mb-4">Add new bar</Subheading>
+      <Subheading className="mb-4">Lägg till ny bar</Subheading>
       <div className="px-2">
-        <FormInput label={'Venue Name'} name={'name'} text placeholder="Barnamn" required />
+        <FormInput label={'Barnamn'} name={'name'} text placeholder="Barnamn" required />
 
-        <FormInput label={'Address'} name={'address'} text defaultValue="Hornsgatan " required />
+        <FormInput label={'Adress'} name={'address'} text defaultValue="Hornsgatan " required />
 
         <FormInput
-          label={'Postal Code'}
+          label={'Postnummer'}
           name={'postal_code'}
           text
           numericInput
@@ -28,10 +28,10 @@ export const BarAdminForm = () => {
           required
         />
 
-        <FormInput label={'City'} name={'city'} text defaultValue="Stockholm" required />
+        <FormInput label={'Stad'} name={'city'} text defaultValue="Stockholm" required />
 
         <FormInput
-          label={'Beer Volume (cl)'}
+          label={'Ölvolym (cl)'}
           name={'beer_volume'}
           text
           numericInput
@@ -40,7 +40,7 @@ export const BarAdminForm = () => {
         />
 
         <FormInput
-          label={'Beer Price (SEK)'}
+          label={'Ölpris (SEK)'}
           name={'beer_price'}
           text
           numericInput
@@ -51,13 +51,13 @@ export const BarAdminForm = () => {
         <FormLatLong />
       </div>
 
-      <Subheading className="mb-4">Opening hours</Subheading>
+      <Subheading className="mb-4">Öppettider</Subheading>
       <FormOpeningHours />
 
       <Subheading className="mb-4">Happy hours</Subheading>
       <FormHappyHours />
       <span className="block p-2">{formState.message && formState.message} </span>
-      <FormSubmitButton label={'Submit'} loadingMessage={'Loading...'} className="mt-6" />
+      <FormSubmitButton label={'Spara'} loadingMessage={'Laddar...'} className="mt-6" />
     </form>
   )
 }

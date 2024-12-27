@@ -39,14 +39,14 @@ export const FormLatLong = () => {
 
   return (
     <>
-      <button type="button" onClick={handleGeolocate}>
-        Get current location
+      <button type="button" className="mb-1 mt-2 w-full" onClick={handleGeolocate}>
+        Använd min plats
       </button>
 
       {showErrorMessage && <p className="text-red-500">{errorMessage}</p>}
 
       <FormInput
-        label={'Longitude'}
+        label={'Longitud'}
         name={'longitude'}
         text
         numericInput
@@ -56,7 +56,7 @@ export const FormLatLong = () => {
       />
 
       <FormInput
-        label={'Latitude'}
+        label={'Latitud'}
         name={'latitude'}
         text
         numericInput

@@ -24,10 +24,13 @@ export const FormHappyHourItem = ({
   handleClearDay
 }: FormHappyHourItemProps) => {
   return (
-    <div className="form-group">
-      <h3>{`${weekdayNames[day - 1]} (Day ${day}) Happy Hour:`}</h3>
-      <div className="grid grid-cols-6 grid-rows-3">
-        <label htmlFor={`happy_starts_at_${day}`}>Starts at</label>
+    <div className="form-group mb-6">
+      <div className="grid grid-cols-6 grid-rows-3 gap-x-2 gap-y-1">
+        <h3 className="col-[1/3] row-[1/2] text-lg font-medium">{`${weekdayNames[day - 1]}`}</h3>
+        <button className="col-[3/7] row-[1/2]" type="button" onClick={handleClearDay}>
+          Rensa dagen
+        </button>
+        <label htmlFor={`happy_starts_at_${day}`}>Startar kl</label>
         <input
           type="number"
           name={`happy_starts_at_${day}`}
@@ -38,7 +41,9 @@ export const FormHappyHourItem = ({
           value={happy_starts_at}
           onChange={handleChange}
         />
-        <label htmlFor={`happy_starts_at_min_${day}`}>min</label>
+        <label htmlFor={`happy_starts_at_min_${day}`} className="justify-self-end pr-2">
+          min
+        </label>
         <input
           type="number"
           name={`happy_starts_at_min_${day}`}
@@ -49,7 +54,7 @@ export const FormHappyHourItem = ({
           value={happy_starts_at_min}
           onChange={handleChange}
         />
-        <label htmlFor={`happy_ends_at_${day}`}>Ends at</label>
+        <label htmlFor={`happy_ends_at_${day}`}>Slutar kl</label>
         <input
           type="number"
           name={`happy_ends_at_${day}`}
@@ -59,7 +64,9 @@ export const FormHappyHourItem = ({
           value={happy_ends_at}
           onChange={handleChange}
         />
-        <label htmlFor={`happy_ends_at_min_${day}`}>min</label>
+        <label htmlFor={`happy_ends_at_min_${day}`} className="justify-self-end pr-2">
+          min
+        </label>
         <input
           type="number"
           name={`happy_ends_at_min_${day}`}
@@ -70,18 +77,18 @@ export const FormHappyHourItem = ({
           value={happy_ends_at_min}
           onChange={handleChange}
         />
-        <label className="col-start-5 row-start-1" htmlFor={`happy_volume_${day}`}>
-          Volume (cl)
+        <label className="col-start-5 row-start-2" htmlFor={`happy_volume_${day}`}>
+          Volym (cl)
         </label>
         <input
-          className="col-start-6 row-start-1"
+          className="col-start-6 row-start-2"
           type="number"
           name={`happy_volume_${day}`}
           id={`happy_volume_${day}`}
           value={happy_volume}
           onChange={handleChange}
         />
-        <label htmlFor={`happy_price_${day}`}>Price (SEK)</label>
+        <label htmlFor={`happy_price_${day}`}>Pris (SEK)</label>
         <input
           type="number"
           name={`happy_price_${day}`}
@@ -89,9 +96,6 @@ export const FormHappyHourItem = ({
           value={happy_price}
           onChange={handleChange}
         />
-        <button className="col-span-6" type="button" onClick={handleClearDay}>
-          Clear
-        </button>
       </div>
     </div>
   )

@@ -20,10 +20,10 @@ export const FormOpeningHoursItem = ({
   handleClosed
 }: FormOpeningHoursItemProps) => {
   return (
-    <div className="form-group">
-      <h3>{`${weekdayNames[day - 1]} (Day ${day}):`}</h3>
-      <div className="grid grid-cols-5 grid-rows-2">
-        <label htmlFor={`opens_at_${day}`}>Opens at</label>
+    <div className="form-group mb-4">
+      <h3 className="mb-2 text-lg font-medium">{`${weekdayNames[day - 1]}`}</h3>
+      <div className="grid grid-cols-5 grid-rows-2 gap-x-2 gap-y-1">
+        <label htmlFor={`opens_at_${day}`}>Öppnar kl</label>
         <input
           type="number"
           name={`opens_at_${day}`}
@@ -33,7 +33,9 @@ export const FormOpeningHoursItem = ({
           value={opens_at}
           onChange={handleChange}
         />
-        <label htmlFor={`opens_at_min_${day}`}>min</label>
+        <label className="justify-self-end" htmlFor={`opens_at_min_${day}`}>
+          min
+        </label>
         <input
           type="number"
           name={`opens_at_min_${day}`}
@@ -43,7 +45,7 @@ export const FormOpeningHoursItem = ({
           value={opens_at_min}
           onChange={handleChange}
         />
-        <label htmlFor={`closes_at_${day}`}>Closes at</label>
+        <label htmlFor={`closes_at_${day}`}>Stänger kl</label>
         <input
           type="number"
           name={`closes_at_${day}`}
@@ -53,7 +55,9 @@ export const FormOpeningHoursItem = ({
           value={closes_at}
           onChange={handleChange}
         />
-        <label htmlFor={`closes_at_min_${day}`}>min</label>
+        <label className="justify-self-end" htmlFor={`closes_at_min_${day}`}>
+          min
+        </label>
         <input
           type="number"
           name={`closes_at_min_${day}`}
@@ -64,7 +68,7 @@ export const FormOpeningHoursItem = ({
           onChange={handleChange}
         />
         <button className="col-start-5 row-span-2 row-start-1" type="button" onClick={handleClosed}>
-          Closed
+          Stängt
         </button>
       </div>
     </div>

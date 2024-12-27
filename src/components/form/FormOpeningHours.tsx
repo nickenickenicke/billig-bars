@@ -97,8 +97,8 @@ export const FormOpeningHours = () => {
             handleClosed(1)
           }}
         />
-        <button type="button" onClick={useMondayValuesForAllDays}>
-          Use these values for all days
+        <button type="button" onClick={useMondayValuesForAllDays} className="mb-4 w-full">
+          Använd samma värden för alla dagar
         </button>
 
         <FormOpeningHoursItem
