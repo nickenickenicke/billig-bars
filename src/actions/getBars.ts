@@ -7,7 +7,7 @@ import { SupabaseQuery } from '@/models/Queries'
 import { createClient } from '@/utils/supabase/server'
 import { addZero, getCurrentHour, getCurrentMinute, getTodaysWeekday } from '@/utils/timeTools'
 
-export const getBarsWithQueryObjectCheckOpen = async (
+export const getBarsWithQueryObject = async (
   query: CurrentQuery,
   currentLocation: CurrentLocation
 ): Promise<Bar[]> => {

@@ -2,7 +2,7 @@
 
 import { useContext, useState } from 'react'
 import { GlobalStateContext } from '@/contexts/GlobalStateContext'
-import { getBarsWithQueryObjectCheckOpen } from '@/actions/getBars'
+import { getBarsWithQueryObject } from '@/actions/getBars'
 import { CurrentLocation } from '@/models/Location'
 import { StateActionType } from '@/reducers/GlobalStateReducer'
 import { GlobalState } from '@/models/GlobalState'
@@ -19,7 +19,7 @@ export const GeolocateButton = () => {
   const { beerMap } = useMap()
 
   const getBarsAndDispatch = async (location: CurrentLocation) => {
-    const newBars = await getBarsWithQueryObjectCheckOpen(currentQuery, location)
+    const newBars = await getBarsWithQueryObject(currentQuery, location)
     const newState: GlobalState = {
       bars: newBars,
       barsFromApi: newBars,

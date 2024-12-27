@@ -1,6 +1,6 @@
 'use client'
 
-import { getBarsWithQueryObjectCheckOpen } from '@/actions/getBars'
+import { getBarsWithQueryObject } from '@/actions/getBars'
 import { GlobalStateContext } from '@/contexts/GlobalStateContext'
 import { GlobalState } from '@/models/GlobalState'
 import { StateActionType } from '@/reducers/GlobalStateReducer'
@@ -23,7 +23,7 @@ export const CheckSearchParams = () => {
     const initiate = async () => {
       const newQuery = checkParams(searchParams)
 
-      const newBars = await getBarsWithQueryObjectCheckOpen(newQuery, globalState.currentLocation)
+      const newBars = await getBarsWithQueryObject(newQuery, globalState.currentLocation)
 
       const newState: GlobalState = {
         ...globalState,
