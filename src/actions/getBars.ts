@@ -27,7 +27,6 @@ export const getBarsWithQueryObject = async (
 
   const supabase = await createClient()
 
-  //With location, order by distance
   const { data, error } = await supabase
     .rpc('barsnextopen', dbQuery)
     .order('is_open', { ascending: false })
