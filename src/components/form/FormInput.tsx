@@ -24,8 +24,10 @@ export const FormInput = ({
   onChange
 }: FormInputProps) => {
   return (
-    <div className={`form-group flex flex-col ${className ? className : ''}`}>
-      <label htmlFor={name}>{label}</label>
+    <div className={`form-group mb-2 flex flex-col ${className ? className : ''}`}>
+      <label htmlFor={name} className="mb-1">
+        {label}
+      </label>
       <input
         inputMode={numericInput ? 'decimal' : undefined}
         type={text ? 'text' : 'number'}
