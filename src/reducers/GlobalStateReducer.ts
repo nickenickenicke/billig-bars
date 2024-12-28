@@ -20,7 +20,6 @@ export const defaultCurrentLocation: CurrentLocation = {
 
 export const defaultGlobalState: GlobalState = {
   bars: defaultBarsState,
-  barsFromApi: defaultBarsState,
   currentLocation: defaultCurrentLocation,
   currentQuery: defaultCurrentQuery
 }
@@ -32,18 +31,13 @@ export const GlobalStateReducer = (prevState: GlobalState, action: StateAction):
 
       if (
         updatedState.bars.length != 0 &&
-        updatedState.barsFromApi.length != 0 &&
         updatedState.currentLocation.currentlat != 0 &&
         updatedState.currentLocation.currentlong != 0 &&
         updatedState.currentQuery
       ) {
         return updatedState
       }
-      if (
-        updatedState.bars.length != 0 &&
-        updatedState.barsFromApi.length != 0 &&
-        updatedState.currentQuery
-      ) {
+      if (updatedState.bars.length != 0 && updatedState.currentQuery) {
         return updatedState
       }
       return prevState

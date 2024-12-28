@@ -22,7 +22,6 @@ export const GeolocateButton = () => {
     const newBars = await getBarsWithQueryObject(currentQuery, location)
     const newState: GlobalState = {
       bars: newBars,
-      barsFromApi: newBars,
       currentLocation: location,
       currentQuery: currentQuery
     }

@@ -44,7 +44,6 @@ export const CheckSearchParams = () => {
       const newState: GlobalState = {
         ...globalState,
         bars: newBars,
-        barsFromApi: newBars,
         currentQuery: newQuery
       }
 

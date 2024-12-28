@@ -26,7 +26,6 @@ export const PutBarsIntoContext = ({ bars }: PutBarsIntoContext) => {
     const newState: GlobalState = {
       ...globalState,
       bars: bars,
-      barsFromApi: bars,
       currentQuery: {
         min: adjustMinutesToHalfHour(getCurrentMinute()),
         hour: getCurrentHour(),
