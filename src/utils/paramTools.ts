@@ -1,11 +1,17 @@
 import { CurrentQuery } from '@/models/GlobalState'
-import { getCurrentHour, getCurrentMinute, getTodaysWeekday } from './timeTools'
+import {
+  adjustMinutesToHalfHour,
+  getCurrentHour,
+  getCurrentMinute,
+  getTodaysWeekday
+} from './timeTools'
 
 export const checkParams = (params: URLSearchParams): CurrentQuery => {
   let desc = false
   if (params.get('sort') === 'desc') {
     desc = true
   }
+
   let min: number | null = null
   if (params.get('min')) {
     min = parseInt(params.get('min') as string) || min
@@ -13,6 +19,8 @@ export const checkParams = (params: URLSearchParams): CurrentQuery => {
       min = getCurrentMinute()
     }
   }
+  min = adjustMinutesToHalfHour(min || 0)
+
   let hour: number | null = null
   if (params.get('hour')) {
     hour = parseInt(params.get('hour') as string) || hour
@@ -20,6 +28,7 @@ export const checkParams = (params: URLSearchParams): CurrentQuery => {
       hour = getCurrentHour()
     }
   }
+
   let day: number | null = null
   if (params.get('day')) {
     day = parseInt(params.get('day') as string) || day
