@@ -2,11 +2,23 @@
 
 import { getBarsWithQueryObject } from '@/actions/getBars'
 import { GlobalStateContext } from '@/contexts/GlobalStateContext'
-import { GlobalState } from '@/models/GlobalState'
+import { CurrentQuery, GlobalState } from '@/models/GlobalState'
 import { StateActionType } from '@/reducers/GlobalStateReducer'
 import { checkParams } from '@/utils/paramTools'
 import { useSearchParams } from 'next/navigation'
 import { useContext, useEffect, useRef } from 'react'
+
+const checkIfSameAsOldQuery = (newQuery: CurrentQuery, oldQuery: CurrentQuery) => {
+  if (
+    newQuery.min === oldQuery.min &&
+    newQuery.hour === oldQuery.hour &&
+    newQuery.day === oldQuery.day &&
+    newQuery.sort === oldQuery.sort
+  ) {
+    return true
+  }
+  return false
+}
 
 export const CheckSearchParams = () => {
   const { globalState, dispatch } = useContext(GlobalStateContext)
@@ -22,6 +34,10 @@ export const CheckSearchParams = () => {
 
     const initiate = async () => {
       const newQuery = checkParams(searchParams)
+
+      if (checkIfSameAsOldQuery(newQuery, globalState.currentQuery)) {
+        return
+      }
 
       const newBars = await getBarsWithQueryObject(newQuery, globalState.currentLocation)
 
