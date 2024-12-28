@@ -136,6 +136,5 @@ const mockBars: Bar[] = [singleBarMockData]
 export const initialMockData: GlobalState = {
   currentLocation: defaultCurrentLocation,
   bars: mockBars,
-  barsFromApi: mockBars,
   currentQuery: defaultCurrentQuery
 }

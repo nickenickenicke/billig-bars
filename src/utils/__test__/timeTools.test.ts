@@ -1,6 +1,9 @@
-import { HappyHours } from '@/models/Bar'
-import { getWeekdayName, normalizeTimeFromDB, getTodaysWeekday } from '../timeTools'
-import * as timeTools from '../timeTools'
+import {
+  getWeekdayName,
+  normalizeTimeFromDB,
+  getTodaysWeekday,
+  adjustQueryTimestamp
+} from '../timeTools'
 
 let mockedGetTodaysWeekday: jest.SpyInstance<number>
 let mockedGetCurrentHour: jest.SpyInstance<number>
@@ -69,101 +72,157 @@ describe('Testing getTodaysWeekday', () => {
 describe('Testing normalizeTimeFromDB', () => {
   test('should return 00', () => {
     //Assign
-    const hour = 0
-    const min = 0
+    const time = '00:00'
     //Act
-    const result = normalizeTimeFromDB(hour, min)
+    const result = normalizeTimeFromDB(time)
     //Assert
     expect(result).toBe('00')
   })
   test('should return 01', () => {
     //Assign
-    const hour = 1
-    const min = 0
+    const time = '01:00'
     //Act
-    const result = normalizeTimeFromDB(hour, min)
+    const result = normalizeTimeFromDB(time)
     //Assert
     expect(result).toBe('01')
   })
   test('should return 10', () => {
     //Assign
-    const hour = 10
-    const min = 0
+    const time = '10:00'
     //Act
-    const result = normalizeTimeFromDB(hour, min)
+    const result = normalizeTimeFromDB(time)
     //Assert
     expect(result).toBe('10')
   })
   test('should return 24', () => {
     //Assign
-    const hour = 24
-    const min = 0
+    const time = '24:00'
     //Act
-    const result = normalizeTimeFromDB(hour, min)
+    const result = normalizeTimeFromDB(time)
     //Assert
     expect(result).toBe('24')
   })
   test('should return 01:05', () => {
     //Assign
-    const hour = 1
-    const min = 5
+    const time = '01:05'
     //Act
-    const result = normalizeTimeFromDB(hour, min)
+    const result = normalizeTimeFromDB(time)
     //Assert
     expect(result).toBe('01:05')
   })
   test('should return 22:30', () => {
     //Assign
-    const hour = 22
-    const min = 30
+    const time = '22:30'
     //Act
-    const result = normalizeTimeFromDB(hour, min)
+    const result = normalizeTimeFromDB(time)
     //Assert
     expect(result).toBe('22:30')
   })
   test('should return 22 if minutes is negative', () => {
     //Assign
-    const hour = 22
-    const min = -30
+    const time = '22:-30'
     //Act
-    const result = normalizeTimeFromDB(hour, min)
+    const result = normalizeTimeFromDB(time)
     //Assert
     expect(result).toBe('22')
   })
   test('should return 22 if minutes is 60', () => {
     //Assign
-    const hour = 22
-    const min = 60
+    const time = '22:60'
     //Act
-    const result = normalizeTimeFromDB(hour, min)
+    const result = normalizeTimeFromDB(time)
     //Assert
     expect(result).toBe('22')
   })
   test('should return 22 if minutes is over 60', () => {
     //Assign
-    const hour = 22
-    const min = 61
+    const time = '22:61'
     //Act
-    const result = normalizeTimeFromDB(hour, min)
+    const result = normalizeTimeFromDB(time)
     //Assert
     expect(result).toBe('22')
   })
   test('should return blank string if hour is under 0', () => {
     //Assign
-    const hour = -1
-    const min = 10
+    const time = '-1:00'
     //Act
-    const result = normalizeTimeFromDB(hour, min)
+    const result = normalizeTimeFromDB(time)
     //Assert
     expect(result).toBe('')
   })
   test('should return blank string if hour is over 24', () => {
     //Assign
-    const hour = 25
-    const min = 10
+    const time = '25:00'
     //Act
-    const result = normalizeTimeFromDB(hour, min)
+    const result = normalizeTimeFromDB(time)
     //Assert
     expect(result).toBe('')
+  })
+  test('should return blank string if min is not a number', () => {
+    //Assign
+    const time = '25:a'
+    //Act
+    const result = normalizeTimeFromDB(time)
+    //Assert
+    expect(result).toBe('')
+  })
+  test('should return blank string if hour is not a number', () => {
+    //Assign
+    const time = 'a:30'
+    //Act
+    const result = normalizeTimeFromDB(time)
+    //Assert
+    expect(result).toBe('')
+  })
+  test('should return blank string if string is not time like', () => {
+    //Assign
+    const time = 'string'
+    //Act
+    const result = normalizeTimeFromDB(time)
+    //Assert
+    expect(result).toBe('')
+  })
+})
+
+describe('Testing adjustQueryTimestamp', () => {
+  test('should return 13:00 when minute is 00', () => {
+    //Assign
+    const timestamp = '2027-02-01T13:00:00.000Z'
+    //Act
+    const result = adjustQueryTimestamp(timestamp)
+    //Assert
+    expect(result).toBe('2027-02-01T13:00:00.000Z')
+  })
+  test('should return 13:00 when minute is 29', () => {
+    //Assign
+    const timestamp = '2027-02-01T13:29:00.000Z'
+    //Act
+    const result = adjustQueryTimestamp(timestamp)
+    //Assert
+    expect(result).toBe('2027-02-01T13:00:00.000Z')
+  })
+  test('should return 13:30 when minute is 30', () => {
+    //Assign
+    const timestamp = '2027-02-01T13:30:00.000Z'
+    //Act
+    const result = adjustQueryTimestamp(timestamp)
+    //Assert
+    expect(result).toBe('2027-02-01T13:30:00.000Z')
+  })
+  test('should return 13:30 when minute is 59', () => {
+    //Assign
+    const timestamp = '2027-02-01T13:59:00.000Z'
+    //Act
+    const result = adjustQueryTimestamp(timestamp)
+    //Assert
+    expect(result).toBe('2027-02-01T13:30:00.000Z')
+  })
+  test('should return 13:00 when minute is not parseable', () => {
+    //Assign
+    const timestamp = '2027-02-01T13:sr:00.000Z'
+    //Act
+    const result = adjustQueryTimestamp(timestamp)
+    //Assert
+    expect(result).toBe('2027-02-01T13:00:00.000Z')
   })
 })

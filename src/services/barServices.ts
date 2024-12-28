@@ -9,7 +9,6 @@ export const getCurrentlyCheapestBars = async (): Promise<Bar[]> => {
     })
     .order('is_open', { ascending: false })
     .order('beer_ppv', { ascending: true })
-    .limit(3)
   if (error) {
     return []
   }

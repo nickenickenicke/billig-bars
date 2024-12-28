@@ -72,3 +72,28 @@ export const addZero = (num: number): string => {
   }
   return num.toString()
 }
+
+export const adjustMinutesToHalfHour = (minutes: number) => {
+  if (minutes < 30) {
+    return 0
+  }
+  return 30
+}
+
+export const adjustQueryTimestamp = (timestamp: string) => {
+  // const mystring = '2027-02-01T13:30:00.000Z'
+  const splitTimestamp = timestamp.split(':')
+  let adjustedMinutes = ''
+
+  let minutes = parseInt(splitTimestamp[1]) || 0
+
+  if (minutes < 30) {
+    adjustedMinutes = '00'
+  } else {
+    adjustedMinutes = '30'
+  }
+
+  const adjustedTimestamp = splitTimestamp[0] + ':' + adjustedMinutes + ':00.000Z'
+
+  return adjustedTimestamp
+}
