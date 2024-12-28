@@ -4,7 +4,12 @@ import { GlobalStateContext } from '@/contexts/GlobalStateContext'
 import { Bar } from '@/models/Bar'
 import { GlobalState } from '@/models/GlobalState'
 import { StateActionType } from '@/reducers/GlobalStateReducer'
-import { getCurrentHour, getCurrentMinute, getTodaysWeekday } from '@/utils/timeTools'
+import {
+  adjustMinutesToHalfHour,
+  getCurrentHour,
+  getCurrentMinute,
+  getTodaysWeekday
+} from '@/utils/timeTools'
 import { useContext, useEffect } from 'react'
 
 interface PutBarsIntoContext {
@@ -23,7 +28,7 @@ export const PutBarsIntoContext = ({ bars }: PutBarsIntoContext) => {
       bars: bars,
       barsFromApi: bars,
       currentQuery: {
-        min: getCurrentMinute(),
+        min: adjustMinutesToHalfHour(getCurrentMinute()),
         hour: getCurrentHour(),
         day: getTodaysWeekday(),
         sort: 'asc'
