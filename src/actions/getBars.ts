@@ -5,7 +5,13 @@ import { CurrentQuery } from '@/models/GlobalState'
 import { CurrentLocation } from '@/models/Location'
 import { SupabaseQuery } from '@/models/Queries'
 import { createClient } from '@/utils/supabase/server'
-import { addZero, getCurrentHour, getCurrentMinute, getTodaysWeekday } from '@/utils/timeTools'
+import {
+  addZero,
+  adjustQueryTimestamp,
+  getCurrentHour,
+  getCurrentMinute,
+  getTodaysWeekday
+} from '@/utils/timeTools'
 
 export const getBarsWithQueryObject = async (
   query: CurrentQuery,
@@ -54,6 +60,8 @@ const createSupabaseQuery = (query: CurrentQuery, location: CurrentLocation): Su
       : (comparison_timestamp += ':' + addZero(query.min || getCurrentMinute()))
     comparison_timestamp += ':00.000Z'
   }
+
+  comparison_timestamp = adjustQueryTimestamp(comparison_timestamp)
 
   if (location.currentlat === 0) {
     return {
