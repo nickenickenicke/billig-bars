@@ -185,51 +185,44 @@ describe('Testing normalizeTimeFromDB', () => {
 })
 
 describe('Testing adjustQueryTimestamp', () => {
-  afterEach(() => {
-    jest.useRealTimers()
-  })
   test('should return 13:00 when minute is 00', () => {
     //Assign
-    const mockedDate = new Date(2024, 11, 16, 13, 0) //Monday 13:00
-    jest.useFakeTimers({
-      now: mockedDate
-    })
+    const timestamp = '2027-02-01T13:00:00.000Z'
     //Act
-    const result = adjustQueryTimestamp(mockedDate)
+    const result = adjustQueryTimestamp(timestamp)
     //Assert
-    expect(result.toLocaleTimeString('sv-SE', { timeZone: 'Europe/Stockholm' })).toBe('13:00:00')
+    expect(result).toBe('2027-02-01T13:00:00.000Z')
   })
   test('should return 13:00 when minute is 29', () => {
     //Assign
-    const mockedDate = new Date(2024, 11, 16, 13, 29) //Monday 13:29
-    jest.useFakeTimers({
-      now: mockedDate
-    })
+    const timestamp = '2027-02-01T13:29:00.000Z'
     //Act
-    const result = adjustQueryTimestamp(mockedDate)
+    const result = adjustQueryTimestamp(timestamp)
     //Assert
-    expect(result.toLocaleTimeString('sv-SE', { timeZone: 'Europe/Stockholm' })).toBe('13:00:00')
+    expect(result).toBe('2027-02-01T13:00:00.000Z')
   })
   test('should return 13:30 when minute is 30', () => {
     //Assign
-    const mockedDate = new Date(2024, 11, 16, 13, 30) //Monday 13:30
-    jest.useFakeTimers({
-      now: mockedDate
-    })
+    const timestamp = '2027-02-01T13:30:00.000Z'
     //Act
-    const result = adjustQueryTimestamp(mockedDate)
+    const result = adjustQueryTimestamp(timestamp)
     //Assert
-    expect(result.toLocaleTimeString('sv-SE', { timeZone: 'Europe/Stockholm' })).toBe('13:30:00')
+    expect(result).toBe('2027-02-01T13:30:00.000Z')
   })
   test('should return 13:30 when minute is 59', () => {
     //Assign
-    const mockedDate = new Date(2024, 11, 16, 13, 59) //Monday 13:59
-    jest.useFakeTimers({
-      now: mockedDate
-    })
+    const timestamp = '2027-02-01T13:59:00.000Z'
     //Act
-    const result = adjustQueryTimestamp(mockedDate)
+    const result = adjustQueryTimestamp(timestamp)
     //Assert
-    expect(result.toLocaleTimeString('sv-SE', { timeZone: 'Europe/Stockholm' })).toBe('13:30:00')
+    expect(result).toBe('2027-02-01T13:30:00.000Z')
+  })
+  test('should return 13:00 when minute is not parseable', () => {
+    //Assign
+    const timestamp = '2027-02-01T13:sr:00.000Z'
+    //Act
+    const result = adjustQueryTimestamp(timestamp)
+    //Assert
+    expect(result).toBe('2027-02-01T13:00:00.000Z')
   })
 })

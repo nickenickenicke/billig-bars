@@ -73,16 +73,20 @@ export const addZero = (num: number): string => {
   return num.toString()
 }
 
-export const adjustQueryTimestamp = (timestamp: Date) => {
-  let adjustedTimestamp = timestamp
+export const adjustQueryTimestamp = (timestamp: string) => {
+  // const mystring = '2027-02-01T13:30:00.000Z'
+  const splitTimestamp = timestamp.split(':')
+  let adjustedMinutes = ''
 
-  const minutes = timestamp.getMinutes()
+  let minutes = parseInt(splitTimestamp[1]) || 0
 
   if (minutes < 30) {
-    adjustedTimestamp.setMinutes(0)
+    adjustedMinutes = '00'
   } else {
-    adjustedTimestamp.setMinutes(30)
+    adjustedMinutes = '30'
   }
+
+  const adjustedTimestamp = splitTimestamp[0] + ':' + adjustedMinutes + ':00.000Z'
 
   return adjustedTimestamp
 }
