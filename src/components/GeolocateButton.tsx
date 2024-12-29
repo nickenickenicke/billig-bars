@@ -12,6 +12,9 @@ import { Button } from './Button'
 
 export const GeolocateButton = () => {
   const [loading, setLoading] = useState(false)
+  const [showError, setShowError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+
   const {
     globalState: { currentQuery },
     dispatch
@@ -65,6 +68,7 @@ export const GeolocateButton = () => {
       <Button type="button" onClick={handleClick} className="my-4 w-full" geolocate>
         Använd min plats
       </Button>
+      {!showError && <p className="text-red-500">Kunde inte hitta din plats</p>}
       {loading && <LoadingOverlay message="Hämtar din plats..." />}
     </>
   )
