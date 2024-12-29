@@ -9,6 +9,7 @@ import { GlobalState } from '@/models/GlobalState'
 import { LoadingOverlay } from './LoadingOverlay'
 import { useMap } from '@vis.gl/react-maplibre'
 import { Button } from './Button'
+import { handleGeolocationPositionError } from '@/utils/errorTools'
 
 export const GeolocateButton = () => {
   const [loading, setLoading] = useState(false)
@@ -47,10 +48,15 @@ export const GeolocateButton = () => {
           center: [currentPosition.currentlong, currentPosition.currentlat],
           zoom: 13.5
         })
+
         getBarsAndDispatch(currentPosition)
+        if (showError) {
+          clearError()
+        }
       })
       .catch(error => {
-        console.error(error)
+        setShowError(true)
+        setErrorMessage(handleGeolocationPositionError(error))
       })
       .finally(() => {
         setLoading(false)
@@ -63,12 +69,17 @@ export const GeolocateButton = () => {
     })
   }
 
+  const clearError = () => {
+    setShowError(false)
+    setErrorMessage('')
+  }
+
   return (
     <>
       <Button type="button" onClick={handleClick} className="my-4 w-full" geolocate>
         Använd min plats
       </Button>
-      {!showError && <p className="text-red-500">Kunde inte hitta din plats</p>}
+      {showError && <p className="-mt-2 text-center text-red-500">{errorMessage}</p>}
       {loading && <LoadingOverlay message="Hämtar din plats..." />}
     </>
   )
