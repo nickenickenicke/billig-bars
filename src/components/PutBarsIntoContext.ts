@@ -30,7 +30,7 @@ export const PutBarsIntoContext = ({ bars }: PutBarsIntoContext) => {
         min: adjustMinutesToHalfHour(getCurrentMinute()),
         hour: getCurrentHour(),
         day: getTodaysWeekday(),
-        sort: 'asc'
+        sortOrder: 'asc'
       }
     }
 

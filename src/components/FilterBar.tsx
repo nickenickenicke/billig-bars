@@ -12,7 +12,7 @@ export interface FilterSearchParams {
   day: string
   hour: string
   min: string
-  sort: string
+  sortOrder: string
 }
 
 export const FilterBar = () => {

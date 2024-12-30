@@ -13,7 +13,7 @@ const checkIfSameAsOldQuery = (newQuery: CurrentQuery, oldQuery: CurrentQuery) =
     newQuery.min === oldQuery.min &&
     newQuery.hour === oldQuery.hour &&
     newQuery.day === oldQuery.day &&
-    newQuery.sort === oldQuery.sort
+    newQuery.sortOrder === oldQuery.sortOrder
   ) {
     return true
   }

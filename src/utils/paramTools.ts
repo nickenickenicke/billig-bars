@@ -8,7 +8,7 @@ import {
 
 export const checkParams = (params: URLSearchParams): CurrentQuery => {
   let desc = false
-  if (params.get('sort') === 'desc') {
+  if (params.get('sortOrder') === 'desc') {
     desc = true
   }
 
@@ -44,6 +44,6 @@ export const checkParams = (params: URLSearchParams): CurrentQuery => {
     min,
     hour,
     day,
-    sort: desc ? 'desc' : 'asc'
+    sortOrder: desc ? 'desc' : 'asc'
   }
 }

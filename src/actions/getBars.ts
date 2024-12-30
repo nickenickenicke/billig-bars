@@ -17,9 +17,9 @@ export const getBarsWithQueryObject = async (
   query: CurrentQuery,
   currentLocation: CurrentLocation
 ): Promise<Bar[]> => {
-  const { sort } = query
+  const { sortOrder } = query
   let ascending = false
-  if (sort === 'asc') {
+  if (sortOrder === 'asc') {
     ascending = true
   }
 
