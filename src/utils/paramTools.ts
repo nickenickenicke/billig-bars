@@ -25,6 +25,9 @@ export const checkParams = (params: URLSearchParams): CurrentQuery => {
   if (params.get('hour')) {
     hour = parseInt(params.get('hour') as string) || hour
   }
+  if (hour === 24) {
+    hour = 0
+  }
   if (hour === null || hour < 0 || hour > 23) {
     hour = getCurrentHour()
   }
