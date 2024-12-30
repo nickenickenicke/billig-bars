@@ -18,27 +18,7 @@ export const getBarsWithQueryObject = async (
   query: CurrentQuery,
   currentLocation: CurrentLocation
 ): Promise<Bar[]> => {
-  // const { sortOrder } = query
-  // let ascending = false
-  // if (sortOrder === 'asc') {
-  //   ascending = true
-  // }
-
   const dbQuery = createSupabaseQuery(query, currentLocation)
-
-  // const dbQuery: SupabaseQuery = {
-  //   currentlat: 59.30780523805108,
-  //   currentlong: 18.07725504267913,
-  //   comparison_timestamp = '2027-02-01T13:30:00.000Z'
-  // }
-
-  // const supabase = await createClient()
-
-  // const { data, error } = await supabase
-  //   .rpc('barsnextopen', dbQuery)
-  //   .order('is_open', { ascending: false })
-  //   .order('dist_meters', { ascending: true })
-  //   .order('beer_price', { ascending })
 
   const { data, error } = await supabaseAccordingToQuery(query, dbQuery)
 
