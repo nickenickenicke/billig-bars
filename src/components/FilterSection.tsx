@@ -8,6 +8,7 @@ import { useSearchParams, useRouter } from 'next/navigation'
 import { checkFilterSearchParams, createParamString } from '@/utils/filterTools'
 import { FilterByWeekday } from './FilterByWeekday'
 import { FilterSortBy } from './FilterSortBy'
+import { GeolocateButton } from './GeolocateButton'
 
 export interface FilterSearchParams {
   day: string
@@ -18,7 +19,7 @@ export interface FilterSearchParams {
   mixOpenAndClosed: string
 }
 
-export const FilterBar = () => {
+export const FilterSection = () => {
   const searchParams = useSearchParams()
   const [isOpen, setIsOpen] = useState(searchParams.size !== 0)
   const router = useRouter()
@@ -42,11 +43,17 @@ export const FilterBar = () => {
     }
   }
 
+  const handleGeolocated = () => {
+    const newParamString = createParamString(filterSearchParams, 'sortBy', 'distance')
+    router.push('/bars' + newParamString, { scroll: false })
+  }
+
   const toggleFilterBar = () => {
     setIsOpen(!isOpen)
   }
   return (
     <>
+      <GeolocateButton updateFilter={handleGeolocated} />
       <nav
         className="group grid w-full grid-cols-1 grid-rows-[3rem_0fr] transition-all data-[filter-open=true]:grid-rows-[3rem_1fr] md:grid-rows-[3.5rem_0fr] md:data-[filter-open=true]:grid-rows-[3.5rem_1fr]"
         data-filter-open={isOpen}

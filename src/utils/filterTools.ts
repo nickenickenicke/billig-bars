@@ -1,4 +1,4 @@
-import { FilterSearchParams } from '@/components/FilterBar'
+import { FilterSearchParams } from '@/components/FilterSection'
 
 export const checkFilterSearchParams = (searchParams: URLSearchParams): FilterSearchParams => {
   const day = searchParams.get('day') || ''
