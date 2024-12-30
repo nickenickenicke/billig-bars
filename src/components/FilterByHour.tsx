@@ -8,8 +8,6 @@ interface FilterByHourProps {
 }
 
 export const FilterByHour = ({ hour, handleChange }: FilterByHourProps) => {
-  const [currentlySelectedHour, setCurrentlySelectedHour] = useState<string>(hour)
-
   return (
     <>
       <label htmlFor="time-select" className="font-medium">
@@ -20,9 +18,8 @@ export const FilterByHour = ({ hour, handleChange }: FilterByHourProps) => {
         name="time"
         onChange={e => {
           handleChange('hour', e)
-          setCurrentlySelectedHour(e.target.value)
         }}
-        value={currentlySelectedHour}
+        value={hour}
         className="mb-2"
       >
         <option value={'-1'}>Välj</option>

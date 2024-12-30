@@ -11,10 +11,6 @@ export const FilterShowClosedBars = ({
   mixOpenAndClosed,
   handleChange
 }: FilterShowClosedBarsProps) => {
-  const [currentlySelectedHour, setCurrentlySelectedHour] = useState<string>(
-    mixOpenAndClosed || 'false'
-  )
-
   return (
     <>
       <label htmlFor="show-closed-bars-select" className="font-medium">
@@ -25,9 +21,8 @@ export const FilterShowClosedBars = ({
         name="show-closed-bars"
         onChange={e => {
           handleChange('mixOpenAndClosed', e)
-          setCurrentlySelectedHour(e.target.value)
         }}
-        value={currentlySelectedHour}
+        value={mixOpenAndClosed}
         className="mb-2"
       >
         <option value={'-1'}>Välj</option>

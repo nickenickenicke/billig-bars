@@ -8,8 +8,6 @@ interface FilterSortByProps {
 }
 
 export const FilterSortBy = ({ sortBy, handleChange }: FilterSortByProps) => {
-  const [currentlySelectedHour, setCurrentlySelectedHour] = useState<string>(sortBy)
-
   return (
     <>
       <label htmlFor="sort-by-select" className="font-medium">
@@ -20,9 +18,8 @@ export const FilterSortBy = ({ sortBy, handleChange }: FilterSortByProps) => {
         name="sort-by"
         onChange={e => {
           handleChange('sortBy', e)
-          setCurrentlySelectedHour(e.target.value)
         }}
-        value={currentlySelectedHour}
+        value={sortBy}
         className="mb-2"
       >
         <option value={'-1'}>Välj</option>

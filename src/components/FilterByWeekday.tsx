@@ -9,8 +9,6 @@ interface FilterByWeekdayProps {
 }
 
 export const FilterByWeekday = ({ weekday, handleChange }: FilterByWeekdayProps) => {
-  const [currentlySelectedWeekday, setCurrentlySelectedWeekday] = useState<string>(weekday)
-
   return (
     <>
       <label htmlFor="weekday-select" className="font-medium">
@@ -21,9 +19,8 @@ export const FilterByWeekday = ({ weekday, handleChange }: FilterByWeekdayProps)
         name="weekday"
         onChange={e => {
           handleChange('day', e)
-          setCurrentlySelectedWeekday(e.target.value)
         }}
-        value={currentlySelectedWeekday}
+        value={weekday}
         className="mb-2"
       >
         <option value={'-1'}>Välj</option>

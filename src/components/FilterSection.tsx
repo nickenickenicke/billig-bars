@@ -23,9 +23,10 @@ export interface FilterSearchParams {
 export const FilterSection = () => {
   const searchParams = useSearchParams()
   const [isOpen, setIsOpen] = useState(searchParams.size !== 0)
+  const [filterSearchParams, setFilterSearchParams] = useState<FilterSearchParams>(
+    checkFilterSearchParams(searchParams)
+  )
   const router = useRouter()
-
-  const filterSearchParams = checkFilterSearchParams(searchParams)
 
   const handleFilterChange = (param: string, e: React.ChangeEvent<HTMLSelectElement>) => {
     if (param === 'hour' || param === 'day' || param === 'sortBy' || param === 'mixOpenAndClosed') {
@@ -36,6 +37,7 @@ export const FilterSection = () => {
         default:
           if (filterSearchParams[param] === e.target.value) break
           const newParamString = createParamString(filterSearchParams, param, e.target.value)
+          setFilterSearchParams({ ...filterSearchParams, [param]: e.target.value })
           router.push('/bars' + newParamString, { scroll: false })
           break
       }
@@ -43,11 +45,20 @@ export const FilterSection = () => {
   }
 
   const clearFilters = () => {
+    setFilterSearchParams({
+      day: '',
+      hour: '',
+      min: '',
+      sortBy: '',
+      sortOrder: '',
+      mixOpenAndClosed: ''
+    })
     router.push('/bars', { scroll: false })
   }
 
   const handleGeolocated = () => {
     const newParamString = createParamString(filterSearchParams, 'sortBy', 'distance')
+    setFilterSearchParams({ ...filterSearchParams, sortBy: 'distance' })
     router.push('/bars' + newParamString, { scroll: false })
   }
 
