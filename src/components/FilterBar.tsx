@@ -4,11 +4,23 @@ import { FilterByHour } from '@/components/FilterByHour'
 import { FilterButton } from './FilterButton'
 import { useState } from 'react'
 import { FilterStatus } from './FilterStatus'
+import { useSearchParams } from 'next/navigation'
+import { checkFilterSearchParams } from '@/utils/filterTools'
+
+export interface FilterSearchParams {
+  day: string
+  hour: string
+  min: string
+  sort: string
+}
 
 export const FilterBar = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const searchParams = useSearchParams()
 
-  const handleClick = () => {
+  const filterSearchParams = checkFilterSearchParams(searchParams)
+
+  const toggleFilterBar = () => {
     setIsOpen(!isOpen)
   }
   return (
@@ -18,10 +30,13 @@ export const FilterBar = () => {
         data-filter-open={isOpen}
       >
         <div className="flex justify-end pb-2">
-          <FilterButton onClick={handleClick} />
+          <FilterButton onClick={toggleFilterBar} />
         </div>
         <div className="group-data-[filter-open=false]:border- overflow-hidden border-b border-black">
+          <span className="block">Veckodag</span>
           <FilterByHour />
+          <span className="block">Visa bara barer som är öppna först</span>
+          <span className="block">Sortera efter närmast, billigast</span>
           <FilterStatus />
         </div>
       </nav>
