@@ -2,38 +2,24 @@
 
 import { useContext, useState } from 'react'
 import { GlobalStateContext } from '@/contexts/GlobalStateContext'
-import { getBarsWithQueryObject } from '@/actions/getBars'
 import { CurrentLocation } from '@/models/Location'
 import { StateActionType } from '@/reducers/GlobalStateReducer'
-import { GlobalState } from '@/models/GlobalState'
 import { LoadingOverlay } from './LoadingOverlay'
 import { useMap } from '@vis.gl/react-maplibre'
 import { Button } from './Button'
 import { handleGeolocationPositionError } from '@/utils/errorTools'
 
-export const GeolocateButton = () => {
+interface GeolocateButtonProps {
+  updateFilter: () => void
+}
+
+export const GeolocateButton = ({ updateFilter }: GeolocateButtonProps) => {
   const [loading, setLoading] = useState(false)
   const [showError, setShowError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
-  const {
-    globalState: { currentQuery },
-    dispatch
-  } = useContext(GlobalStateContext)
+  const { dispatch } = useContext(GlobalStateContext)
   const { beerMap } = useMap()
-
-  const getBarsAndDispatch = async (location: CurrentLocation) => {
-    const newBars = await getBarsWithQueryObject(currentQuery, location)
-    const newState: GlobalState = {
-      bars: newBars,
-      currentLocation: location,
-      currentQuery: currentQuery
-    }
-    dispatch({
-      type: StateActionType.UPDATED_STATE,
-      payload: JSON.stringify(newState)
-    })
-  }
 
   const handleClick = async () => {
     setLoading(true)
@@ -44,15 +30,22 @@ export const GeolocateButton = () => {
           currentlat: position.coords.latitude,
           currentlong: position.coords.longitude
         }
+
         beerMap?.flyTo({
           center: [currentPosition.currentlong, currentPosition.currentlat],
           zoom: 13.5
         })
 
-        getBarsAndDispatch(currentPosition)
+        dispatch({
+          type: StateActionType.UPDATED_LOCATION,
+          payload: JSON.stringify(currentPosition)
+        })
+
         if (showError) {
           clearError()
         }
+
+        updateFilter()
       })
       .catch(error => {
         setShowError(true)

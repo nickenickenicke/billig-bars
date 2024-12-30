@@ -30,6 +30,9 @@ body {
   footer a:hover {
     @apply text-green-price;
   }
+  select {
+    @apply border border-black p-2;
+  }
 }
 
 @layer utilities {

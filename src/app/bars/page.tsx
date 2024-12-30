@@ -7,8 +7,8 @@ export default function Bars() {
     <>
       <Suspense fallback={<p>Loading...</p>}>
         <CheckSearchParams />
+        <BarsView />
       </Suspense>
-      <BarsView />
     </>
   )
 }

@@ -1,15 +1,31 @@
 'use client'
 
-import { GlobalStateContext } from '@/contexts/GlobalStateContext'
-import { useContext } from 'react'
+import { addZero, getCurrentHour, getTodaysWeekday, getWeekdayName } from '@/utils/timeTools'
+import { FilterSearchParams } from './FilterSection'
 
-export const FilterStatus = () => {
-  const {
-    globalState: { currentQuery }
-  } = useContext(GlobalStateContext)
+interface FilterStatusProps {
+  fitlerSearchParams: FilterSearchParams
+}
+export const FilterStatus = ({ fitlerSearchParams }: FilterStatusProps) => {
+  let message = 'Visar barer som är öppna '
+  fitlerSearchParams.day === ''
+    ? (message += 'idag ')
+    : (message +=
+        getWeekdayName(+fitlerSearchParams.day || getTodaysWeekday()).toLowerCase() + 'ar ')
+  fitlerSearchParams.hour === ''
+    ? (message += getCurrentHour())
+    : (message += 'klockan ' + addZero(+fitlerSearchParams.hour || getCurrentHour()) + '')
+  message += '.'
 
-  if (currentQuery.hour || currentQuery.hour === 0) {
-    return <span className="block">{`Visar barer som är öppna klockan ${currentQuery.hour}`}</span>
+  if (
+    fitlerSearchParams.day !== '' ||
+    fitlerSearchParams.hour !== '' ||
+    fitlerSearchParams.min !== '' ||
+    fitlerSearchParams.sortBy !== '' ||
+    fitlerSearchParams.sortOrder !== '' ||
+    fitlerSearchParams.mixOpenAndClosed !== ''
+  ) {
+    return <span className="-mt-2 block pb-1 text-center font-medium md:text-xl">{message}</span>
   }
 
   return null
