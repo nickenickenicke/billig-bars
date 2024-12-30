@@ -23,7 +23,7 @@ export const FilterByHour = () => {
     switch (e.target.value) {
       case 'now': {
         if (currentQuery.hour === null) break
-        router.push('/bars')
+        router.push('/bars?hour=', { scroll: false })
         break
       }
       case '-1': {
@@ -31,7 +31,7 @@ export const FilterByHour = () => {
       }
       default:
         if (currentQuery.hour?.toString() === e.target.value) break
-        router.push('/bars?hour=' + e.target.value)
+        router.push('/bars?hour=' + e.target.value, { scroll: false })
         break
     }
     setCurrentlySelectedHour(e.target.value)
@@ -56,7 +56,7 @@ export const FilterByHour = () => {
         <option value={'21'}>21</option>
         <option value={'22'}>22</option>
         <option value={'23'}>23</option>
-        <option value={'0'}>00</option>
+        <option value={'24'}>00</option>
         <option value={'1'}>01</option>
         <option value={'2'}>02</option>
         <option value={'3'}>03</option>
