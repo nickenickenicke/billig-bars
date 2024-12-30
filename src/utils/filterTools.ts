@@ -7,3 +7,12 @@ export const checkFilterSearchParams = (searchParams: URLSearchParams): FilterSe
   const sort = searchParams.get('sort') || ''
   return { day, hour, min, sort }
 }
+
+export const createParamString = (
+  params: FilterSearchParams,
+  updatedParamKey: string,
+  updatedParamValue: string
+): string => {
+  const newParams = { ...params, [updatedParamKey]: updatedParamValue }
+  return `?day=${newParams.day}&hour=${newParams.hour}&min=${newParams.min}&sort=${newParams.sort}`
+}
