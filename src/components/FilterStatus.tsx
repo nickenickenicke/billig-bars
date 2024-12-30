@@ -13,7 +13,7 @@ export const FilterStatus = ({ fitlerSearchParams }: FilterStatusProps) => {
     : (message +=
         getWeekdayName(+fitlerSearchParams.day || getTodaysWeekday()).toLowerCase() + 'ar ')
   fitlerSearchParams.hour === ''
-    ? (message += getCurrentHour() + 'vid den här tiden')
+    ? (message += getCurrentHour())
     : (message += 'klockan ' + addZero(+fitlerSearchParams.hour || getCurrentHour()) + '')
   message += '.'
 
@@ -25,7 +25,7 @@ export const FilterStatus = ({ fitlerSearchParams }: FilterStatusProps) => {
     fitlerSearchParams.sortOrder !== '' ||
     fitlerSearchParams.mixOpenAndClosed !== ''
   ) {
-    return <span className="block text-center">{message}</span>
+    return <span className="-mt-2 block pb-1 text-center font-medium md:text-xl">{message}</span>
   }
 
   return null
