@@ -54,8 +54,10 @@ const createSupabaseQuery = (query: CurrentQuery, location: CurrentLocation): Su
     comparison_timestamp = new Date().toLocaleString('sv-SE', { timeZone: 'Europe/Stockholm' })
   } else {
     comparison_timestamp += '2027-02-0' + (query.day || getTodaysWeekday())
-    comparison_timestamp += 'T' + addZero(query.hour || getCurrentHour())
-    query.min === null && query.hour
+    query.hour === 0
+      ? (comparison_timestamp += 'T00')
+      : (comparison_timestamp += 'T' + addZero(query.hour || getCurrentHour()))
+    ;(query.min === null && query.hour) || (query.min === 0 && query.hour)
       ? (comparison_timestamp += ':00')
       : (comparison_timestamp += ':' + addZero(query.min || getCurrentMinute()))
     comparison_timestamp += ':00.000Z'
