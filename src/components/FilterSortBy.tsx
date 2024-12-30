@@ -23,7 +23,7 @@ export const FilterSortBy = ({ sortBy, handleChange }: FilterSortByProps) => {
           setCurrentlySelectedHour(e.target.value)
         }}
         value={currentlySelectedHour}
-        className="mb-4"
+        className="mb-2"
       >
         <option value={'-1'}>Välj</option>
         <option value={'price'}>Pris</option>
