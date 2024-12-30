@@ -29,8 +29,6 @@ export const FilterSection = () => {
 
   const handleFilterChange = (param: string, e: React.ChangeEvent<HTMLSelectElement>) => {
     if (param === 'hour' || param === 'day' || param === 'sortBy' || param === 'mixOpenAndClosed') {
-      console.log(param, e.target.value)
-
       switch (e.target.value) {
         case '-1': {
           break
@@ -69,9 +67,8 @@ export const FilterSection = () => {
             mixOpenAndClosed={filterSearchParams.mixOpenAndClosed}
             handleChange={handleFilterChange}
           />
-          <span className="block">Visa stängda barer [efter öppna, tillsammans med öppna]</span>
           <FilterSortBy sortBy={filterSearchParams.sortBy} handleChange={handleFilterChange} />
-          <FilterStatus />
+          <FilterStatus fitlerSearchParams={filterSearchParams} />
         </div>
       </nav>
     </>

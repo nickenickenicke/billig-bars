@@ -18,8 +18,6 @@ export const FilterByWeekday = ({ weekday, handleChange }: FilterByWeekdayProps)
         id="weekday-select"
         name="weekday"
         onChange={e => {
-          console.log('changing')
-
           handleChange('day', e)
           setCurrentlySelectedWeekday(e.target.value)
         }}
