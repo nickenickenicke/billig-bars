@@ -13,11 +13,13 @@ export interface FilterSearchParams {
   hour: string
   min: string
   sortOrder: string
+  sortBy: string
+  mixOpenAndClosed: string
 }
 
 export const FilterBar = () => {
-  const [isOpen, setIsOpen] = useState(false)
   const searchParams = useSearchParams()
+  const [isOpen, setIsOpen] = useState(searchParams.size !== 0)
   const router = useRouter()
 
   const filterSearchParams = checkFilterSearchParams(searchParams)
@@ -52,10 +54,9 @@ export const FilterBar = () => {
           <FilterButton onClick={toggleFilterBar} />
         </div>
         <div className="group-data-[filter-open=false]:border- overflow-hidden border-b border-black">
-          <span className="block">Veckodag</span>
           <FilterByWeekday weekday={filterSearchParams.day} handleChange={handleFilterChange} />
           <FilterByHour hour={filterSearchParams.hour} handleChange={handleFilterChange} />
-          <span className="block">Visa bara barer som är öppna först</span>
+          <span className="block">Visa stängda barer [efter öppna, tillsammans med öppna]</span>
           <span className="block">Sortera efter närmast, billigast</span>
           <FilterStatus />
         </div>

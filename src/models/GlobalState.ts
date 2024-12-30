@@ -12,11 +12,15 @@ export type CurrentQuery = {
   hour: number | null
   day: number | null
   sortOrder: string
+  sortBy: 'distance' | 'price' | null
+  mixOpenAndClosed: boolean
 }
 
 export const defaultCurrentQuery: CurrentQuery = {
   min: null,
   hour: null,
   day: null,
-  sortOrder: 'asc'
+  sortOrder: 'asc',
+  sortBy: null,
+  mixOpenAndClosed: false
 }
