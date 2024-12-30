@@ -12,7 +12,9 @@ export const FilterByHour = ({ hour, handleChange }: FilterByHourProps) => {
 
   return (
     <>
-      <label htmlFor="time-select">Klockan</label>
+      <label htmlFor="time-select" className="font-medium">
+        Klockan
+      </label>
       <select
         id="time-select"
         name="time"
@@ -21,6 +23,7 @@ export const FilterByHour = ({ hour, handleChange }: FilterByHourProps) => {
           setCurrentlySelectedHour(e.target.value)
         }}
         value={currentlySelectedHour}
+        className="mb-2"
       >
         <option value={'-1'}>Välj</option>
         <option value={''}>Nu</option>

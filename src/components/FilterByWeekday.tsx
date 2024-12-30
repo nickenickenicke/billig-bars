@@ -13,7 +13,9 @@ export const FilterByWeekday = ({ weekday, handleChange }: FilterByWeekdayProps)
 
   return (
     <>
-      <label htmlFor="weekday-select">Veckodag</label>
+      <label htmlFor="weekday-select" className="font-medium">
+        Veckodag
+      </label>
       <select
         id="weekday-select"
         name="weekday"
@@ -22,6 +24,7 @@ export const FilterByWeekday = ({ weekday, handleChange }: FilterByWeekdayProps)
           setCurrentlySelectedWeekday(e.target.value)
         }}
         value={currentlySelectedWeekday}
+        className="mb-2"
       >
         <option value={'-1'}>Välj</option>
         <option value={''}>Idag</option>

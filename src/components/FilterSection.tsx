@@ -60,7 +60,7 @@ export const FilterSection = () => {
         <div className="flex justify-end pb-2">
           <FilterButton onClick={toggleFilterBar} />
         </div>
-        <div className="group-data-[filter-open=false]:border- overflow-hidden border-b border-black">
+        <div className="group-data-[filter-open=true]:pb- flex flex-col gap-1 overflow-hidden border-b border-black group-data-[filter-open=false]:border-none group-data-[filter-open=true]:pt-2 md:text-lg">
           <FilterByWeekday weekday={filterSearchParams.day} handleChange={handleFilterChange} />
           <FilterByHour hour={filterSearchParams.hour} handleChange={handleFilterChange} />
           <FilterShowClosedBars
