@@ -42,6 +42,10 @@ export const FilterSection = () => {
     }
   }
 
+  const clearFilters = () => {
+    router.push('/bars', { scroll: false })
+  }
+
   const handleGeolocated = () => {
     const newParamString = createParamString(filterSearchParams, 'sortBy', 'distance')
     router.push('/bars' + newParamString, { scroll: false })
@@ -60,7 +64,7 @@ export const FilterSection = () => {
         <div className="flex justify-end pb-2">
           <FilterButton onClick={toggleFilterBar} />
         </div>
-        <div className="group-data-[filter-open=true]:pb- flex flex-col gap-1 overflow-hidden border-b border-black group-data-[filter-open=false]:border-none group-data-[filter-open=true]:pt-2 md:text-lg">
+        <div className="flex flex-col gap-1 overflow-hidden border-b border-black group-data-[filter-open=false]:border-none md:text-lg">
           <FilterByWeekday weekday={filterSearchParams.day} handleChange={handleFilterChange} />
           <FilterByHour hour={filterSearchParams.hour} handleChange={handleFilterChange} />
           <FilterShowClosedBars
@@ -68,6 +72,12 @@ export const FilterSection = () => {
             handleChange={handleFilterChange}
           />
           <FilterSortBy sortBy={filterSearchParams.sortBy} handleChange={handleFilterChange} />
+          <button
+            className="mb-2 flex items-center gap-2 self-end border-none py-2 pl-7 pr-2 uppercase underline underline-offset-2 md:text-lg"
+            onClick={clearFilters}
+          >
+            <span>Rensa filter</span>
+          </button>
           <FilterStatus fitlerSearchParams={filterSearchParams} />
         </div>
       </nav>
