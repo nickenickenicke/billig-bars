@@ -17,7 +17,6 @@ export const BarsView = () => {
         <article className="px-2 md:col-[1/2] md:row-[1/2] md:px-4 lg:px-8">
           <GeolocateButton />
           <FilterBar />
-          <FilterStatus />
           <BarsList />
         </article>
       </section>
