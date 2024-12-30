@@ -9,6 +9,7 @@ import { checkFilterSearchParams, createParamString } from '@/utils/filterTools'
 import { FilterByWeekday } from './FilterByWeekday'
 import { FilterSortBy } from './FilterSortBy'
 import { GeolocateButton } from './GeolocateButton'
+import { FilterShowClosedBars } from './FilterShowClosedBars'
 
 export interface FilterSearchParams {
   day: string
@@ -27,7 +28,7 @@ export const FilterSection = () => {
   const filterSearchParams = checkFilterSearchParams(searchParams)
 
   const handleFilterChange = (param: string, e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (param === 'hour' || param === 'day' || param === 'sortBy') {
+    if (param === 'hour' || param === 'day' || param === 'sortBy' || param === 'mixOpenAndClosed') {
       console.log(param, e.target.value)
 
       switch (e.target.value) {
@@ -64,8 +65,11 @@ export const FilterSection = () => {
         <div className="group-data-[filter-open=false]:border- overflow-hidden border-b border-black">
           <FilterByWeekday weekday={filterSearchParams.day} handleChange={handleFilterChange} />
           <FilterByHour hour={filterSearchParams.hour} handleChange={handleFilterChange} />
+          <FilterShowClosedBars
+            mixOpenAndClosed={filterSearchParams.mixOpenAndClosed}
+            handleChange={handleFilterChange}
+          />
           <span className="block">Visa stängda barer [efter öppna, tillsammans med öppna]</span>
-          <span className="block">Sortera efter närmast, billigast</span>
           <FilterSortBy sortBy={filterSearchParams.sortBy} handleChange={handleFilterChange} />
           <FilterStatus />
         </div>
