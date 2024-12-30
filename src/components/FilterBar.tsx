@@ -7,6 +7,7 @@ import { FilterStatus } from './FilterStatus'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { checkFilterSearchParams, createParamString } from '@/utils/filterTools'
 import { FilterByWeekday } from './FilterByWeekday'
+import { FilterSortBy } from './FilterSortBy'
 
 export interface FilterSearchParams {
   day: string
@@ -25,7 +26,7 @@ export const FilterBar = () => {
   const filterSearchParams = checkFilterSearchParams(searchParams)
 
   const handleFilterChange = (param: string, e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (param === 'hour' || param === 'day') {
+    if (param === 'hour' || param === 'day' || param === 'sortBy') {
       console.log(param, e.target.value)
 
       switch (e.target.value) {
@@ -58,6 +59,7 @@ export const FilterBar = () => {
           <FilterByHour hour={filterSearchParams.hour} handleChange={handleFilterChange} />
           <span className="block">Visa stängda barer [efter öppna, tillsammans med öppna]</span>
           <span className="block">Sortera efter närmast, billigast</span>
+          <FilterSortBy sortBy={filterSearchParams.sortBy} handleChange={handleFilterChange} />
           <FilterStatus />
         </div>
       </nav>
