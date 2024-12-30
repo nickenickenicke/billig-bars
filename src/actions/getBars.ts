@@ -12,16 +12,17 @@ import {
   getCurrentMinute,
   getTodaysWeekday
 } from '@/utils/timeTools'
+import { PostgrestError } from '@supabase/supabase-js'
 
 export const getBarsWithQueryObject = async (
   query: CurrentQuery,
   currentLocation: CurrentLocation
 ): Promise<Bar[]> => {
-  const { sortOrder } = query
-  let ascending = false
-  if (sortOrder === 'asc') {
-    ascending = true
-  }
+  // const { sortOrder } = query
+  // let ascending = false
+  // if (sortOrder === 'asc') {
+  //   ascending = true
+  // }
 
   const dbQuery = createSupabaseQuery(query, currentLocation)
 
@@ -31,13 +32,15 @@ export const getBarsWithQueryObject = async (
   //   comparison_timestamp = '2027-02-01T13:30:00.000Z'
   // }
 
-  const supabase = await createClient()
+  // const supabase = await createClient()
 
-  const { data, error } = await supabase
-    .rpc('barsnextopen', dbQuery)
-    .order('is_open', { ascending: false })
-    .order('dist_meters', { ascending: true })
-    .order('beer_price', { ascending })
+  // const { data, error } = await supabase
+  //   .rpc('barsnextopen', dbQuery)
+  //   .order('is_open', { ascending: false })
+  //   .order('dist_meters', { ascending: true })
+  //   .order('beer_price', { ascending })
+
+  const { data, error } = await supabaseAccordingToQuery(query, dbQuery)
 
   if (error) {
     console.error(error)
@@ -45,6 +48,59 @@ export const getBarsWithQueryObject = async (
   }
 
   return data
+}
+
+const supabaseAccordingToQuery = async (
+  currentQuery: CurrentQuery,
+  dbQuery: SupabaseQuery
+): Promise<{ data: any; error: PostgrestError | null }> => {
+  let ascending = false
+  if (currentQuery.sortOrder === 'asc') {
+    ascending = true
+  }
+
+  const supabase = await createClient()
+
+  if (currentQuery.sortBy === 'distance' && currentQuery.mixOpenAndClosed === true) {
+    const { data, error } = await supabase
+      .rpc('barsnextopen', dbQuery)
+      .order('dist_meters', { ascending })
+      .order('beer_price', { ascending: true })
+    return { data, error }
+  } else if (currentQuery.sortBy === 'distance' && currentQuery.mixOpenAndClosed === false) {
+    const { data, error } = await supabase
+      .rpc('barsnextopen', dbQuery)
+      .order('is_open', { ascending: false })
+      .order('dist_meters', { ascending })
+      .order('beer_price', { ascending: true })
+    return { data, error }
+  } else if (currentQuery.sortBy === 'price' && currentQuery.mixOpenAndClosed === true) {
+    const { data, error } = await supabase
+      .rpc('barsnextopen', dbQuery)
+      .order('beer_price', { ascending })
+      .order('dist_meters', { ascending: true })
+    return { data, error }
+  } else if (currentQuery.sortBy === 'price' && currentQuery.mixOpenAndClosed === false) {
+    const { data, error } = await supabase
+      .rpc('barsnextopen', dbQuery)
+      .order('is_open', { ascending: false })
+      .order('beer_price', { ascending })
+      .order('dist_meters', { ascending: true })
+    return { data, error }
+  } else if (currentQuery.mixOpenAndClosed === true) {
+    const { data, error } = await supabase
+      .rpc('barsnextopen', dbQuery)
+      .order('dist_meters', { ascending: false })
+      .order('beer_price', { ascending })
+    return { data, error }
+  } else {
+    const { data, error } = await supabase
+      .rpc('barsnextopen', dbQuery)
+      .order('is_open', { ascending: false })
+      .order('dist_meters', { ascending: true })
+      .order('beer_price', { ascending })
+    return { data, error }
+  }
 }
 
 const createSupabaseQuery = (query: CurrentQuery, location: CurrentLocation): SupabaseQuery => {
