@@ -1,11 +1,10 @@
 import { FilterByHour } from '@/components/FilterByHour'
-import { FilterIcon } from './FilterIcon'
+import { FilterButton } from './FilterButton'
 
 export const FilterBar = () => {
   return (
     <>
-      <h3>FILTERING</h3>
-      <FilterIcon />
+      <FilterButton onClick={() => {}} />
       <FilterByHour />
     </>
   )
