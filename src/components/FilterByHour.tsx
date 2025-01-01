@@ -1,48 +1,29 @@
 'use client'
 
-import { GlobalStateContext } from '@/contexts/GlobalStateContext'
-import { useRouter } from 'next/navigation'
-import { useContext, useEffect, useState } from 'react'
+import { useState } from 'react'
 
-export const FilterByHour = () => {
-  const {
-    globalState: { currentQuery }
-  } = useContext(GlobalStateContext)
-  const [currentlySelectedHour, setCurrentlySelectedHour] = useState<string>(
-    currentQuery.hour === null ? 'now' : currentQuery.hour.toString()
-  )
-  const router = useRouter()
-  useEffect(() => {
-    if (currentQuery.hour === null && currentlySelectedHour === 'now') return
-    if (currentQuery.hour?.toString() === currentlySelectedHour) return
+interface FilterByHourProps {
+  hour: string
+  handleChange: (param: string, e: React.ChangeEvent<HTMLSelectElement>) => void
+}
 
-    setCurrentlySelectedHour(currentQuery.hour === null ? 'now' : currentQuery.hour.toString())
-  }, [currentQuery.hour, currentlySelectedHour])
-
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    switch (e.target.value) {
-      case 'now': {
-        if (currentQuery.hour === null) break
-        router.push('/bars')
-        break
-      }
-      case '-1': {
-        break
-      }
-      default:
-        if (currentQuery.hour?.toString() === e.target.value) break
-        router.push('/bars?hour=' + e.target.value)
-        break
-    }
-    setCurrentlySelectedHour(e.target.value)
-  }
-
+export const FilterByHour = ({ hour, handleChange }: FilterByHourProps) => {
   return (
     <>
-      <label htmlFor="time-select">Klockan</label>
-      <select id="time-select" name="time" onChange={handleChange} value={currentlySelectedHour}>
+      <label htmlFor="time-select" className="font-medium">
+        Klockan
+      </label>
+      <select
+        id="time-select"
+        name="time"
+        onChange={e => {
+          handleChange('hour', e)
+        }}
+        value={hour}
+        className="mb-2"
+      >
         <option value={'-1'}>Välj</option>
-        <option value={'now'}>Nu</option>
+        <option value={''}>Nu</option>
         <option value={'11'}>11</option>
         <option value={'12'}>12</option>
         <option value={'13'}>13</option>
@@ -56,7 +37,7 @@ export const FilterByHour = () => {
         <option value={'21'}>21</option>
         <option value={'22'}>22</option>
         <option value={'23'}>23</option>
-        <option value={'0'}>00</option>
+        <option value={'24'}>00</option>
         <option value={'1'}>01</option>
         <option value={'2'}>02</option>
         <option value={'3'}>03</option>

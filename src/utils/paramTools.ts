@@ -7,9 +7,22 @@ import {
 } from './timeTools'
 
 export const checkParams = (params: URLSearchParams): CurrentQuery => {
-  let desc = false
-  if (params.get('sort') === 'desc') {
-    desc = true
+  let sortOrder = false
+  if (params.get('sortOrder') === 'desc') {
+    sortOrder = true
+  }
+
+  let mixOpenAndClosed = false
+  if (params.get('mixOpenAndClosed') === 'true') {
+    mixOpenAndClosed = true
+  }
+
+  let sortBy: 'distance' | 'price' | null = null
+  if (params.get('sortBy') === 'distance') {
+    sortBy = 'distance'
+  }
+  if (params.get('sortBy') === 'price') {
+    sortBy = 'price'
   }
 
   let min: number | null = null
@@ -24,6 +37,9 @@ export const checkParams = (params: URLSearchParams): CurrentQuery => {
   let hour: number | null = null
   if (params.get('hour')) {
     hour = parseInt(params.get('hour') as string) || hour
+  }
+  if (hour === 24) {
+    hour = 0
   }
   if (hour === null || hour < 0 || hour > 23) {
     hour = getCurrentHour()
@@ -41,6 +57,8 @@ export const checkParams = (params: URLSearchParams): CurrentQuery => {
     min,
     hour,
     day,
-    sort: desc ? 'desc' : 'asc'
+    sortOrder: sortOrder ? 'desc' : 'asc',
+    mixOpenAndClosed,
+    sortBy
   }
 }

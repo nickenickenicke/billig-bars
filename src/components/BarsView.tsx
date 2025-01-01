@@ -2,9 +2,7 @@
 
 import { MapProvider } from '@vis.gl/react-maplibre'
 import { BarsList } from './BarsList'
-import { FilterBar } from './FilterBar'
-import { FilterStatus } from './FilterStatus'
-import { GeolocateButton } from './GeolocateButton'
+import { FilterSection } from './FilterSection'
 import { MapCanvas } from './MapCanvas'
 
 export const BarsView = () => {
@@ -15,9 +13,7 @@ export const BarsView = () => {
           <MapCanvas />
         </div>
         <article className="px-2 md:col-[1/2] md:row-[1/2] md:px-4 lg:px-8">
-          <GeolocateButton />
-          <FilterBar />
-          <FilterStatus />
+          <FilterSection />
           <BarsList />
         </article>
       </section>
