@@ -30,6 +30,11 @@ body {
   footer a:hover {
     @apply text-green-price;
   }
+  .svg-vortex-line {
+    @apply fill-none stroke-black stroke-[41px];
+
+    stroke-miterlimit: 10;
+  }
 }
 
 @layer utilities {
