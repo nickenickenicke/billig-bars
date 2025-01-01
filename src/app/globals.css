@@ -33,6 +33,10 @@ body {
   select {
     @apply border border-black p-2;
   }
+  .svg-vortex-line {
+    @apply fill-none stroke-black stroke-[41px];
+    stroke-miterlimit: 10;
+  }
 }
 
 @layer utilities {
