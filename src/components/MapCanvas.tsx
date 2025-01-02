@@ -2,7 +2,7 @@
 
 import { GlobalStateContext } from '@/contexts/GlobalStateContext'
 import { useContext, useState } from 'react'
-import { Map } from '@vis.gl/react-maplibre'
+import { Map, NavigationControl } from '@vis.gl/react-maplibre'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import { MapPopup } from './MapPopup'
 import { MapBarMarker } from './MapBarMarker'
@@ -38,6 +38,7 @@ export const MapCanvas = ({ singleBar }: MapCanvasProps) => {
         style={{ width: '100%', height: '100%' }}
         mapStyle="https://tiles.openfreemap.org/styles/bright"
       >
+        <NavigationControl showCompass={false} />
         {isPopupOpen && (
           <MapPopup
             bar={popupBar}
