@@ -12,7 +12,7 @@ export type StateAction = {
   payload: string
 }
 
-export const defaultBarsState: Bar[] = [defaultBar]
+export const defaultBarsState: Bar[] = []
 
 export const defaultCurrentLocation: CurrentLocation = {
   currentlat: 0,

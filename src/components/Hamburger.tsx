@@ -1,7 +1,5 @@
 'use client'
 
-import { useState } from 'react'
-
 interface HamburgerProps {
   isMenuOpen: boolean
   handleClick: () => void

@@ -1,5 +1,4 @@
 import { Bar } from '@/models/Bar'
-import { BarPill } from './BarPill'
 import Link from 'next/link'
 import { CurrentLocation } from '@/models/Location'
 import { BeerPriceCircle } from './BeerPriceCircle'

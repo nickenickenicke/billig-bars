@@ -1,5 +1,4 @@
 import { BeerPriceCircle } from '@/components/BeerPriceCircle'
-import { SvgMascot } from '@/components/svgs/SvgMascot'
 import { SvgVortex } from '@/components/svgs/SvgVortex'
 
 export default async function About() {

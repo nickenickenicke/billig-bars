@@ -19,8 +19,11 @@ export const getWeekdayName = (day: number) => {
   return day === 0 ? weekdayNames[6] : weekdayNames[day - 1]
 }
 
-export const getClosingHour = (openingHours: OpeningHours[], dayToCheck?: number): string => {
-  const dayToCompare = dayToCheck || getTodaysWeekday()
+export const getClosingHour = (
+  openingHours: OpeningHours[],
+  dayToCheck?: number | null
+): string => {
+  const dayToCompare: number = dayToCheck || getTodaysWeekday()
 
   const index = openingHours.findIndex(day => {
     return day.day_of_week === dayToCompare

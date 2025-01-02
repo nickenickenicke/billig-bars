@@ -1,4 +1,3 @@
-import { ppvUpperThresholds } from '@/lib/priceThresholds'
 import { BeerStatsCircle } from './BeerStatsCircle'
 
 interface BeerStatsProps {
