@@ -35,3 +35,7 @@ Apart from good old `dev`, `build` and `start`:
 "test": Run Jest tests
 "cypress:open": Run Cypress tests
 ```
+
+## Live demo
+
+[billig-bars.vercel.app](https://billig-bars.vercel.app)
