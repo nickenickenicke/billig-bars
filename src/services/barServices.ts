@@ -8,7 +8,7 @@ export const getCurrentlyCheapestBars = async (): Promise<Bar[]> => {
       comparison_timestamp: new Date().toLocaleString('sv-SE', { timeZone: 'Europe/Stockholm' })
     })
     .order('is_open', { ascending: false })
-    .order('beer_ppv', { ascending: true })
+    .order('current_price', { ascending: true })
   if (error) {
     return []
   }
