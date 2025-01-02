@@ -3,12 +3,10 @@ import { Bar } from '@/models/Bar'
 import { normalizeMeters, normalizePostalCode } from '@/utils/locationTools'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
-import { singleBarMockData } from '@/lib/mockdata'
 import { BeerPriceCircle } from '@/components/BeerPriceCircle'
 import { BeerStats } from '@/components/BeerStats'
 import { MapCanvas } from '@/components/MapCanvas'
 import Link from 'next/link'
-import { BarPill } from '@/components/BarPill'
 import { BarPriceInformation } from '@/components/BarPriceInformation'
 import { getClosingHour, getOpeningHour } from '@/utils/timeTools'
 import { BarPills } from '@/components/BarPills'
@@ -47,8 +45,6 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
     console.error(error)
     redirect('/')
   }
-
-  // const data: Bar[] = [singleBarMockData]
 
   if (data) {
     const bar: Bar = data[0]

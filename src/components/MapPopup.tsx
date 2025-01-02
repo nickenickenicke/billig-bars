@@ -1,4 +1,3 @@
-import { ppvUpperThresholds } from '@/lib/priceThresholds'
 import { Bar } from '@/models/Bar'
 import { CurrentLocation } from '@/models/Location'
 import { normalizeMeters } from '@/utils/locationTools'

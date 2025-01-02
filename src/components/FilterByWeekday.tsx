@@ -1,7 +1,6 @@
 'use client'
 
 import { weekdayNames } from '@/lib/weekdays'
-import { useState } from 'react'
 
 interface FilterByWeekdayProps {
   weekday: string

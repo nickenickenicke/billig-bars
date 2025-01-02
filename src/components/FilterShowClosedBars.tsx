@@ -1,7 +1,5 @@
 'use client'
 
-import { useState } from 'react'
-
 interface FilterShowClosedBarsProps {
   mixOpenAndClosed: string
   handleChange: (param: string, e: React.ChangeEvent<HTMLSelectElement>) => void
