@@ -3,7 +3,7 @@ import {
   adjustMinutesToHalfHour,
   getCurrentHour,
   getCurrentMinute,
-  getTodaysWeekday
+  getCurrentWeekday
 } from './timeTools'
 
 export const checkParams = (params: URLSearchParams): CurrentQuery => {
@@ -50,7 +50,7 @@ export const checkParams = (params: URLSearchParams): CurrentQuery => {
     day = parseInt(params.get('day') as string) || day
   }
   if (day === null || day < 0 || day > 7) {
-    day = getTodaysWeekday()
+    day = getCurrentWeekday()
   }
 
   return {

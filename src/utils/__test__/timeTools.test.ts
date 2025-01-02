@@ -1,7 +1,7 @@
 import {
   getWeekdayName,
   normalizeTimeFromDB,
-  getTodaysWeekday,
+  getCurrentWeekday,
   adjustQueryTimestamp
 } from '../timeTools'
 
@@ -39,7 +39,7 @@ describe('Testing getTodaysWeekday', () => {
       now: mockedDate
     })
     //Act
-    const result = getTodaysWeekday()
+    const result = getCurrentWeekday()
     //Assert
     expect(result).toBe(1)
   })
@@ -51,7 +51,7 @@ describe('Testing getTodaysWeekday', () => {
     })
     jest.setSystemTime(mockedDate)
     //Act
-    const result = getTodaysWeekday()
+    const result = getCurrentWeekday()
     //Assert
     expect(result).toBe(7)
   })
@@ -63,7 +63,7 @@ describe('Testing getTodaysWeekday', () => {
     })
     jest.setSystemTime(mockedDate)
     //Act
-    const result = getTodaysWeekday()
+    const result = getCurrentWeekday()
     //Assert
     expect(result).toBe(3)
   })

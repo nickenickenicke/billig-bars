@@ -8,7 +8,7 @@ import {
   adjustMinutesToHalfHour,
   getCurrentHour,
   getCurrentMinute,
-  getTodaysWeekday
+  getCurrentWeekday
 } from '@/utils/timeTools'
 import { useContext, useEffect } from 'react'
 
@@ -29,7 +29,7 @@ export const PutBarsIntoContext = ({ bars }: PutBarsIntoContext) => {
       currentQuery: {
         min: adjustMinutesToHalfHour(getCurrentMinute()),
         hour: getCurrentHour(),
-        day: getTodaysWeekday(),
+        day: getCurrentWeekday(),
         sortOrder: 'asc',
         sortBy: null,
         mixOpenAndClosed: false

@@ -1,6 +1,6 @@
 'use client'
 
-import { addZero, getCurrentHour, getTodaysWeekday, getWeekdayName } from '@/utils/timeTools'
+import { addZero, getCurrentHour, getCurrentWeekday, getWeekdayName } from '@/utils/timeTools'
 import { FilterSearchParams } from './FilterSection'
 
 interface FilterStatusProps {
@@ -11,7 +11,7 @@ export const FilterStatus = ({ fitlerSearchParams }: FilterStatusProps) => {
   fitlerSearchParams.day === ''
     ? (message += 'idag ')
     : (message +=
-        getWeekdayName(+fitlerSearchParams.day || getTodaysWeekday()).toLowerCase() + 'ar ')
+        getWeekdayName(+fitlerSearchParams.day || getCurrentWeekday()).toLowerCase() + 'ar ')
   fitlerSearchParams.hour === ''
     ? (message += getCurrentHour())
     : (message += 'klockan ' + addZero(+fitlerSearchParams.hour || getCurrentHour()) + '')

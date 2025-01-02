@@ -1,7 +1,7 @@
 import { weekdayNames } from '@/lib/weekdays'
 import { OpeningHours } from '@/models/Bar'
 
-export const getTodaysWeekday = (): number => {
+export const getCurrentWeekday = (): number => {
   let weekday = new Date().getDay()
   if (weekday === 0) weekday = 7
   return weekday
@@ -23,7 +23,7 @@ export const getClosingHour = (
   openingHours: OpeningHours[],
   dayToCheck?: number | null
 ): string => {
-  const dayToCompare: number = dayToCheck || getTodaysWeekday()
+  const dayToCompare: number = dayToCheck || getCurrentWeekday()
 
   const index = openingHours.findIndex(day => {
     return day.day_of_week === dayToCompare

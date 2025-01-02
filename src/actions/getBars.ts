@@ -10,7 +10,7 @@ import {
   adjustQueryTimestamp,
   getCurrentHour,
   getCurrentMinute,
-  getTodaysWeekday
+  getCurrentWeekday
 } from '@/utils/timeTools'
 import { PostgrestError } from '@supabase/supabase-js'
 
@@ -90,7 +90,7 @@ const createSupabaseQuery = (query: CurrentQuery, location: CurrentLocation): Su
   if (query.day === null && query.hour === null && query.min === null) {
     comparison_timestamp = new Date().toLocaleString('sv-SE', { timeZone: 'Europe/Stockholm' })
   } else {
-    comparison_timestamp += '2027-02-0' + (query.day || getTodaysWeekday())
+    comparison_timestamp += '2027-02-0' + (query.day || getCurrentWeekday())
     query.hour === 0
       ? (comparison_timestamp += 'T00')
       : (comparison_timestamp += 'T' + addZero(query.hour || getCurrentHour()))
