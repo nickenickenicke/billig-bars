@@ -2,17 +2,20 @@
 
 Billig Bärs is a web application designed to help users find bars with the best prices for beers. The project is built using Typescript in [Next.js](https://nextjs.org/) and integrates with [Supabase](https://supabase.com/) for database operations.
 
-Styling:
-[Tailwind](https://github.com/tailwindlabs/tailwindcss)
+#### Styling
 
-Map:
-[MapLibre](https://maplibre.org/)
-[OpenFreeMap](https://openfreemap.org/)
-[@vis.gl/react-maplibre](https://github.com/visgl/react-maplibre)
+- [Tailwind](https://github.com/tailwindlabs/tailwindcss)
 
-Testing:
-[Cypress](https://www.cypress.io/)
-[Jest](https://jestjs.io/)
+#### Map
+
+- [MapLibre](https://maplibre.org/)
+- [OpenFreeMap](https://openfreemap.org/)
+- [@vis.gl/react-maplibre](https://github.com/visgl/react-maplibre)
+
+#### Testing
+
+- [Cypress](https://www.cypress.io/)
+- [Jest](https://jestjs.io/)
 
 ## Screenshots
 
