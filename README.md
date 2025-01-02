@@ -18,7 +18,6 @@ Testing:
 
 ![Screenshots of mobile view](readme/screenshots1.png 'Screenshots of mobile view')
 ![Screenshot of desktop view](readme/screenshots2.png 'Screenshot of desktop view')
-![Screenshot of desktop view](readme/screenshots3.png 'Screenshot of desktop view')
 
 ## Set Up
 
