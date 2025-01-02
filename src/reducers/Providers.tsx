@@ -1,17 +1,15 @@
 'use client'
 
 import { useReducer } from 'react'
-import { GlobalStateReducer } from './GlobalStateReducer'
+import { defaultGlobalState, GlobalStateReducer } from './GlobalStateReducer'
 import { GlobalStateContext } from '@/contexts/GlobalStateContext'
-import { initialMockData } from '@/lib/mockdata'
 
 interface ProvidersProps {
   children: React.ReactNode
 }
 
 export const Providers = ({ children }: ProvidersProps) => {
-  //TODO: Change to defaultBarState before release
-  const [globalState, dispatch] = useReducer(GlobalStateReducer, initialMockData)
+  const [globalState, dispatch] = useReducer(GlobalStateReducer, defaultGlobalState)
 
   return (
     <>
