@@ -8,8 +8,8 @@ import { BeerStats } from '@/components/BeerStats'
 import { MapCanvas } from '@/components/MapCanvas'
 import Link from 'next/link'
 import { BarPriceInformation } from '@/components/BarPriceInformation'
-import { getClosingHour, getOpeningHour } from '@/utils/timeTools'
 import { BarPills } from '@/components/BarPills'
+import { BarOpenOrClosedText } from '@/components/BarOpenOrClosedText'
 
 interface BarPageProps {
   params: { id: string }
@@ -74,9 +74,12 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
                   {normalizePostalCode(bar.postal_code)} {bar.city}
                 </address>
                 <span className="block">
-                  {bar.is_open
-                    ? 'Öppet till ' + getClosingHour(bar.opening_hours)
-                    : getOpeningHour(bar.opens_at)}
+                  <BarOpenOrClosedText
+                    is_open={bar.is_open}
+                    opening_hours={bar.opening_hours}
+                    opens_at={bar.opens_at}
+                    now
+                  />
                 </span>
               </div>
 
