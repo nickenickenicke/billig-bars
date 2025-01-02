@@ -9,12 +9,14 @@ interface BarOpenOrClosedTextProps {
   is_open: boolean
   opening_hours: OpeningHours[]
   opens_at: string
+  now?: boolean
 }
 
 export const BarOpenOrClosedText = ({
   is_open,
   opening_hours,
-  opens_at
+  opens_at,
+  now
 }: BarOpenOrClosedTextProps) => {
   const {
     globalState: { currentQuery }
@@ -22,7 +24,7 @@ export const BarOpenOrClosedText = ({
   return (
     <>
       {is_open
-        ? 'Öppet till ' + getClosingHour(opening_hours, currentQuery.day)
+        ? 'Öppet till ' + getClosingHour(opening_hours, now ? null : currentQuery.day)
         : getOpeningHour(opens_at)}
     </>
   )
