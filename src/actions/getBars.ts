@@ -45,40 +45,41 @@ const supabaseAccordingToQuery = async (
     const { data, error } = await supabase
       .rpc('barsnextopen', dbQuery)
       .order('dist_meters', { ascending })
-      .order('beer_price', { ascending: true })
+      .order('current_price', { ascending: true })
     return { data, error }
   } else if (currentQuery.sortBy === 'distance' && currentQuery.mixOpenAndClosed === false) {
     const { data, error } = await supabase
       .rpc('barsnextopen', dbQuery)
       .order('is_open', { ascending: false })
       .order('dist_meters', { ascending })
-      .order('beer_price', { ascending: true })
+      .order('current_price', { ascending: true })
     return { data, error }
   } else if (currentQuery.sortBy === 'price' && currentQuery.mixOpenAndClosed === true) {
     const { data, error } = await supabase
       .rpc('barsnextopen', dbQuery)
-      .order('beer_price', { ascending })
+      .order('current_price', { ascending })
       .order('dist_meters', { ascending: true })
     return { data, error }
   } else if (currentQuery.sortBy === 'price' && currentQuery.mixOpenAndClosed === false) {
     const { data, error } = await supabase
       .rpc('barsnextopen', dbQuery)
       .order('is_open', { ascending: false })
-      .order('beer_price', { ascending })
+      .order('current_price', { ascending })
       .order('dist_meters', { ascending: true })
     return { data, error }
   } else if (currentQuery.mixOpenAndClosed === true) {
     const { data, error } = await supabase
       .rpc('barsnextopen', dbQuery)
       .order('dist_meters', { ascending: false })
-      .order('beer_price', { ascending })
+      .order('current_price', { ascending })
     return { data, error }
   } else {
     const { data, error } = await supabase
       .rpc('barsnextopen', dbQuery)
       .order('is_open', { ascending: false })
       .order('dist_meters', { ascending: true })
-      .order('beer_price', { ascending })
+      .order('current_price', { ascending })
+
     return { data, error }
   }
 }
