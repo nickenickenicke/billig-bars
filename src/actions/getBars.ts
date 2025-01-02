@@ -20,7 +20,7 @@ export const getBarsWithQueryObject = async (
 ): Promise<Bar[]> => {
   const dbQuery = createSupabaseQuery(query, currentLocation)
 
-  const { data, error } = await supabaseAccordingToQuery(query, dbQuery)
+  const { data, error } = await retrieveBarsBasedOnQuery(query, dbQuery)
 
   if (error) {
     console.error(error)
@@ -30,7 +30,7 @@ export const getBarsWithQueryObject = async (
   return data
 }
 
-const supabaseAccordingToQuery = async (
+const retrieveBarsBasedOnQuery = async (
   currentQuery: CurrentQuery,
   dbQuery: SupabaseQuery
 ): Promise<{ data: any; error: PostgrestError | null }> => {

@@ -1,7 +1,7 @@
 import { BeerPriceCircle } from '@/components/BeerPriceCircle'
 import { SvgVortex } from '@/components/svgs/SvgVortex'
 
-export default async function About() {
+export default async function AboutPage() {
   return (
     <>
       <article className="px-2 pt-6 md:px-8 md:pt-10">
