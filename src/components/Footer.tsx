@@ -37,19 +37,10 @@ export const Footer = () => {
             .
           </p>
           <p>
-            Jag behöver ett jobb så kolla in min{' '}
-            <a
-              href="https://www.nickenickenicke.se/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline"
-            >
-              portfolio
-            </a>{' '}
-            eller stalka mig på{' '}
+            Jag behöver ett jobb så stalka mig på{' '}
             <a
               href="https://github.com/nickenickenicke/"
-              target="_blacnk"
+              target="_blank"
               rel="noopener noreferrer"
               className="underline"
             >
@@ -58,7 +49,7 @@ export const Footer = () => {
             &{' '}
             <a
               href="https://www.linkedin.com/in/nickebergman/"
-              target="_blacnk"
+              target="_blank"
               rel="noopener noreferrer"
               className="underline"
             >
