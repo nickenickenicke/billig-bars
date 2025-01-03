@@ -12,7 +12,7 @@ export type CurrentQuery = {
   hour: number | null
   day: number | null
   sortOrder: string
-  sortBy: 'distance' | 'price' | null
+  sortBy: 'distance' | 'price' | 'ppv' | null
   mixOpenAndClosed: boolean
 }
 

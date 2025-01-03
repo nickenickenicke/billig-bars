@@ -21,7 +21,8 @@ export const FilterSortBy = ({ sortBy, handleChange }: FilterSortByProps) => {
         className="mb-2"
       >
         <option value={'-1'}>Välj</option>
-        <option value={'price'}>Pris</option>
+        <option value={'price'}>Pris per glas</option>
+        <option value={'ppv'}>Pris per cl</option>
         <option value={'distance'}>Avstånd</option>
       </select>
     </>

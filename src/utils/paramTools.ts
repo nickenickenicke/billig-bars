@@ -17,12 +17,15 @@ export const checkParams = (params: URLSearchParams): CurrentQuery => {
     mixOpenAndClosed = true
   }
 
-  let sortBy: 'distance' | 'price' | null = null
+  let sortBy: 'distance' | 'price' | 'ppv' | null = null
   if (params.get('sortBy') === 'distance') {
     sortBy = 'distance'
   }
   if (params.get('sortBy') === 'price') {
     sortBy = 'price'
+  }
+  if (params.get('sortBy') === 'ppv') {
+    sortBy = 'ppv'
   }
 
   let min: number | null = null

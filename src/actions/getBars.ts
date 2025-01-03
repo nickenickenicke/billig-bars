@@ -67,6 +67,19 @@ const retrieveBarsBasedOnQuery = async (
       .order('current_price', { ascending })
       .order('dist_meters', { ascending: true })
     return { data, error }
+  } else if (currentQuery.sortBy === 'ppv' && currentQuery.mixOpenAndClosed === true) {
+    const { data, error } = await supabase
+      .rpc('barsnextopen', dbQuery)
+      .order('current_ppv', { ascending })
+      .order('dist_meters', { ascending: true })
+    return { data, error }
+  } else if (currentQuery.sortBy === 'ppv' && currentQuery.mixOpenAndClosed === false) {
+    const { data, error } = await supabase
+      .rpc('barsnextopen', dbQuery)
+      .order('is_open', { ascending: false })
+      .order('current_ppv', { ascending })
+      .order('dist_meters', { ascending: true })
+    return { data, error }
   } else if (currentQuery.mixOpenAndClosed === true) {
     const { data, error } = await supabase
       .rpc('barsnextopen', dbQuery)
