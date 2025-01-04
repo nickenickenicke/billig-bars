@@ -11,7 +11,7 @@ export const logInWithGitHub = async () => {
   } else if (process.env.VERCEL_ENV === 'preview') {
     BASE_URL = 'https://' + process.env.VERCEL_BRANCH_URL
   } else {
-    BASE_URL = 'https://' + process.env.VERCEL_URL
+    BASE_URL = 'https://' + process.env.VERCEL_PROJECT_PRODUCTION_URL
   }
 
   const { data, error } = await supabase.auth.signInWithOAuth({
