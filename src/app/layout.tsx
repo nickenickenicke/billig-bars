@@ -4,6 +4,7 @@ import { Providers } from '@/reducers/Providers'
 import { Navigation } from '@/components/Navigation'
 import { Protest_Riot, Rubik } from 'next/font/google'
 import { Footer } from '@/components/Footer'
+import { cookies } from 'next/headers'
 
 export const metadata: Metadata = {
   title: 'Billig Bärs',
@@ -28,11 +29,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const cookieStore = cookies()
+  const adminCookie = cookieStore.get('sb-jzbjemldpjpydinqzzna-auth-token.1')
+  const showAdmin: boolean = adminCookie ? true : false
+
   return (
     <html lang="en" className={``}>
       <body className={`${rubik.variable} ${protestRiot.variable} bg-white font-sans antialiased`}>
         <header>
-          <Navigation />
+          <Navigation showAdmin={showAdmin} />
         </header>
         <main className="mt-navbar">
           <Providers>{children}</Providers>
