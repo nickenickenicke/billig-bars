@@ -9,14 +9,16 @@ export default async function BarAdminPage() {
 
   if (error || !data?.user) {
     return (
-      <article className="">
+      <article className="flex h-[50vh] w-full items-center justify-center">
         <LoginWithGitHub />
       </article>
     )
   }
   return (
     <article className="">
-      <LogOutButton />
+      <div className="mx-2 mb-10 md:mx-auto md:w-1/2">
+        <LogOutButton />
+      </div>
       <BarAdminForm />
     </article>
   )
