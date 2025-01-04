@@ -15,7 +15,7 @@ export async function POST(req: any) {
   }
 
   revalidatePath('/', 'layout')
-  return NextResponse.redirect(new URL('/', req.url), {
+  return NextResponse.redirect(new URL('/bar-admin', req.url), {
     status: 302
   })
 }
