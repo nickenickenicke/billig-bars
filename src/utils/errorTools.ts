@@ -6,7 +6,7 @@ const isPostgresError = (error: unknown): error is PostgrestError => {
   return (error as PostgrestError).message !== undefined
 }
 
-export const formErrorToState = (error: unknown): FormState => {
+export const formErrorToFormState = (error: unknown): FormState => {
   if (isPostgresError(error)) {
     return {
       message: error.message

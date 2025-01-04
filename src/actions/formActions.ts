@@ -2,7 +2,7 @@
 
 import { BarFormData, HappyHours, OpeningHours } from '@/models/Bar'
 import { FormState } from '@/models/Forms'
-import { formErrorToState } from '@/utils/errorTools'
+import { formErrorToFormState } from '@/utils/errorTools'
 import { calculatePPV } from '@/utils/priceTools'
 import { createClient } from '@/utils/supabase/server'
 
@@ -72,7 +72,7 @@ export const insertBar = async (formState: FormState, formData: FormData): Promi
   let { data, error } = await supabase.rpc('upsert_bar_details', { p_bar_data: barData })
 
   if (error) {
-    return formErrorToState(error)
+    return formErrorToFormState(error)
   }
 
   return {
