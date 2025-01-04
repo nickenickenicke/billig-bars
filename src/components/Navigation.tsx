@@ -6,7 +6,11 @@ import { Hamburger } from './Hamburger'
 import { useEffect, useRef, useState } from 'react'
 import { NavLink } from './NavLink'
 
-export const Navigation = () => {
+interface NavigationProps {
+  showAdmin?: boolean
+}
+
+export const Navigation = ({ showAdmin }: NavigationProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 
@@ -58,6 +62,13 @@ export const Navigation = () => {
               Om Billig Bärs
             </NavLink>
           </li>
+          {showAdmin && (
+            <li className="contents">
+              <NavLink href={'/bar-admin'} handleClick={handleLinkClick}>
+                Admin
+              </NavLink>
+            </li>
+          )}
           <li className="contents md:hidden">
             <NavLink href={'/'} handleClick={handleLinkClick}>
               Startsida
