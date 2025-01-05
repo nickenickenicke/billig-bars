@@ -9,6 +9,7 @@ interface FormHappyHourItemProps {
   happy_volume: string
   happy_price: string
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  handleHourFocus: (event: React.FocusEvent<HTMLInputElement>) => void
   handleClearDay: () => void
 }
 
@@ -21,6 +22,7 @@ export const FormHappyHourItem = ({
   happy_price,
   happy_volume,
   handleChange,
+  handleHourFocus,
   handleClearDay
 }: FormHappyHourItemProps) => {
   return (
@@ -40,6 +42,7 @@ export const FormHappyHourItem = ({
           className=""
           value={happy_starts_at}
           onChange={handleChange}
+          onFocus={handleHourFocus}
         />
         <label htmlFor={`happy_starts_at_min_${day}`} className="justify-self-end pr-2">
           min
@@ -62,6 +65,7 @@ export const FormHappyHourItem = ({
           min="0"
           max="23"
           value={happy_ends_at}
+          onFocus={handleHourFocus}
           onChange={handleChange}
         />
         <label htmlFor={`happy_ends_at_min_${day}`} className="justify-self-end pr-2">
