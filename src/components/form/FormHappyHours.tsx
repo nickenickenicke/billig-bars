@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { FormHappyHourItem } from './FormHappyHourItem'
 
 export const FormHappyHours = () => {
-  const [happyHours, setHappyHours] = useState({
+  const [happyHours, setHappyHours] = useState<{ [key: string]: any }>({
     happy_starts_at_1: '',
     happy_starts_at_min_1: '',
     happy_ends_at_1: '',
@@ -73,7 +73,10 @@ export const FormHappyHours = () => {
 
   const handleHourFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     const selectedHour = e.target.name
-    console.log(selectedHour.slice(0, -1))
+    const selectedMinute: string = `${selectedHour.slice(0, -1)}min_${selectedHour.slice(-1)}`
+    if (happyHours[selectedMinute] === '') {
+      setHappyHours({ ...happyHours, [selectedMinute]: '00' })
+    }
   }
 
   const useMondayValuesForAllDays = () => {

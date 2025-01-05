@@ -65,6 +65,7 @@ export const FormHappyHourItem = ({
           min="0"
           max="23"
           value={happy_ends_at}
+          onFocus={handleHourFocus}
           onChange={handleChange}
         />
         <label htmlFor={`happy_ends_at_min_${day}`} className="justify-self-end pr-2">
