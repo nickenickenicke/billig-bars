@@ -71,6 +71,11 @@ export const FormHappyHours = () => {
     })
   }
 
+  const handleHourFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    const selectedHour = e.target.name
+    console.log(selectedHour.slice(0, -1))
+  }
+
   const useMondayValuesForAllDays = () => {
     setHappyHours({
       ...happyHours,
@@ -133,6 +138,7 @@ export const FormHappyHours = () => {
             happy_volume={happyHours.happy_volume_1}
             happy_price={happyHours.happy_price_1}
             handleChange={handleChange}
+            handleHourFocus={handleHourFocus}
             handleClearDay={() => {
               handleClearDay(1)
             }}
@@ -149,6 +155,7 @@ export const FormHappyHours = () => {
             happy_volume={happyHours.happy_volume_2}
             happy_price={happyHours.happy_price_2}
             handleChange={handleChange}
+            handleHourFocus={handleHourFocus}
             handleClearDay={() => {
               handleClearDay(2)
             }}
@@ -162,6 +169,7 @@ export const FormHappyHours = () => {
             happy_volume={happyHours.happy_volume_3}
             happy_price={happyHours.happy_price_3}
             handleChange={handleChange}
+            handleHourFocus={handleHourFocus}
             handleClearDay={() => {
               handleClearDay(3)
             }}
@@ -175,6 +183,7 @@ export const FormHappyHours = () => {
             happy_volume={happyHours.happy_volume_4}
             happy_price={happyHours.happy_price_4}
             handleChange={handleChange}
+            handleHourFocus={handleHourFocus}
             handleClearDay={() => {
               handleClearDay(4)
             }}
@@ -188,6 +197,7 @@ export const FormHappyHours = () => {
             happy_volume={happyHours.happy_volume_5}
             happy_price={happyHours.happy_price_5}
             handleChange={handleChange}
+            handleHourFocus={handleHourFocus}
             handleClearDay={() => {
               handleClearDay(5)
             }}
@@ -201,6 +211,7 @@ export const FormHappyHours = () => {
             happy_volume={happyHours.happy_volume_6}
             happy_price={happyHours.happy_price_6}
             handleChange={handleChange}
+            handleHourFocus={handleHourFocus}
             handleClearDay={() => {
               handleClearDay(6)
             }}
@@ -214,6 +225,7 @@ export const FormHappyHours = () => {
             happy_volume={happyHours.happy_volume_7}
             happy_price={happyHours.happy_price_7}
             handleChange={handleChange}
+            handleHourFocus={handleHourFocus}
             handleClearDay={() => {
               handleClearDay(7)
             }}
