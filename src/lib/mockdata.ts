@@ -20,6 +20,7 @@ export const singleBarMockData: Bar = {
   is_open: true,
   opens_at: 'open',
   is_happy_hour: true,
+  controlled_at: '2024-12-31T23:59:59.150212+00:00',
   opening_hours: [
     {
       id: '43069954-f646-4162-be4c-d61120a1a921',

@@ -18,6 +18,7 @@ export type Bar = {
   is_open: boolean
   opens_at: string
   is_happy_hour: boolean
+  controlled_at: string
 }
 
 export type OpeningHours = {
@@ -75,5 +76,6 @@ export const defaultBar: Bar = {
   is_open: false,
   is_happy_hour: false,
   opens_at: 'Closed',
-  opening_hours: []
+  opening_hours: [],
+  controlled_at: '2024-12-31T23:59:59.150212+00:00'
 }
