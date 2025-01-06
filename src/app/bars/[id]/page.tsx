@@ -11,6 +11,7 @@ import { BarPriceInformation } from '@/components/BarPriceInformation'
 import { BarPills } from '@/components/BarPills'
 import { BarOpenOrClosedText } from '@/components/BarOpenOrClosedText'
 import { BarLastControl } from '@/components/BarLastControl'
+import { DB_SINGLE_BAR_FUNCTION } from '@/lib/dbFunctionNames'
 
 interface BarPageProps {
   params: { id: string }
@@ -40,7 +41,7 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
 
   const supabase = await createClient()
 
-  let { data, error } = await supabase.rpc('barnextopen', supabaseQuery)
+  let { data, error } = await supabase.rpc(DB_SINGLE_BAR_FUNCTION, supabaseQuery)
 
   if (error) {
     console.error(error)
@@ -98,7 +99,7 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
             </div>
             {bar.happy_hours && bar.happy_hours.length > 0 && <BarPriceInformation bar={bar} />}
             <BarOpeningHours openingHours={bar.opening_hours} />
-            <BarLastControl barName={bar.name} last_controlled="2024-12-13" />
+            <BarLastControl barName={bar.name} controlled_at={bar.controlled_at} />
           </article>
         </section>
       </>
