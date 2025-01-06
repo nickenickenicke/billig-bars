@@ -9,6 +9,15 @@ interface MapBarMarkerProps {
 }
 
 export const MapBarMarker = ({ bar, handleBarMarkerClick }: MapBarMarkerProps) => {
+  const calculateZIndex = () => {
+    if (bar.current_ppv < ppvUpperThresholds.cheap) {
+      return '22'
+    } else if (bar.current_ppv < ppvUpperThresholds.average) {
+      return '21'
+    } else {
+      return '20'
+    }
+  }
   return (
     <Marker
       longitude={bar.long}
@@ -17,6 +26,7 @@ export const MapBarMarker = ({ bar, handleBarMarkerClick }: MapBarMarkerProps) =
       onClick={() => {
         handleBarMarkerClick(bar.long, bar.lat)
       }}
+      style={{ 'z-index': calculateZIndex() }}
     >
       <span
         className={`aspect-square rounded-full bg-green-price p-2 font-sans md:text-base ${
