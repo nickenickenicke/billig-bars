@@ -1,13 +1,13 @@
 interface BarLastUpdatedProps {
   barName: string
-  last_updated: string
+  last_controlled: string
 }
 
-export const BarLastUpdated = ({ barName, last_updated }: BarLastUpdatedProps) => {
+export const BarLastControl = ({ barName, last_controlled }: BarLastUpdatedProps) => {
   return (
     <div className="flex flex-col items-end justify-end text-sm italic">
       <span>{barName} kontrollerades senast</span>
-      <span>{last_updated}</span>
+      <span>{last_controlled}</span>
     </div>
   )
 }
