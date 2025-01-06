@@ -1,5 +1,6 @@
 'use server'
 
+import { DB_ALL_BARS_FUNCTION } from '@/lib/dbFunctionNames'
 import { Bar } from '@/models/Bar'
 import { CurrentQuery } from '@/models/GlobalState'
 import { CurrentLocation } from '@/models/Location'
@@ -43,52 +44,52 @@ const retrieveBarsBasedOnQuery = async (
 
   if (currentQuery.sortBy === 'distance' && currentQuery.mixOpenAndClosed === true) {
     const { data, error } = await supabase
-      .rpc('barsnextopen', dbQuery)
+      .rpc(DB_ALL_BARS_FUNCTION, dbQuery)
       .order('dist_meters', { ascending })
       .order('current_price', { ascending: true })
     return { data, error }
   } else if (currentQuery.sortBy === 'distance' && currentQuery.mixOpenAndClosed === false) {
     const { data, error } = await supabase
-      .rpc('barsnextopen', dbQuery)
+      .rpc(DB_ALL_BARS_FUNCTION, dbQuery)
       .order('is_open', { ascending: false })
       .order('dist_meters', { ascending })
       .order('current_price', { ascending: true })
     return { data, error }
   } else if (currentQuery.sortBy === 'price' && currentQuery.mixOpenAndClosed === true) {
     const { data, error } = await supabase
-      .rpc('barsnextopen', dbQuery)
+      .rpc(DB_ALL_BARS_FUNCTION, dbQuery)
       .order('current_price', { ascending })
       .order('dist_meters', { ascending: true })
     return { data, error }
   } else if (currentQuery.sortBy === 'price' && currentQuery.mixOpenAndClosed === false) {
     const { data, error } = await supabase
-      .rpc('barsnextopen', dbQuery)
+      .rpc(DB_ALL_BARS_FUNCTION, dbQuery)
       .order('is_open', { ascending: false })
       .order('current_price', { ascending })
       .order('dist_meters', { ascending: true })
     return { data, error }
   } else if (currentQuery.sortBy === 'ppv' && currentQuery.mixOpenAndClosed === true) {
     const { data, error } = await supabase
-      .rpc('barsnextopen', dbQuery)
+      .rpc(DB_ALL_BARS_FUNCTION, dbQuery)
       .order('current_ppv', { ascending })
       .order('dist_meters', { ascending: true })
     return { data, error }
   } else if (currentQuery.sortBy === 'ppv' && currentQuery.mixOpenAndClosed === false) {
     const { data, error } = await supabase
-      .rpc('barsnextopen', dbQuery)
+      .rpc(DB_ALL_BARS_FUNCTION, dbQuery)
       .order('is_open', { ascending: false })
       .order('current_ppv', { ascending })
       .order('dist_meters', { ascending: true })
     return { data, error }
   } else if (currentQuery.mixOpenAndClosed === true) {
     const { data, error } = await supabase
-      .rpc('barsnextopen', dbQuery)
+      .rpc(DB_ALL_BARS_FUNCTION, dbQuery)
       .order('dist_meters', { ascending: false })
       .order('current_price', { ascending })
     return { data, error }
   } else {
     const { data, error } = await supabase
-      .rpc('barsnextopen', dbQuery)
+      .rpc(DB_ALL_BARS_FUNCTION, dbQuery)
       .order('is_open', { ascending: false })
       .order('dist_meters', { ascending: true })
       .order('current_price', { ascending })
