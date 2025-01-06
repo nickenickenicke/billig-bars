@@ -6,7 +6,7 @@ export const LoginWithGitHub = () => {
   return (
     <button
       onClick={() => {
-        logInWithGitHub()
+        logInWithGitHub(window.location.hostname)
       }}
     >
       Logga in med GitHub
