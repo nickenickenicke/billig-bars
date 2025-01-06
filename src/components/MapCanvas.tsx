@@ -2,7 +2,7 @@
 
 import { GlobalStateContext } from '@/contexts/GlobalStateContext'
 import { useContext, useState } from 'react'
-import { Map, NavigationControl } from '@vis.gl/react-maplibre'
+import { Map, NavigationControl, useMap } from '@vis.gl/react-maplibre'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import { MapPopup } from './MapPopup'
 import { MapBarMarker } from './MapBarMarker'
@@ -20,9 +20,16 @@ export const MapCanvas = ({ singleBar }: MapCanvasProps) => {
   } = useContext(GlobalStateContext)
   const [popupBar, setPopupBar] = useState<Bar>(defaultBar)
   const [isPopupOpen, setIsPopupOpen] = useState(false)
+  const { beerMap } = useMap()
 
   const handleMarkerClick = (bar: Bar) => {
     setPopupBar(bar)
+    beerMap?.flyTo({
+      center: [bar.long, bar.lat],
+      speed: 1,
+      curve: 0,
+      padding: { top: 150 }
+    })
     setIsPopupOpen(true)
   }
 
