@@ -38,7 +38,7 @@ export const Navigation = ({ showAdmin }: NavigationProps) => {
 
   return (
     <nav
-      className="group fixed top-0 z-[10] grid w-full grid-cols-[auto,_1fr] grid-rows-[var(--navbar-height),_0fr] justify-between bg-white transition-all data-[open=true]:grid-rows-[var(--navbar-height),_1fr]"
+      className="group fixed top-0 z-[100] grid w-full grid-cols-[auto,_1fr] grid-rows-[var(--navbar-height),_0fr] justify-between bg-white transition-all data-[open=true]:grid-rows-[var(--navbar-height),_1fr]"
       data-open={isMenuOpen}
       ref={menuRef}
     >

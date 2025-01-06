@@ -25,6 +25,7 @@ export const MapPopup = ({ bar, currentLocation, handleClosePopup, singleBar }: 
       className="overflow-x-hidden font-sans"
       closeButton={singleBar ? false : true}
       maxWidth="none"
+      style={{ 'z-index': '30' }}
     >
       <Link
         className="col-[1/3] row-[1/2] pt-1 text-lg font-medium focus-within:outline-none md:text-2xl"
