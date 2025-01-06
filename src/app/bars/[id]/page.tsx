@@ -98,7 +98,7 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
             </div>
             {bar.happy_hours && bar.happy_hours.length > 0 && <BarPriceInformation bar={bar} />}
             <BarOpeningHours openingHours={bar.opening_hours} />
-            <BarLastUpdated barName={bar.name} />
+            <BarLastUpdated barName={bar.name} last_updated="2024-12-13" />
           </article>
         </section>
       </>
