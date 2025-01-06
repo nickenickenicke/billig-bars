@@ -10,6 +10,7 @@ import Link from 'next/link'
 import { BarPriceInformation } from '@/components/BarPriceInformation'
 import { BarPills } from '@/components/BarPills'
 import { BarOpenOrClosedText } from '@/components/BarOpenOrClosedText'
+import { BarLastUpdated } from '@/components/BarLastUpdated'
 
 interface BarPageProps {
   params: { id: string }
@@ -97,6 +98,7 @@ export default async function BarPage({ params, searchParams }: BarPageProps) {
             </div>
             {bar.happy_hours && bar.happy_hours.length > 0 && <BarPriceInformation bar={bar} />}
             <BarOpeningHours openingHours={bar.opening_hours} />
+            <BarLastUpdated barName={bar.name} />
           </article>
         </section>
       </>
