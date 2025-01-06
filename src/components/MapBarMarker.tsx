@@ -10,13 +10,22 @@ interface MapBarMarkerProps {
 
 export const MapBarMarker = ({ bar, handleBarMarkerClick }: MapBarMarkerProps) => {
   const calculateZIndex = () => {
-    if (bar.current_ppv < ppvUpperThresholds.cheap) {
-      return '22'
-    } else if (bar.current_ppv < ppvUpperThresholds.average) {
-      return '21'
+    let zIndex = ''
+    if (bar.is_open) {
+      zIndex += '2'
     } else {
-      return '20'
+      zIndex += '1'
     }
+
+    if (bar.current_ppv < ppvUpperThresholds.cheap) {
+      zIndex += '3'
+    } else if (bar.current_ppv < ppvUpperThresholds.average) {
+      zIndex += '2'
+    } else {
+      zIndex += '1'
+    }
+
+    return zIndex
   }
   return (
     <Marker
