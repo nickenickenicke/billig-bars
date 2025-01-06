@@ -1,5 +1,6 @@
 'use server'
 
+import { DB_UPSERT_BAR_FUNCTION } from '@/lib/dbFunctionNames'
 import { BarFormData, HappyHours, OpeningHours } from '@/models/Bar'
 import { FormState } from '@/models/Forms'
 import { formErrorToFormState } from '@/utils/errorTools'
@@ -69,7 +70,7 @@ export const insertBar = async (formState: FormState, formData: FormData): Promi
 
   const supabase = await createClient()
 
-  let { data, error } = await supabase.rpc('upsert_bar_details', { p_bar_data: barData })
+  let { data, error } = await supabase.rpc(DB_UPSERT_BAR_FUNCTION, { p_bar_data: barData })
 
   if (error) {
     return formErrorToFormState(error)
