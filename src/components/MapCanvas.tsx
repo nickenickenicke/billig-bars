@@ -86,7 +86,7 @@ export const MapCanvas = ({ singleBar }: MapCanvasProps) => {
         {!singleBar && (
           <button
             type="button"
-            className="absolute"
+            className="absolute right-[60px] top-[10px] z-40 w-[20ch] rounded-md border-none bg-white p-2 font-medium tracking-wide shadow-[0_0_0_2px_rgba(0,0,0,.1)] md:text-base lg:text-lg"
             onClick={() => {
               setHideClosedBars(!hideClosedBars)
             }}
