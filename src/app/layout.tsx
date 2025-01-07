@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: 'Billig Bärs är din guide till billig bria på Söder!',
   openGraph: {
     siteName: 'Billig Bärs',
-    url: 'https://billigbärs.se/'
+    url: 'https://billigbars.se/'
   }
 }
 
