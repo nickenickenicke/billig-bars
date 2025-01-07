@@ -5,6 +5,8 @@ import { Navigation } from '@/components/Navigation'
 import { Protest_Riot, Rubik } from 'next/font/google'
 import { Footer } from '@/components/Footer'
 import { cookies } from 'next/headers'
+import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export const metadata: Metadata = {
   title: 'Billig Bärs',
@@ -47,6 +49,8 @@ export default function RootLayout({
           <Providers>{children}</Providers>
         </main>
         <Footer />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
