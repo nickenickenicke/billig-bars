@@ -39,9 +39,15 @@ export const MapCanvas = ({ singleBar }: MapCanvasProps) => {
       <Map
         id="beerMap"
         initialViewState={{
-          longitude: singleBar ? singleBar.long : currentLocation.currentlong || 18.069215,
-          latitude: singleBar ? singleBar.lat + 0.001 : currentLocation.currentlat || 59.314654,
-          zoom: singleBar ? 14 : 12
+          bounds: singleBar
+            ? undefined
+            : [
+                [18.022482, 59.300843],
+                [18.110253, 59.324467]
+              ],
+          longitude: singleBar ? singleBar.long : undefined,
+          latitude: singleBar ? singleBar.lat + 0.001 : undefined,
+          zoom: singleBar ? 14 : undefined
         }}
         style={{ width: '100%', height: '100%' }}
         mapStyle="https://tiles.openfreemap.org/styles/bright"
