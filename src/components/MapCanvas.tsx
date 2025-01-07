@@ -20,7 +20,7 @@ export const MapCanvas = ({ singleBar }: MapCanvasProps) => {
   } = useContext(GlobalStateContext)
   const [popupBar, setPopupBar] = useState<Bar>(defaultBar)
   const [isPopupOpen, setIsPopupOpen] = useState(false)
-  const [showClosedBars, setShowClosedBars] = useState(true)
+  const [hideClosedBars, setHideClosedBars] = useState(false)
   const { beerMap } = useMap()
 
   const handleMarkerClick = (bar: Bar) => {
@@ -79,6 +79,7 @@ export const MapCanvas = ({ singleBar }: MapCanvasProps) => {
               key={bar.id}
               bar={bar}
               handleBarMarkerClick={(long, lat) => handleMarkerClick(bar)}
+              hideClosed={hideClosedBars}
             />
           ))
         )}
@@ -87,10 +88,10 @@ export const MapCanvas = ({ singleBar }: MapCanvasProps) => {
             type="button"
             className="absolute"
             onClick={() => {
-              setShowClosedBars(!showClosedBars)
+              setHideClosedBars(!hideClosedBars)
             }}
           >
-            {showClosedBars ? 'Göm stängda barer' : 'Visa stängda barer'}
+            {hideClosedBars ? 'Visa stängda barer' : 'Göm stängda barer'}
           </button>
         )}
       </Map>
