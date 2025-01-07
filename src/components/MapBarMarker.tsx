@@ -6,9 +6,10 @@ interface MapBarMarkerProps {
   bar: Bar
   handleBarMarkerClick: (long: number, lat: number) => void
   singleBar?: Bar
+  hideClosed?: boolean
 }
 
-export const MapBarMarker = ({ bar, handleBarMarkerClick }: MapBarMarkerProps) => {
+export const MapBarMarker = ({ bar, handleBarMarkerClick, hideClosed }: MapBarMarkerProps) => {
   const calculateZIndex = () => {
     let zIndex = ''
     if (bar.is_open) {
@@ -44,7 +45,7 @@ export const MapBarMarker = ({ bar, handleBarMarkerClick }: MapBarMarkerProps) =
             : bar.current_ppv < ppvUpperThresholds.average
               ? 'bg-yellow-price'
               : 'bg-red-price'
-        }`}
+        } ${hideClosed && !bar.is_open ? 'hidden' : ''}`}
       >
         {bar.current_price} kr
       </span>
