@@ -8,7 +8,11 @@ import { cookies } from 'next/headers'
 
 export const metadata: Metadata = {
   title: 'Billig Bärs',
-  description: 'Drink up!'
+  description: 'Billig Bärs är din guide till billig bria på Söder!',
+  openGraph: {
+    siteName: 'Billig Bärs',
+    url: 'https://billigbars.se/'
+  }
 }
 
 export const rubik = Rubik({

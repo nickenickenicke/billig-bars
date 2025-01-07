@@ -37,7 +37,7 @@ const config: Config = {
             fontFeatureSettings: '"ss04", "ss02"'
           }
         ],
-        price: ['var(--font-protest-riot)']
+        price: ['var(--font-protest-riot)', ...fontFamily.sans]
       },
       spacing: {
         navbar: 'var(--navbar-height)'
