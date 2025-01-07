@@ -87,3 +87,8 @@
 .maplibregl-ctrl-attrib-inner {
   padding-right: 2rem;
 }
+
+.maplibregl-ctrl-top-right,
+.maplibregl-ctrl-bottom-right {
+  z-index: 40;
+}
