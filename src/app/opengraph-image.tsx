@@ -7,6 +7,8 @@ export const size = {
   width: 1200,
   height: 630
 }
+export const siteName = 'Billig Bärs'
+export const url = 'https://billigbärs.se/'
 
 export const contentType = 'image/png'
 
