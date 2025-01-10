@@ -6,9 +6,10 @@
 .maplibregl-popup-anchor-bottom .maplibregl-popup-tip {
   place-self: start center;
 }
-.maplibregl-popup-tip {
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip {
   grid-column: 1/4;
   grid-row: 3/4;
+  border-top-color: var(--background);
 }
 
 .maplibregl-popup-close-button {
@@ -44,6 +45,7 @@
   grid-row: 1/3;
   grid-template-columns: subgrid;
   grid-template-rows: subgrid;
+  background: var(--background);
 }
 
 @media (min-width: 768px) {
@@ -91,4 +93,8 @@
 .maplibregl-ctrl-top-right,
 .maplibregl-ctrl-bottom-right {
   z-index: 40;
+}
+
+.maplibregl-ctrl-group {
+  background: var(--background);
 }
