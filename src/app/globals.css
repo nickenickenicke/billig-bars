@@ -33,6 +33,9 @@ body {
   select {
     @apply border border-black p-2;
   }
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
   .svg-vortex-line {
     @apply fill-none stroke-black stroke-[41px];
     stroke-miterlimit: 10;
