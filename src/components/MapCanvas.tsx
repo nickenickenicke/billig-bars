@@ -21,6 +21,7 @@ export const MapCanvas = ({ singleBar }: MapCanvasProps) => {
   const [popupBar, setPopupBar] = useState<Bar>(defaultBar)
   const [isPopupOpen, setIsPopupOpen] = useState(false)
   const [hideClosedBars, setHideClosedBars] = useState(false)
+  const [hideExpensiveBars, setHideExpensiveBars] = useState(false)
   const { beerMap } = useMap()
 
   const handleMarkerClick = (bar: Bar) => {
@@ -90,15 +91,26 @@ export const MapCanvas = ({ singleBar }: MapCanvasProps) => {
           ))
         )}
         {!singleBar && (
-          <button
-            type="button"
-            className="absolute right-[60px] top-[10px] z-40 w-[20ch] rounded-md border-none bg-white p-2 font-medium tracking-wide shadow-[0_0_0_2px_rgba(0,0,0,.1)] md:text-base lg:text-lg"
-            onClick={() => {
-              setHideClosedBars(!hideClosedBars)
-            }}
-          >
-            {hideClosedBars ? 'Visa stängda barer' : 'Göm stängda barer'}
-          </button>
+          <div className="absolute right-[50px] top-[10px] z-40 flex gap-[10px]">
+            <button
+              type="button"
+              className="w-[23ch] rounded-md border-none bg-white p-2 font-medium tracking-wide shadow-[0_0_0_2px_rgba(0,0,0,.1)] md:text-base lg:text-lg"
+              onClick={() => {
+                setHideExpensiveBars(!hideExpensiveBars)
+              }}
+            >
+              {hideExpensiveBars ? 'Visa bara billiga barer' : 'Visa alla prisklasser'}
+            </button>
+            <button
+              type="button"
+              className="w-[20ch] rounded-md border-none bg-white p-2 font-medium tracking-wide shadow-[0_0_0_2px_rgba(0,0,0,.1)] md:text-base lg:text-lg"
+              onClick={() => {
+                setHideClosedBars(!hideClosedBars)
+              }}
+            >
+              {hideClosedBars ? 'Visa stängda barer' : 'Göm stängda barer'}
+            </button>
+          </div>
         )}
       </Map>
     </>
