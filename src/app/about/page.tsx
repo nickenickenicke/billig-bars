@@ -1,4 +1,5 @@
 import { BeerPriceCircle } from '@/components/BeerPriceCircle'
+import { FAQuestion } from '@/components/FAQuestion'
 import { SvgVortex } from '@/components/svgs/SvgVortex'
 
 export default async function AboutPage() {
@@ -51,6 +52,45 @@ export default async function AboutPage() {
             Alldeles för dyrt!
           </p>
           <BeerPriceCircle beer_ppv={2.225} beer_price={89} example />
+        </section>
+        <section className="mx-auto mt-10 block w-full rounded-lg bg-bg-mustard px-3 py-4 md:w-[65ch] md:px-6 md:py-8 md:text-xl">
+          <h2 className="mb-3 text-2xl font-medium md:mb-6 md:text-4xl">Frågor och svar</h2>
+          <FAQuestion summary="Det står fel information på en bar! Varför?">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente eveniet ipsam
+              facilis, assumenda labore veniam quas voluptatibus, illum tempora libero explicabo,
+              aut officia asperiores eos quam qui ut? Rem.
+            </p>
+            <p>
+              Voluptate ut velit aliquam, excepturi quis ipsam quam suscipit sed vitae similique
+              adipisci tempora sit minima pariatur obcaecati tenetur atque delectus non. In labore
+              voluptate atque, ea laborum nostrum. Error.
+            </p>
+          </FAQuestion>
+          <FAQuestion summary="Hur tjänar Billig Bärs pengar?">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente eveniet ipsam
+              facilis, assumenda labore veniam quas voluptatibus, illum tempora libero explicabo,
+              aut officia asperiores eos quam qui ut? Rem.
+            </p>
+            <p>
+              Voluptate ut velit aliquam, excepturi quis ipsam quam suscipit sed vitae similique
+              adipisci tempora sit minima pariatur obcaecati tenetur atque delectus non. In labore
+              voluptate atque, ea laborum nostrum. Error.
+            </p>
+          </FAQuestion>
+          <FAQuestion summary="Vem driver Billig Bärs?">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente eveniet ipsam
+              facilis, assumenda labore veniam quas voluptatibus, illum tempora libero explicabo,
+              aut officia asperiores eos quam qui ut? Rem.
+            </p>
+            <p>
+              Voluptate ut velit aliquam, excepturi quis ipsam quam suscipit sed vitae similique
+              adipisci tempora sit minima pariatur obcaecati tenetur atque delectus non. In labore
+              voluptate atque, ea laborum nostrum. Error.
+            </p>
+          </FAQuestion>
         </section>
       </article>
     </>
