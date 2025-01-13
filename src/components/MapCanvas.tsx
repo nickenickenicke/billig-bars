@@ -87,6 +87,7 @@ export const MapCanvas = ({ singleBar }: MapCanvasProps) => {
               bar={bar}
               handleBarMarkerClick={(long, lat) => handleMarkerClick(bar)}
               hideClosed={hideClosedBars}
+              hideExpensive={hideExpensiveBars}
             />
           ))
         )}
@@ -99,7 +100,7 @@ export const MapCanvas = ({ singleBar }: MapCanvasProps) => {
                 setHideExpensiveBars(!hideExpensiveBars)
               }}
             >
-              {hideExpensiveBars ? 'Visa bara billiga barer' : 'Visa alla prisklasser'}
+              {hideExpensiveBars ? 'Visa alla prisklasser' : 'Visa bara billiga barer'}
             </button>
             <button
               type="button"
