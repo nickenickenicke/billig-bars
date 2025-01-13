@@ -24,7 +24,7 @@ export default async function AboutPage() {
           </p>
         </section>
         <SvgVortex className="mx-auto my-8 block w-[min(100%,_300px)] md:my-14" />
-        <section className="mx-auto grid w-fit grid-cols-[auto,_100px] items-start gap-x-3 gap-y-1 self-start rounded-lg bg-bg-pink px-3 py-4 md:grid-cols-[minmax(auto,_55ch),_auto] md:gap-x-6 md:px-6 md:py-8 md:text-xl">
+        <section className="mx-auto grid w-full grid-cols-[auto,_100px] items-start gap-x-3 gap-y-1 self-start rounded-lg bg-bg-pink px-3 py-4 md:w-fit md:grid-cols-[minmax(auto,_55ch),_auto] md:gap-x-6 md:px-6 md:py-8 md:text-xl">
           <h2 className="col-span-2 mb-2 text-2xl font-medium md:mb-5 md:text-4xl">
             Prisjämförelse
           </h2>
@@ -53,7 +53,7 @@ export default async function AboutPage() {
           </p>
           <BeerPriceCircle beer_ppv={2.225} beer_price={89} example />
         </section>
-        <section className="mx-auto mt-10 block w-full rounded-lg bg-bg-mustard px-3 py-4 md:w-[65ch] md:px-6 md:py-8 md:text-xl">
+        <section className="mx-auto mt-10 block w-full rounded-lg bg-bg-mustard px-3 py-4 md:w-[min(65ch,_100%)] md:px-6 md:py-8 md:text-xl">
           <h2 className="mb-3 text-2xl font-medium md:mb-6 md:text-4xl">Frågor och svar</h2>
           <FAQuestion summary="Det står fel information på en bar! Varför?">
             <p>
