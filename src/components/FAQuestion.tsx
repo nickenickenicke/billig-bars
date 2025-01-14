@@ -5,8 +5,8 @@ interface FAQuestionProps {
 
 export const FAQuestion = ({ summary, children }: FAQuestionProps) => {
   return (
-    <details className="group w-full border-b border-black pt-[1lh] first-of-type:pt-0">
-      <summary className="flex cursor-pointer list-none items-center justify-between pb-[0.5lh] font-medium">
+    <details className="group w-full border-b border-black">
+      <summary className="flex cursor-pointer list-none items-center justify-between pb-2 pt-8 font-medium group-first-of-type:pt-6 md:pt-12 md:group-first-of-type:pt-10">
         {summary}
         <span className="block h-full pl-4">
           <svg

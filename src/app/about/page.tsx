@@ -54,7 +54,7 @@ export default async function AboutPage() {
           <BeerPriceCircle beer_ppv={2.225} beer_price={89} example />
         </section>
         <section className="mx-auto mt-10 block w-full rounded-lg bg-bg-mustard px-3 py-4 md:w-[min(65ch,_100%)] md:px-6 md:py-8 md:text-xl">
-          <h2 className="mb-3 text-2xl font-medium md:mb-6 md:text-4xl">Frågor och svar</h2>
+          <h2 className="mb-0 text-2xl font-medium md:mb-0 md:text-4xl">Frågor och svar</h2>
           <FAQuestion summary="Det står fel information på en bar! Varför?">
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente eveniet ipsam
