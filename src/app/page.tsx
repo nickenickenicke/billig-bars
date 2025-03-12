@@ -11,7 +11,7 @@ export default async function Home() {
   return (
     <>
       <PutBarsIntoContext bars={bars} />
-      <article className="mt-6 grid grid-cols-12 grid-rows-[auto_auto_3fr_4fr_auto_auto] px-2 md:gap-x-10 md:px-8 md:pt-10 lg:grid-rows-[auto_auto_3fr_4fr_auto]">
+      <article className="mt-6 grid grid-cols-12 grid-rows-[auto_auto_3fr_4fr_auto_auto] px-2 md:mx-auto md:max-w-[1700px] md:gap-x-10 md:px-8 md:pt-10 lg:grid-rows-[auto_auto_3fr_4fr_auto]">
         <div className="col-span-full row-[1/4] rounded-lg bg-bg-mustard md:col-[1/11] md:row-[1/3] lg:col-[3/10]"></div>
         <h2 className="col-span-full row-[1/2] px-3 pt-4 text-2xl font-medium md:col-[1/11] md:px-6 md:pt-8 md:text-4xl lg:col-[3/10]">
           Söders billigaste bärs
